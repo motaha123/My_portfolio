@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mhd Taha Daboul – AI Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 200px;
+      background: url('https://svgshare.com/i/wgC.svg');
+      background-size: cover;
+      animation: wave 10s infinite linear;
+      opacity: 0.3;
+    }
+    @keyframes wave {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .profile-img {
+      border-radius: 9999px;
+      border: 4px solid #38bdf8;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+    }
+    a {
+      color: #38bdf8;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- Background Wave -->
+  <div class="wave"></div>
+
+  <header class="text-center py-10">
+    <h1 class="text-4xl font-bold">Mhd Taha Daboul</h1>
+    <p class="text-lg text-blue-300">AI Engineer | Machine Learning | Deep Learning</p>
+    <nav class="mt-4 space-x-6">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#projects" class="hover:underline">Projects</a>
+      <a href="#certifications" class="hover:underline">Certifications</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+    </nav>
+  </header>
+
+  <!-- About Me -->
+  <section id="about" class="max-w-6xl mx-auto p-6 flex flex-col md:flex-row items-center gap-10">
+    <img src="My_photo.JPG" alt="Taha's Photo" class="profile-img shadow-xl" />
+    <div>
+      <h2 class="text-3xl font-semibold mb-3">About Me</h2>
+      <p class="text-lg leading-relaxed">
+        I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer and senior Computer Science student at Cairo University.  
+        I specialize in machine learning, deep learning, and computer vision with hands-on experience in Python, TensorFlow, OpenCV, and more.  
+        Passionate about building intelligent systems that solve real-world problems.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-5xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-4">Projects</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>📝 Handwritten Prescription Recognition</strong><br>
+        Used segmentation and deep learning (VGG16) to extract and classify medicine names from handwritten images.
+      </li>
+      <li><strong>🧠 Deepfake Image Classification</strong><br>
+        Built a CNN model to detect manipulated images and enhance content authenticity.
+      </li>
+      <li><strong>📊 Data Analysis & Visualization</strong><br>
+        Performed end-to-end analysis using Python (Pandas, Matplotlib, Seaborn) on various datasets.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="max-w-5xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-4">Certifications</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Machine Learning Specialization – Andrew Ng (Coursera)</li>
+      <li>Deep Learning with CNNs – (ML/DL track)</li>
+      <li>Applied Data Science with Python – University of Michigan</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-5xl mx-auto p-6 pb-20">
+    <h2 class="text-3xl font-semibold mb-4">Contact Me</h2>
+    <ul class="space-y-2 text-lg">
+      <li>📧 Email: <a href="mailto:motahada2002@gmail.com">motahada2002@gmail.com</a></li>
+      <li>💻 GitHub: <a href="https://github.com/motaha123" target="_blank">motaha123</a></li>
+      <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank">Mhd Taha Daboul</a></li>
+    </ul>
+  </section>
+
+</body>
+</html>
+
