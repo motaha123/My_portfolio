@@ -34,12 +34,7 @@
       height: 180px;
       object-fit: cover;
     }
-    a {
-      color: #38bdf8;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body class="relative">
@@ -49,12 +44,19 @@
 
   <header class="text-center py-10">
     <h1 class="text-4xl font-bold">Mhd Taha Daboul</h1>
-    <p class="text-lg text-blue-300">AI Engineer | Machine Learning | Deep Learning</p>
-    <nav class="mt-4 space-x-6">
-      <a href="#about" class="hover:underline">About</a>
-      <a href="#projects" class="hover:underline">Projects</a>
-      <a href="#certifications" class="hover:underline">Certifications</a>
-      <a href="#contact" class="hover:underline">Contact</a>
+    <p class="text-lg text-blue-300">AI Engineer | Machine Learning | Deep Learning | Computer Vision</p>
+
+    <!-- ✅ Updated Navigation with View CV Button -->
+    <nav class="mt-4 space-x-6 flex justify-center items-center">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+      <a href="cv.html" class="ml-4 bg-blue-500 hover:bg-blue-600 px-4 py-1.5 rounded-lg text-white font-medium shadow-md transition">
+        View CV
+      </a>
     </nav>
   </header>
 
@@ -64,41 +66,104 @@
     <div>
       <h2 class="text-3xl font-semibold mb-3">About Me</h2>
       <p class="text-lg leading-relaxed">
-        I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer and senior Computer Science student at Cairo University.  
-        I specialize in machine learning, deep learning, and computer vision with hands-on experience in Python, TensorFlow, OpenCV, and more.  
-        Passionate about building intelligent systems that solve real-world problems.
+        I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer with a Bachelor's degree in Computer Science 
+        from Cairo University. I specialize in machine learning, deep learning, and computer vision — 
+        with hands-on experience in Python, TensorFlow, OpenCV, and automation solutions.
+        Passionate about creating intelligent systems that make a real impact.
       </p>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="max-w-5xl mx-auto p-6">
-    <h2 class="text-3xl font-semibold mb-4">Projects</h2>
+  <!-- Education -->
+  <section id="education" class="max-w-6xl mx-auto p-6 text-left">
+    <h2 class="text-3xl font-semibold mb-4">🎓 Education</h2>
     <ul class="list-disc pl-6 space-y-2">
-      <li><strong>📝 Handwritten Prescription Recognition</strong><br>
-        Used segmentation and deep learning (VGG16) to extract and classify medicine names from handwritten images.
-      </li>
-      <li><strong>🧠 Deepfake Image Classification</strong><br>
-        Built a CNN model to detect manipulated images and enhance content authenticity.
-      </li>
-      <li><strong>📊 Data Analysis & Visualization</strong><br>
-        Performed end-to-end analysis using Python (Pandas, Matplotlib, Seaborn) on various datasets.
+      <li>
+        <strong>Bachelor of Science in Computer Science</strong><br>
+        Cairo University – Faculty of Computer Science & Artificial Intelligence<br>
+        Graduation: 2025<br>
+        Relevant Coursework: Machine Learning, Deep Learning, Computer Vision, Data Science, Software Engineering
       </li>
     </ul>
   </section>
 
+  <!-- Projects -->
+  <section id="projects" class="max-w-6xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-6">Projects</h2>
+
+    <!-- PharmaScan -->
+    <div class="mb-6 bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl shadow-md border border-blue-500/30">
+      <h3 class="text-xl font-bold text-blue-300">🧠 PharmaScan — AI Handwritten Prescription Recognition</h3>
+      <p class="mt-2 leading-relaxed">
+        An AI healthcare assistant that reads handwritten prescriptions and improves pharmacy workflow accuracy.
+      </p>
+      <ul class="list-disc pl-6 mt-3 space-y-1 text-gray-200">
+        <li>OpenCV segmentation & text region detection</li>
+        <li>VGG16 CNN classifier for medicine recognition</li>
+        <li>Database lookup for:
+          <ul class="list-disc pl-6 text-gray-300">
+            <li>Drug alternatives & dosage</li>
+            <li>Drug interaction alerts</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="mt-3 text-gray-200"><strong>Tech:</strong> Python · TensorFlow · OCR · Pandas</p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="max-w-6xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-6">Skills</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">🤖 Programming & AI</h3>
+        <ul class="list-disc pl-6 text-gray-200 space-y-1">
+          <li>Machine Learning, Deep Learning, Computer Vision</li>
+          <li>Model Training & Evaluation</li>
+        </ul>
+      </div>
+
+      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">🛠 Tools & Frameworks</h3>
+        <ul class="list-disc pl-6 text-gray-200 space-y-1">
+          <li>Python, TensorFlow, Keras</li>
+          <li>OpenCV, Tesseract OCR</li>
+        </ul>
+      </div>
+
+      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">⚙ Automation</h3>
+        <ul class="list-disc pl-6 text-gray-200 space-y-1">
+          <li>Selenium Scripts</li>
+          <li>Workflow Optimization & API Integration</li>
+        </ul>
+      </div>
+
+      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">📌 Other Skills</h3>
+        <ul class="list-disc pl-6 text-gray-200 space-y-1">
+          <li>Git & GitHub</li>
+          <li>SQL Databases</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Certifications -->
-  <section id="certifications" class="max-w-5xl mx-auto p-6">
+  <section id="certifications" class="max-w-6xl mx-auto p-6 text-left">
     <h2 class="text-3xl font-semibold mb-4">Certifications</h2>
     <ul class="list-disc pl-6 space-y-2">
       <li>Machine Learning Specialization – Andrew Ng (Coursera)</li>
-      <li>Deep Learning with CNNs – (ML/DL track)</li>
+      <li>Deep Learning with CNNs – ML/DL Track</li>
       <li>Applied Data Science with Python – University of Michigan</li>
     </ul>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="max-w-5xl mx-auto p-6 pb-20">
+  <section id="contact" class="max-w-6xl mx-auto p-6 pb-20 text-left">
     <h2 class="text-3xl font-semibold mb-4">Contact Me</h2>
     <ul class="space-y-2 text-lg">
       <li>📧 Email: <a href="mailto:motahada2002@gmail.com">motahada2002@gmail.com</a></li>
@@ -109,4 +174,3 @@
 
 </body>
 </html>
-
