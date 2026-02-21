@@ -15,19 +15,25 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #7dd3fc;
     }
   </style>
 </head>
 
 <body class="p-6 max-w-5xl mx-auto">
 
+  <!-- HEADER -->
   <header class="text-center mb-10">
     <h1 class="text-4xl font-bold">Mhd Taha Daboul</h1>
     <p class="text-blue-300 text-lg">AI Engineer | ML | DL | Computer Vision | Automation</p>
     <p class="mt-2">
-      Cairo, Egypt (Originally from Damascus, Syria)<br>
+      Damascus, Syria<br>
       📧 <a href="mailto:motahada2002@gmail.com" class="text-blue-300">motahada2002@gmail.com</a> |
-      📞 +20 01019882995
+      📞 +963 954448575
     </p>
     <p class="mt-1 text-blue-300">
       <a target="_blank" href="https://github.com/motaha123">GitHub</a> |
@@ -35,75 +41,125 @@
     </p>
   </header>
 
-  <!-- Professional Summary -->
+  <!-- PROFESSIONAL SUMMARY -->
   <section class="card p-5 mb-6">
     <h2 class="text-2xl font-semibold mb-2">Professional Summary</h2>
     <p class="leading-relaxed">
-      AI Engineer with a strong background in Machine Learning, Deep Learning, and Computer Vision.
-      Skilled in AI Agent Automation, workflow automation (n8n), and API integration.
-      Passionate about developing intelligent systems that solve real-world problems and communicating
-      solutions with storytelling that highlights challenges, approaches, and impact.
+      AI Engineer with a strong background in Machine Learning, Deep Learning, and Computer Vision. Skilled in AI Agent Automation, workflow automation (n8n), and API integration. Passionate about developing intelligent systems that solve real-world problems and presenting projects through storytelling that highlights challenges, approaches, and impact.
     </p>
   </section>
 
-  <!-- Skills -->
+  <!-- TECHNICAL SKILLS -->
   <section class="card p-5 mb-6">
     <h2 class="text-2xl font-semibold mb-2">Technical Skills</h2>
-    <ul class="list-disc pl-6 leading-relaxed">
-      <li><strong>Programming:</strong> Python, SQL</li>
-      <li><strong>Frameworks:</strong> TensorFlow, Keras, PyTorch, Scikit-learn</li>
-      <li><strong>Data & Visualization:</strong> Pandas, NumPy, Matplotlib, Seaborn, Jupyter</li>
+    <ul class="list-disc pl-6 leading-relaxed columns-1 md:columns-2">
+      <li><strong>Programming:</strong> Python, SQL, JavaScript, C++</li>
+      <li><strong>Frameworks:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, Flask</li>
+      <li><strong>Data & Viz:</strong> Pandas, NumPy, Matplotlib, Seaborn, Jupyter</li>
       <li><strong>Automation:</strong> AI Agents, Workflow Automation (n8n), API Integration, Docker</li>
-      <li><strong>Computer Vision:</strong> Preprocessing, Segmentation, OCR (Tesseract), Transfer Learning (VGG16, MobileNet)</li>
-      <li><strong>Ops:</strong> Git/GitHub, CI/CD, Hyperparameter Optimization</li>
-      <li><strong>Languages:</strong> Arabic (Native), English (Fluent)</li>
+      <li><strong>CV/OCR:</strong> Preprocessing, segmentation, OCR (Tesseract), Transfer Learning (VGG16, MobileNet)</li>
+      <li><strong>Ops:</strong> Git/GitHub, CI/CD, Hyperparameter tuning, Early stopping</li>
+      <li><strong>Languages:</strong> Arabic (Native), English (Fluent), French (Basics)</li>
     </ul>
   </section>
 
-  <!-- Education -->
+  <!-- EDUCATION -->
   <section class="card p-5 mb-6">
     <h2 class="text-2xl font-semibold mb-2">Education</h2>
     <p class="leading-relaxed">
-      Cairo University — B.Sc. Computer Science (2021–2025)<br>
-      Focus: AI, Machine Learning, Computer Vision, Data Science
+      <strong>Cairo University</strong> — B.Sc. Computer Science (2021–2025)<br>
+      Focus: Artificial Intelligence, Machine Learning, Computer Vision, Data Science
     </p>
   </section>
 
-  <!-- Projects -->
+  <!-- CERTIFICATIONS -->
+  <section class="card p-5 mb-6">
+    <h2 class="text-2xl font-semibold mb-2">Certifications</h2>
+    <ul class="list-disc pl-6 leading-relaxed columns-1 md:columns-2">
+      <li>Machine Learning Specialization — Andrew Ng (Coursera)</li>
+      <li>Convolutional Neural Networks (CNN) — Andrew Ng (Coursera)</li>
+      <li>Introduction to Data Science — Univ. of Michigan (Coursera)</li>
+      <li>Applied Data Visualization with Python — Univ. of Michigan</li>
+      <li>Applied Machine Learning in Python — Univ. of Michigan</li>
+      <li>Applied Text Mining in Python — Univ. of Michigan</li>
+      <li>Applied Social Network Analysis in Python — Univ. of Michigan</li>
+    </ul>
+  </section>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <section class="card p-5 mb-6">
+    <h2 class="text-2xl font-semibold mb-2">Professional Experience</h2>
+    <div class="mb-3">
+      <p class="font-bold text-blue-200">Codenza — AI Engineering Intern (Syria)</p>
+      <p class="text-sm text-gray-300">October 2025 – January 2026 (3 months)</p>
+      <ul class="list-disc pl-6 mt-2 text-gray-100 space-y-1">
+        <li>Developed and optimized AI automation workflows, integrating ML/DL models into production-ready systems.</li>
+        <li>Built and fine-tuned models for computer vision and video generation projects.</li>
+        <li>Contributed to the "nano banana" project, generating videos using advanced deep learning techniques.</li>
+        <li>Automated data pipelines and model retraining processes using n8n and Docker, ensuring scalability.</li>
+        <li>Collaborated with the team to deploy AI solutions and present results to stakeholders.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
   <section class="card p-5 mb-6">
     <h2 class="text-2xl font-semibold mb-2">Projects</h2>
-    <ul class="list-disc pl-6 space-y-3 leading-relaxed">
-      <li>
-        <strong>Pharma Scan App — Handwritten Prescription Recognition</strong><br>
-        Built an AI pipeline combining OpenCV preprocessing, OCR, and deep learning for medicine detection.
-        Added automated alternative suggestion & drug-interaction checking using fuzzy matching. 
-        Automated ingestion & retraining workflows using n8n. Docker deployment ready.<br>
-        🔗 GitHub: <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="text-blue-300">Repository</a>
+    <ul class="space-y-5">
+      <!-- AI Educational Assistant -->
+      <li class="border-l-4 border-blue-400 pl-4">
+        <p class="font-bold text-blue-200">AI Educational Assistant – RAG System for STEM Subjects</p>
+        <p class="text-sm text-gray-300 mt-1">Interactive platform using Retrieval-Augmented Generation for Biology, Chemistry, Physics, and Mathematics.</p>
+        <ul class="list-disc pl-6 mt-1 text-gray-100">
+          <li>Integrated subject-specific textbooks as knowledge bases; rendered equations with LaTeX (KaTeX).</li>
+          <li>Designed dual‑mode web interface: “Ask” for answers, “Test” for AI‑generated quizzes.</li>
+          <li>Employed embeddings + vector search for accurate context retrieval.</li>
+        </ul>
       </li>
-
-      <li>
-        <strong>House Price Prediction — Regression API</strong><br>
-        Built, tuned and compared regression models including XGBoost.
-        Delivered deployable API + business reporting notebooks.<br>
-        🔗 GitHub: <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="text-blue-300">Repository</a>
+      <!-- Pharma Scan App -->
+      <li class="border-l-4 border-blue-400 pl-4">
+        <p class="font-bold text-blue-200">Pharma Scan App – Handwritten Prescription Recognition</p>
+        <p class="text-sm text-gray-300 mt-1">End‑to‑end pipeline to recognize medicine names from handwritten prescriptions.</p>
+        <ul class="list-disc pl-6 mt-1 text-gray-100">
+          <li>OpenCV preprocessing (grayscale, noise removal, adaptive thresholding, segmentation).</li>
+          <li>Combined Tesseract OCR with VGG16 CNN classifier (transfer learning) for higher accuracy.</li>
+          <li>Added fuzzy matching for alternative suggestions and drug‑interaction alerts.</li>
+          <li>Automated ingestion & retraining workflows with n8n; Docker containerization.</li>
+        </ul>
+        <p class="mt-1">🔗 <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="text-blue-300">github.com/motaha123/pharama_scan_app</a></p>
       </li>
-
-      <li>
-        <strong>AI Agent Automation (n8n)</strong><br>
-        Designed workflows integrating AI models with live APIs for structured JSON responses,
-        model retraining triggers, and automated pipelines.
+      <!-- House Price Prediction -->
+      <li class="border-l-4 border-blue-400 pl-4">
+        <p class="font-bold text-blue-200">House Price Prediction – Regression Models</p>
+        <p class="text-sm text-gray-300 mt-1">Exploratory analysis, feature engineering, and model comparison.</p>
+        <ul class="list-disc pl-6 mt-1 text-gray-100">
+          <li>Built and tuned Linear Regression, Random Forest, XGBoost with cross‑validation.</li>
+          <li>Improved accuracy via ensemble methods and hyperparameter optimization.</li>
+          <li>Delivered lightweight API and business‑friendly Jupyter notebooks.</li>
+        </ul>
+        <p class="mt-1">🔗 <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="text-blue-300">github.com/motaha123/House_price_Advance</a></p>
+      </li>
+      <!-- AI Agent Automation -->
+      <li class="border-l-4 border-blue-400 pl-4">
+        <p class="font-bold text-blue-200">AI Agent Automation & Workflow Projects (n8n)</p>
+        <p class="text-sm text-gray-300 mt-1">Designed intelligent workflows integrating AI models with live APIs.</p>
+        <ul class="list-disc pl-6 mt-1 text-gray-100">
+          <li>Automated structured JSON responses, model retraining triggers, and data pipelines.</li>
+          <li>Used Docker for deployment and versioning.</li>
+        </ul>
       </li>
     </ul>
   </section>
 
-  <!-- Soft Skills -->
+  <!-- SOFT SKILLS -->
   <section class="card p-5 mb-10">
     <h2 class="text-2xl font-semibold mb-2">Soft Skills</h2>
-    <p>Teamwork · Problem-Solving · Critical Thinking · Communication · Adaptability · Time Management</p>
+    <p>Teamwork · Problem‑solving · Critical Thinking · Communication · Adaptability · Time Management</p>
   </section>
 
+  <!-- FOOTER -->
   <footer class="text-center text-gray-300 pb-6">
-    © 2025 — Made by Mhd Taha Daboul
+    © 2025 — Mhd Taha Daboul
   </footer>
 
 </body>
