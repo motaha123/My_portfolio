@@ -35,6 +35,12 @@
       object-fit: cover;
     }
     a:hover { text-decoration: underline; }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
   </style>
 </head>
 <body class="relative">
@@ -46,7 +52,7 @@
     <h1 class="text-4xl font-bold">Mhd Taha Daboul</h1>
     <p class="text-lg text-blue-300">AI Engineer | Machine Learning | Deep Learning | Computer Vision</p>
 
-    <!-- ✅ Updated Navigation with View CV Button -->
+    <!-- Navigation with View CV button -->
     <nav class="mt-4 space-x-6 flex justify-center items-center">
       <a href="#about">About</a>
       <a href="#education">Education</a>
@@ -66,10 +72,13 @@
     <div>
       <h2 class="text-3xl font-semibold mb-3">About Me</h2>
       <p class="text-lg leading-relaxed">
-        I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer with a Bachelor's degree in Computer Science 
+        I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer from Damascus, Syria, with a Bachelor's degree in Computer Science 
         from Cairo University. I specialize in machine learning, deep learning, and computer vision — 
         with hands-on experience in Python, TensorFlow, OpenCV, and automation solutions.
-        Passionate about creating intelligent systems that make a real impact.
+        I love building intelligent systems and presenting projects through storytelling that highlights challenges, approaches, and impact.
+      </p>
+      <p class="text-lg mt-2">
+        📍 Damascus, Syria · 📞 +963 954448575
       </p>
     </div>
   </section>
@@ -87,86 +96,132 @@
     </ul>
   </section>
 
-  <!-- Projects -->
+  <!-- Projects (updated with new project) -->
   <section id="projects" class="max-w-6xl mx-auto p-6">
     <h2 class="text-3xl font-semibold mb-6">Projects</h2>
 
-    <!-- PharmaScan -->
-    <div class="mb-6 bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl shadow-md border border-blue-500/30">
-      <h3 class="text-xl font-bold text-blue-300">🧠 PharmaScan — AI Handwritten Prescription Recognition</h3>
+    <!-- AI Educational Assistant -->
+    <div class="mb-6 card p-6 border border-blue-500/30">
+      <h3 class="text-xl font-bold text-blue-300">📚 AI Educational Assistant – RAG System for STEM</h3>
       <p class="mt-2 leading-relaxed">
-        An AI healthcare assistant that reads handwritten prescriptions and improves pharmacy workflow accuracy.
+        Interactive platform using Retrieval-Augmented Generation for Biology, Chemistry, Physics, and Mathematics.
       </p>
       <ul class="list-disc pl-6 mt-3 space-y-1 text-gray-200">
-        <li>OpenCV segmentation & text region detection</li>
-        <li>VGG16 CNN classifier for medicine recognition</li>
-        <li>Database lookup for:
-          <ul class="list-disc pl-6 text-gray-300">
-            <li>Drug alternatives & dosage</li>
-            <li>Drug interaction alerts</li>
-          </ul>
-        </li>
+        <li>Integrated subject‑specific textbooks as knowledge bases; rendered equations with LaTeX (KaTeX).</li>
+        <li>Designed dual‑mode web interface: “Ask” for answers, “Test” for AI‑generated quizzes.</li>
+        <li>Employed embeddings + vector search for accurate context retrieval.</li>
       </ul>
-      <p class="mt-3 text-gray-200"><strong>Tech:</strong> Python · TensorFlow · OCR · Pandas</p>
+    </div>
+
+    <!-- PharmaScan -->
+    <div class="mb-6 card p-6 border border-blue-500/30">
+      <h3 class="text-xl font-bold text-blue-300">🧠 PharmaScan — Handwritten Prescription Recognition</h3>
+      <p class="mt-2 leading-relaxed">
+        End‑to‑end pipeline to recognize medicine names from handwritten prescriptions.
+      </p>
+      <ul class="list-disc pl-6 mt-3 space-y-1 text-gray-200">
+        <li>OpenCV preprocessing (grayscale, noise removal, adaptive thresholding, segmentation).</li>
+        <li>Combined Tesseract OCR with VGG16 CNN classifier (transfer learning) for higher accuracy.</li>
+        <li>Added fuzzy matching for alternative suggestions and drug‑interaction alerts.</li>
+        <li>Automated ingestion & retraining workflows with n8n; Docker containerization.</li>
+      </ul>
+      <p class="mt-3 text-gray-200"><strong>Tech:</strong> Python · TensorFlow · OCR · Pandas · n8n · Docker</p>
+      <p class="mt-1">🔗 <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="text-blue-300">GitHub</a></p>
+    </div>
+
+    <!-- House Price Prediction -->
+    <div class="mb-6 card p-6 border border-blue-500/30">
+      <h3 class="text-xl font-bold text-blue-300">🏠 House Price Prediction – Regression Models</h3>
+      <p class="mt-2 leading-relaxed">
+        Exploratory analysis, feature engineering, and model comparison.
+      </p>
+      <ul class="list-disc pl-6 mt-3 space-y-1 text-gray-200">
+        <li>Built and tuned Linear Regression, Random Forest, XGBoost with cross‑validation.</li>
+        <li>Improved accuracy via ensemble methods and hyperparameter optimization.</li>
+        <li>Delivered lightweight API and business‑friendly Jupyter notebooks.</li>
+      </ul>
+      <p class="mt-3 text-gray-200"><strong>Tech:</strong> Python · Scikit‑learn · XGBoost · Flask · Pandas</p>
+      <p class="mt-1">🔗 <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="text-blue-300">GitHub</a></p>
+    </div>
+
+    <!-- AI Agent Automation -->
+    <div class="mb-6 card p-6 border border-blue-500/30">
+      <h3 class="text-xl font-bold text-blue-300">🤖 AI Agent Automation (n8n)</h3>
+      <p class="mt-2 leading-relaxed">
+        Designed intelligent workflows integrating AI models with live APIs.
+      </p>
+      <ul class="list-disc pl-6 mt-3 space-y-1 text-gray-200">
+        <li>Automated structured JSON responses, model retraining triggers, and data pipelines.</li>
+        <li>Used Docker for deployment and versioning.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Skills -->
+  <!-- Skills (updated with new categories and languages) -->
   <section id="skills" class="max-w-6xl mx-auto p-6">
     <h2 class="text-3xl font-semibold mb-6">Skills</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
-        <h3 class="text-xl font-bold text-blue-300 mb-2">🤖 Programming & AI</h3>
+      <div class="card p-5 border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">💻 Programming & AI</h3>
         <ul class="list-disc pl-6 text-gray-200 space-y-1">
+          <li>Python, SQL, JavaScript, C++</li>
           <li>Machine Learning, Deep Learning, Computer Vision</li>
-          <li>Model Training & Evaluation</li>
+          <li>TensorFlow, Keras, PyTorch, Scikit‑learn, Flask</li>
         </ul>
       </div>
 
-      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
-        <h3 class="text-xl font-bold text-blue-300 mb-2">🛠 Tools & Frameworks</h3>
+      <div class="card p-5 border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">📊 Data & Automation</h3>
         <ul class="list-disc pl-6 text-gray-200 space-y-1">
-          <li>Python, TensorFlow, Keras</li>
-          <li>OpenCV, Tesseract OCR</li>
+          <li>Pandas, NumPy, Matplotlib, Seaborn, Jupyter</li>
+          <li>AI Agents, n8n, API Integration, Docker</li>
+          <li>Git/GitHub, CI/CD, Hyperparameter tuning</li>
         </ul>
       </div>
 
-      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
-        <h3 class="text-xl font-bold text-blue-300 mb-2">⚙ Automation</h3>
+      <div class="card p-5 border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">👁️ Computer Vision & OCR</h3>
         <ul class="list-disc pl-6 text-gray-200 space-y-1">
-          <li>Selenium Scripts</li>
-          <li>Workflow Optimization & API Integration</li>
+          <li>OpenCV (preprocessing, segmentation)</li>
+          <li>Tesseract OCR, Transfer Learning (VGG16, MobileNet)</li>
         </ul>
       </div>
 
-      <div class="bg-white bg-opacity-10 backdrop-blur-md p-5 rounded-xl shadow-md border border-blue-500/30">
-        <h3 class="text-xl font-bold text-blue-300 mb-2">📌 Other Skills</h3>
+      <div class="card p-5 border border-blue-500/30">
+        <h3 class="text-xl font-bold text-blue-300 mb-2">🌐 Languages</h3>
         <ul class="list-disc pl-6 text-gray-200 space-y-1">
-          <li>Git & GitHub</li>
-          <li>SQL Databases</li>
+          <li>Arabic (Native)</li>
+          <li>English (Fluent)</li>
+          <li>French (Basics)</li>
         </ul>
       </div>
 
     </div>
   </section>
 
-  <!-- Certifications -->
+  <!-- Certifications (expanded list) -->
   <section id="certifications" class="max-w-6xl mx-auto p-6 text-left">
     <h2 class="text-3xl font-semibold mb-4">Certifications</h2>
-    <ul class="list-disc pl-6 space-y-2">
+    <ul class="list-disc pl-6 space-y-1 columns-1 md:columns-2">
       <li>Machine Learning Specialization – Andrew Ng (Coursera)</li>
-      <li>Deep Learning with CNNs – ML/DL Track</li>
-      <li>Applied Data Science with Python – University of Michigan</li>
+      <li>Convolutional Neural Networks – Andrew Ng (Coursera)</li>
+      <li>Introduction to Data Science – Univ. of Michigan</li>
+      <li>Applied Data Visualization with Python – Univ. of Michigan</li>
+      <li>Applied Machine Learning in Python – Univ. of Michigan</li>
+      <li>Applied Text Mining in Python – Univ. of Michigan</li>
+      <li>Applied Social Network Analysis in Python – Univ. of Michigan</li>
     </ul>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact (updated) -->
   <section id="contact" class="max-w-6xl mx-auto p-6 pb-20 text-left">
     <h2 class="text-3xl font-semibold mb-4">Contact Me</h2>
     <ul class="space-y-2 text-lg">
       <li>📧 Email: <a href="mailto:motahada2002@gmail.com">motahada2002@gmail.com</a></li>
+      <li>📞 Phone: +963 954448575</li>
+      <li>📍 Location: Damascus, Syria</li>
       <li>💻 GitHub: <a href="https://github.com/motaha123" target="_blank">motaha123</a></li>
       <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank">Mhd Taha Daboul</a></li>
     </ul>
@@ -174,3 +229,4 @@
 
 </body>
 </html>
+
