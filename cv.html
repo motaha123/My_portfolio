@@ -1,166 +1,847 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV – Mhd Taha Daboul</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Mhd Taha Daboul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060810;
+      --bg2: #0d1117;
+      --bg3: #111622;
+      --card: #131929;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text: #e8eaf0;
+      --muted: #6b7494;
+      --accent: #4af0b0;
+      --accent2: #7b61ff;
+      --accent3: #f05a7e;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: white;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      overflow-x: hidden;
     }
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: rgba(6,8,16,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-print {
+      font-size: 0.8rem;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.9rem;
+      border-radius: 4px;
+      background: none;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-print:hover { background: var(--accent); color: var(--bg); }
+
+    /* ---- WRAPPER ---- */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 2rem 4rem;
+    }
+
+    /* ---- HEADER ---- */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cv-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .cv-name span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cv-title {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+    }
+
+    .cv-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cv-contact-item:hover { color: var(--text); }
+    .cv-contact-item .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cv-header-right {
+      text-align: right;
+    }
+
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      color: var(--accent);
+      border: 1px solid rgba(74,240,176,0.25);
+      background: rgba(74,240,176,0.06);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .available-badge::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ---- SECTION ---- */
+    .cv-section {
+      margin-bottom: 2.75rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* ---- CARD ---- */
+    .cv-card {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      backdrop-filter: blur(4px);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
     }
-    a:hover {
-      text-decoration: underline;
-      color: #7dd3fc;
+
+    .cv-card:last-child { margin-bottom: 0; }
+
+    /* ---- SUMMARY ---- */
+    .summary-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .summary-text strong { color: var(--text); font-weight: 500; }
+
+    /* ---- SKILLS ---- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      color: var(--text);
+    }
+
+    /* ---- EXPERIENCE / PROJECT ---- */
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .entry-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .entry-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .entry-date {
+      font-size: 0.75rem;
+      color: var(--accent);
+      white-space: nowrap;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(74,240,176,0.2);
+      border-radius: 4px;
+      background: rgba(74,240,176,0.05);
+    }
+
+    .entry-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .entry-bullets li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-right: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .entry-bullets li::before {
+      content: '→';
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+
+    .entry-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 0.75rem;
+      transition: gap 0.2s;
+    }
+    .entry-link:hover { gap: 0.5rem; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .tag.accent { color: var(--accent); border-color: rgba(74,240,176,0.2); background: rgba(74,240,176,0.05); }
+    .tag.purple { color: var(--accent2); border-color: rgba(123,97,255,0.2); background: rgba(123,97,255,0.05); }
+
+    /* Featured project */
+    .cv-card.featured {
+      border-color: rgba(74,240,176,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .cv-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    /* ---- EDUCATION ---- */
+    .edu-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(123,97,255,0.1);
+      border: 1px solid rgba(123,97,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- CERTS ---- */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .cert-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .cert-item strong {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.78rem;
+      margin-bottom: 0.15rem;
+    }
+
+    /* ---- SOFT SKILLS ---- */
+    .soft-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .soft-pill {
+      font-size: 0.82rem;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      color: var(--text);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 680px) {
+      .cv-header { grid-template-columns: 1fr; }
+      .cv-header-right { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .wrapper { padding: 80px 1.25rem 3rem; }
+      nav { padding: 0 1.25rem; }
+    }
+
+    @media print {
+      nav { display: none; }
+      body { background: white; color: black; }
+      .wrapper { padding-top: 1rem; }
+      .cv-card, .skill-group, .cert-item { border: 1px solid #ddd; background: #f9f9f9; }
+      :root {
+        --text: #111;
+        --muted: #555;
+        --card: #f9f9f9;
+        --accent: #059669;
+        --accent2: #4f46e5;
+        --border: #ddd;
+        --border2: #ccc;
+      }
+      body::before { display: none; }
     }
   </style>
 </head>
+<body>
 
-<body class="p-6 max-w-5xl mx-auto">
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">MTD</a>
+    <a class="nav-back" href="index.html">← Back to Portfolio</a>
+    <button class="nav-print" onclick="window.print()">Print / PDF</button>
+  </nav>
 
-  <!-- HEADER -->
-  <header class="text-center mb-10">
-    <h1 class="text-4xl font-bold">Mhd Taha Daboul</h1>
-    <p class="text-blue-300 text-lg">AI Engineer | ML | DL | Computer Vision | Automation</p>
-    <p class="mt-2">
-      Damascus, Syria<br>
-      📧 <a href="mailto:motahada2002@gmail.com" class="text-blue-300">motahada2002@gmail.com</a> |
-      📞 +963 954448575
-    </p>
-    <p class="mt-1 text-blue-300">
-      <a target="_blank" href="https://github.com/motaha123">GitHub</a> |
-      <a target="_blank" href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/">LinkedIn</a>
-    </p>
-  </header>
+  <div class="wrapper">
 
-  <!-- PROFESSIONAL SUMMARY -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Professional Summary</h2>
-    <p class="leading-relaxed">
-      AI Engineer with a strong background in Machine Learning, Deep Learning, and Computer Vision. Skilled in AI Agent Automation, workflow automation (n8n), and API integration. Passionate about developing intelligent systems that solve real-world problems and presenting projects through storytelling that highlights challenges, approaches, and impact.
-    </p>
-  </section>
+    <!-- HEADER -->
+    <header class="cv-header">
+      <div>
+        <h1 class="cv-name">Mhd Taha <span>Daboul</span></h1>
+        <p class="cv-title">AI Engineer · Machine Learning · Deep Learning · Computer Vision</p>
+        <div class="cv-contacts">
+          <a href="mailto:motahada2002@gmail.com" class="cv-contact-item">
+            <span class="dot"></span> motahada2002@gmail.com
+          </a>
+          <span class="cv-contact-item">
+            <span class="dot"></span> +963 954 448 575
+          </span>
+          <a href="https://github.com/motaha123" target="_blank" class="cv-contact-item">
+            <span class="dot"></span> github.com/motaha123
+          </a>
+          <a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank" class="cv-contact-item">
+            <span class="dot"></span> LinkedIn
+          </a>
+          <a href="https://grownerd.net" target="_blank" class="cv-contact-item">
+            <span class="dot"></span> grownerd.net
+          </a>
+          <span class="cv-contact-item">
+            <span class="dot"></span> Damascus, Syria
+          </span>
+        </div>
+      </div>
+      <div class="cv-header-right">
+        <div class="available-badge">Open to opportunities</div>
+      </div>
+    </header>
 
-  <!-- TECHNICAL SKILLS -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Technical Skills</h2>
-    <ul class="list-disc pl-6 leading-relaxed columns-1 md:columns-2">
-      <li><strong>Programming:</strong> Python, SQL, JavaScript, C++</li>
-      <li><strong>Frameworks:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, Flask</li>
-      <li><strong>Data & Viz:</strong> Pandas, NumPy, Matplotlib, Seaborn, Jupyter</li>
-      <li><strong>Automation:</strong> AI Agents, Workflow Automation (n8n), API Integration, Docker</li>
-      <li><strong>CV/OCR:</strong> Preprocessing, segmentation, OCR (Tesseract), Transfer Learning (VGG16, MobileNet)</li>
-      <li><strong>Ops:</strong> Git/GitHub, CI/CD, Hyperparameter tuning, Early stopping</li>
-      <li><strong>Languages:</strong> Arabic (Native), English (Fluent), French (Basics)</li>
-    </ul>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Education</h2>
-    <p class="leading-relaxed">
-      <strong>Cairo University</strong> — B.Sc. Computer Science (2021–2025)<br>
-      Focus: Artificial Intelligence, Machine Learning, Computer Vision, Data Science
-    </p>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Certifications</h2>
-    <ul class="list-disc pl-6 leading-relaxed columns-1 md:columns-2">
-      <li>Machine Learning Specialization — Andrew Ng (Coursera)</li>
-      <li>Convolutional Neural Networks (CNN) — Andrew Ng (Coursera)</li>
-      <li>Introduction to Data Science — Univ. of Michigan (Coursera)</li>
-      <li>Applied Data Visualization with Python — Univ. of Michigan</li>
-      <li>Applied Machine Learning in Python — Univ. of Michigan</li>
-      <li>Applied Text Mining in Python — Univ. of Michigan</li>
-      <li>Applied Social Network Analysis in Python — Univ. of Michigan</li>
-    </ul>
-  </section>
-
-  <!-- PROFESSIONAL EXPERIENCE -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Professional Experience</h2>
-    <div class="mb-3">
-      <p class="font-bold text-blue-200">Codenza — AI Engineering Intern (Syria)</p>
-      <p class="text-sm text-gray-300">October 2025 – January 2026 (3 months)</p>
-      <ul class="list-disc pl-6 mt-2 text-gray-100 space-y-1">
-        <li>Developed and optimized AI automation workflows, integrating ML/DL models into production-ready systems.</li>
-        <li>Built and fine-tuned models for computer vision and video generation projects.</li>
-        <li>Contributed to the "nano banana" project, generating videos using advanced deep learning techniques.</li>
-        <li>Automated data pipelines and model retraining processes using n8n and Docker, ensuring scalability.</li>
-        <li>Collaborated with the team to deploy AI solutions and present results to stakeholders.</li>
-      </ul>
+    <!-- SUMMARY -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Summary</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="cv-card">
+        <p class="summary-text">
+          AI Engineer with a B.Sc. in Computer Science from Cairo University (2025), specializing in
+          <strong>machine learning, deep learning, and computer vision</strong>. Built <strong>Grownerd</strong> —
+          a full-stack AI educational platform for Syrian students, live at grownerd.net — featuring a
+          RAG system on official textbooks, Flutter web app, Flask backend, Supabase database, and a local
+          payment subscription system. Passionate about production-grade AI that solves real problems,
+          not just notebook experiments.
+        </p>
+      </div>
     </div>
-  </section>
 
-  <!-- PROJECTS -->
-  <section class="card p-5 mb-6">
-    <h2 class="text-2xl font-semibold mb-2">Projects</h2>
-    <ul class="space-y-5">
-      <!-- AI Educational Assistant -->
-      <li class="border-l-4 border-blue-400 pl-4">
-        <p class="font-bold text-blue-200">AI Educational Assistant – RAG System for STEM Subjects</p>
-        <p class="text-sm text-gray-300 mt-1">Interactive platform using Retrieval-Augmented Generation for Biology, Chemistry, Physics, and Mathematics.</p>
-        <ul class="list-disc pl-6 mt-1 text-gray-100">
-          <li>Integrated subject-specific textbooks as knowledge bases; rendered equations with LaTeX (KaTeX).</li>
-          <li>Designed dual‑mode web interface: “Ask” for answers, “Test” for AI‑generated quizzes.</li>
-          <li>Employed embeddings + vector search for accurate context retrieval.</li>
+    <!-- EXPERIENCE -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Experience</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="cv-card">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">AI Engineering Intern</div>
+            <div class="entry-sub">Codenza — Syria</div>
+          </div>
+          <span class="entry-date">Oct 2025 – Jan 2026</span>
+        </div>
+        <ul class="entry-bullets">
+          <li>Developed and optimized AI automation workflows, integrating ML/DL models into production-ready systems.</li>
+          <li>Built and fine-tuned models for computer vision and video generation projects.</li>
+          <li>Contributed to the "nano banana" project — AI-generated video using advanced deep learning techniques.</li>
+          <li>Automated data pipelines and model retraining using n8n and Docker for scalability.</li>
+          <li>Collaborated on deployment and presented AI results to stakeholders.</li>
         </ul>
-      </li>
-      <!-- Pharma Scan App -->
-      <li class="border-l-4 border-blue-400 pl-4">
-        <p class="font-bold text-blue-200">Pharma Scan App – Handwritten Prescription Recognition</p>
-        <p class="text-sm text-gray-300 mt-1">End‑to‑end pipeline to recognize medicine names from handwritten prescriptions.</p>
-        <ul class="list-disc pl-6 mt-1 text-gray-100">
-          <li>OpenCV preprocessing (grayscale, noise removal, adaptive thresholding, segmentation).</li>
-          <li>Combined Tesseract OCR with VGG16 CNN classifier (transfer learning) for higher accuracy.</li>
-          <li>Added fuzzy matching for alternative suggestions and drug‑interaction alerts.</li>
-          <li>Automated ingestion & retraining workflows with n8n; Docker containerization.</li>
-        </ul>
-        <p class="mt-1">🔗 <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="text-blue-300">github.com/motaha123/pharama_scan_app</a></p>
-      </li>
-      <!-- House Price Prediction -->
-      <li class="border-l-4 border-blue-400 pl-4">
-        <p class="font-bold text-blue-200">House Price Prediction – Regression Models</p>
-        <p class="text-sm text-gray-300 mt-1">Exploratory analysis, feature engineering, and model comparison.</p>
-        <ul class="list-disc pl-6 mt-1 text-gray-100">
-          <li>Built and tuned Linear Regression, Random Forest, XGBoost with cross‑validation.</li>
-          <li>Improved accuracy via ensemble methods and hyperparameter optimization.</li>
-          <li>Delivered lightweight API and business‑friendly Jupyter notebooks.</li>
-        </ul>
-        <p class="mt-1">🔗 <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="text-blue-300">github.com/motaha123/House_price_Advance</a></p>
-      </li>
-      <!-- AI Agent Automation -->
-      <li class="border-l-4 border-blue-400 pl-4">
-        <p class="font-bold text-blue-200">AI Agent Automation & Workflow Projects (n8n)</p>
-        <p class="text-sm text-gray-300 mt-1">Designed intelligent workflows integrating AI models with live APIs.</p>
-        <ul class="list-disc pl-6 mt-1 text-gray-100">
-          <li>Automated structured JSON responses, model retraining triggers, and data pipelines.</li>
-          <li>Used Docker for deployment and versioning.</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+        <div class="tag-row">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Video Generation</span>
+          <span class="tag">ML Pipelines</span>
+        </div>
+      </div>
+    </div>
 
-  <!-- SOFT SKILLS -->
-  <section class="card p-5 mb-10">
-    <h2 class="text-2xl font-semibold mb-2">Soft Skills</h2>
-    <p>Teamwork · Problem‑solving · Critical Thinking · Communication · Adaptability · Time Management</p>
-  </section>
+    <!-- PROJECTS -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Projects</span>
+        <div class="section-line"></div>
+      </div>
 
-  <!-- FOOTER -->
-  <footer class="text-center text-gray-300 pb-6">
-    © 2025 — Mhd Taha Daboul
+      <!-- Grownerd FEATURED -->
+      <div class="cv-card featured" style="margin-bottom: 1rem;">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">Grownerd — AI Educational Platform for Syrian Students</div>
+            <div class="entry-sub">Full-stack solo project · Live at grownerd.net</div>
+          </div>
+          <span class="entry-date" style="color: var(--accent);">Live ↗</span>
+        </div>
+        <ul class="entry-bullets">
+          <li>Built a RAG system on official Syrian curriculum textbooks — answers questions with source-grounded accuracy using embeddings + vector search.</li>
+          <li>AI quiz mode generates curriculum-aligned questions and tests students interactively.</li>
+          <li>Page-flip mode: students navigate any textbook page and get instant AI explanations or summaries.</li>
+          <li>Supports 8 subjects: Math (1 & 2), Physics, Chemistry, Biology, Arabic, English, French.</li>
+          <li>Subscription system via local Syrian payment methods: Sham Cash, Syriatel Cash, transfer companies — with admin approval panel.</li>
+          <li>Multi-layer security: Arcjet (bot detection, prompt injection shield, token bucket rate limiting) + Flask-Limiter.</li>
+          <li>Guest mode with daily free question limit; Google OAuth + email/password auth via Supabase.</li>
+          <li>Flutter web frontend, Flask backend, Supabase PostgreSQL, deployed on custom domain.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag accent">grownerd.net</span>
+          <span class="tag purple">Flutter Web</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Python</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">RAG</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Arcjet</span>
+          <span class="tag">Docker</span>
+          <span class="tag">KaTeX</span>
+        </div>
+        <a href="https://grownerd.net" target="_blank" class="entry-link">grownerd.net →</a>
+      </div>
+
+      <!-- PharmaScan -->
+      <div class="cv-card">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">PharmaScan — Handwritten Prescription Recognition</div>
+            <div class="entry-sub">Computer Vision · OCR · Deep Learning</div>
+          </div>
+        </div>
+        <ul class="entry-bullets">
+          <li>OpenCV preprocessing pipeline: grayscale, noise removal, adaptive thresholding, segmentation.</li>
+          <li>VGG16 CNN classifier via transfer learning combined with Tesseract OCR for higher accuracy.</li>
+          <li>Fuzzy matching for drug alternative suggestions and interaction alerts.</li>
+          <li>n8n automation for ingestion and retraining; Docker containerization.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Tesseract</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="entry-link">github.com/motaha123/pharama_scan_app →</a>
+      </div>
+
+      <!-- House Price -->
+      <div class="cv-card">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">House Price Prediction — Regression Pipeline</div>
+            <div class="entry-sub">Machine Learning · Feature Engineering · REST API</div>
+          </div>
+        </div>
+        <ul class="entry-bullets">
+          <li>Built and tuned Linear Regression, Random Forest, XGBoost with cross-validation.</li>
+          <li>Ensemble methods and hyperparameter optimization for improved accuracy.</li>
+          <li>Lightweight Flask API + business-friendly Jupyter notebooks.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Pandas</span>
+        </div>
+        <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="entry-link">github.com/motaha123/House_price_Advance →</a>
+      </div>
+
+      <!-- n8n Agent -->
+      <div class="cv-card">
+        <div class="entry-header">
+          <div>
+            <div class="entry-title">AI Agent Automation (n8n)</div>
+            <div class="entry-sub">Workflow Automation · API Integration</div>
+          </div>
+        </div>
+        <ul class="entry-bullets">
+          <li>Designed intelligent workflows integrating AI models with live APIs, structured JSON responses, and retraining triggers.</li>
+          <li>Docker-based deployment and versioning.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">n8n</span>
+          <span class="tag">Docker</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Technical Skills</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">AI / ML</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Machine Learning</span>
+            <span class="skill-pill">Deep Learning</span>
+            <span class="skill-pill">RAG Systems</span>
+            <span class="skill-pill">Computer Vision</span>
+            <span class="skill-pill">NLP</span>
+            <span class="skill-pill">Transfer Learning</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Frameworks</div>
+          <div class="skill-pills">
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">Keras</span>
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">Scikit-learn</span>
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">Flask</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Dart / Flutter</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Data</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">Matplotlib</span>
+            <span class="skill-pill">Seaborn</span>
+            <span class="skill-pill">Jupyter</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Vision & OCR</div>
+          <div class="skill-pills">
+            <span class="skill-pill">OpenCV</span>
+            <span class="skill-pill">Tesseract OCR</span>
+            <span class="skill-pill">VGG16</span>
+            <span class="skill-pill">MobileNet</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Infrastructure</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Supabase</span>
+            <span class="skill-pill">Arcjet</span>
+            <span class="skill-pill">n8n</span>
+            <span class="skill-pill">Git / GitHub</span>
+            <span class="skill-pill">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Education</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="cv-card">
+        <div class="edu-row">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="entry-title">B.Sc. Computer Science — AI Track</div>
+            <div class="entry-sub">Cairo University · Faculty of Computer Science & Artificial Intelligence</div>
+            <div style="font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;">2021 – 2025</div>
+            <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+              Relevant coursework: Machine Learning · Deep Learning · Computer Vision · Data Science · Software Engineering
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Certifications</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-item"><strong>Machine Learning Specialization</strong>Andrew Ng — Coursera</div>
+        <div class="cert-item"><strong>Convolutional Neural Networks</strong>Andrew Ng — Coursera</div>
+        <div class="cert-item"><strong>Introduction to Data Science</strong>University of Michigan</div>
+        <div class="cert-item"><strong>Applied Data Visualization</strong>University of Michigan</div>
+        <div class="cert-item"><strong>Applied Machine Learning in Python</strong>University of Michigan</div>
+        <div class="cert-item"><strong>Applied Text Mining</strong>University of Michigan</div>
+        <div class="cert-item"><strong>Applied Social Network Analysis</strong>University of Michigan</div>
+      </div>
+    </div>
+
+    <!-- SOFT SKILLS -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Soft Skills</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="soft-pills">
+        <span class="soft-pill">Teamwork</span>
+        <span class="soft-pill">Problem Solving</span>
+        <span class="soft-pill">Critical Thinking</span>
+        <span class="soft-pill">Communication</span>
+        <span class="soft-pill">Adaptability</span>
+        <span class="soft-pill">Time Management</span>
+        <span class="soft-pill">Technical Storytelling</span>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="cv-section">
+      <div class="section-header">
+        <span class="section-label">Languages</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="soft-pills">
+        <span class="soft-pill">Arabic — Native</span>
+        <span class="soft-pill">English — Fluent</span>
+        <span class="soft-pill">French — Basic</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Mhd Taha Daboul · AI Engineer · 2025 · <a href="https://grownerd.net" target="_blank" style="color: var(--accent); text-decoration: none;">grownerd.net</a></p>
   </footer>
 
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
 </body>
 </html>
