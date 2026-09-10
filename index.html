@@ -1,1108 +1,617 @@
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mhd Taha Daboul — AI Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #060810;
-      --bg2: #0d1117;
-      --bg3: #111622;
-      --card: #131929;
-      --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.13);
-      --text: #e8eaf0;
-      --muted: #6b7494;
-      --accent: #4af0b0;
-      --accent2: #7b61ff;
-      --accent3: #f05a7e;
-      --accent4: #f0a54a;
-      --glow: rgba(74,240,176,0.12);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ---- NOISE TEXTURE overlay ---- */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ---- GRID LINES background ---- */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ---- NAV ---- */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      height: 60px;
-      background: rgba(6,8,16,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 400;
-      transition: color 0.2s;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .nav-cv {
-      font-size: 0.8rem;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.35rem 1rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .nav-cv:hover { background: var(--accent); color: var(--bg); }
-
-    /* ---- HAMBURGER ---- */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 60px; left: 0; right: 0;
-      background: rgba(6,8,16,0.98);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      z-index: 99;
-      flex-direction: column;
-      padding: 1.5rem 2rem;
-      gap: 1.2rem;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-
-    /* ---- HERO ---- */
-    .hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--accent);
-      border: 1px solid rgba(74,240,176,0.25);
-      background: rgba(74,240,176,0.06);
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--bg);
-      padding: 0.75rem 1.75rem;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      font-family: 'Syne', sans-serif;
-      letter-spacing: 0.03em;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      padding: 0.75rem 1.75rem;
-      border-radius: 6px;
-      border: 1px solid var(--border2);
-      font-weight: 400;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .btn-ghost:hover { border-color: var(--muted); background: rgba(255,255,255,0.04); }
-
-    /* Avatar */
-    .hero-avatar {
-      position: relative;
-    }
-
-    .avatar-ring {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      padding: 3px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      flex-shrink: 0;
-    }
-
-    .avatar-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent);
-      overflow: hidden;
-    }
-
-    .avatar-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Glow blob */
-    .glow-blob {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(74,240,176,0.07) 0%, transparent 70%);
-      top: -100px;
-      right: -100px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* ---- SECTION ---- */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      margin-bottom: 3rem;
-      color: var(--text);
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ---- PROJECTS ---- */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .project-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--glow);
-      border: 1px solid rgba(74,240,176,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-
-    .project-desc {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.7;
-    }
-
-    .project-bullets {
-      list-style: none;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-bullets li {
-      font-size: 0.8rem;
-      color: var(--muted);
-      padding: 0.2rem 0;
-      padding-right: 1rem;
-      position: relative;
-    }
-
-    .project-bullets li::before {
-      content: '→';
-      position: absolute;
-      right: 0;
-      color: var(--accent);
-      font-size: 0.7rem;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .tag {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-
-    .tag.accent { color: var(--accent); border-color: rgba(74,240,176,0.2); background: rgba(74,240,176,0.05); }
-    .tag.purple { color: var(--accent2); border-color: rgba(123,97,255,0.2); background: rgba(123,97,255,0.05); }
-
-    .project-link {
-      font-size: 0.8rem;
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: gap 0.2s;
-    }
-    .project-link:hover { gap: 0.5rem; }
-
-    /* FEATURED card */
-    .project-card.featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      --card-accent: var(--accent2);
-    }
-
-    /* ---- SKILLS ---- */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .skill-group {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-
-    .skill-group-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .skill-pill {
-      font-size: 0.8rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 100px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border2);
-      color: var(--text);
-      font-weight: 400;
-    }
-
-    /* ---- EDUCATION & CERTS ---- */
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-
-    .edu-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: rgba(123,97,255,0.1);
-      border: 1px solid rgba(123,97,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .edu-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .edu-sub {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .edu-year {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .cert-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .cert-item strong {
-      display: block;
-      color: var(--text);
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-      font-size: 0.82rem;
-    }
-
-    /* ---- CONTACT ---- */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .contact-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .contact-card:hover { border-color: var(--border2); transform: translateY(-2px); }
-
-    .contact-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .contact-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-    }
-
-    .contact-value {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    /* ---- FOOTER ---- */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ---- ABOUT ---- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.9;
-      font-weight: 300;
-    }
-
-    .about-text strong { color: var(--text); font-weight: 500; }
-
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .stat-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ---- MOBILE RESPONSIVE ---- */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cv { display: none; }
-      .hamburger { display: flex; }
-
-      .hero { min-height: auto; padding-top: 100px; padding-bottom: 3rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .hero-avatar { order: -1; display: flex; justify-content: center; }
-      .avatar-ring { width: 140px; height: 140px; }
-      .glow-blob { display: none; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about-stats { flex-direction: row; flex-wrap: wrap; }
-      .stat-box { flex: 1; min-width: 120px; }
-
-      .project-card.featured { grid-column: auto; grid-template-columns: 1fr; gap: 1rem; }
-
-      .contact-grid { grid-template-columns: 1fr; }
-
-      section { padding: 3rem 1.25rem; }
-      nav { padding: 0 1.25rem; }
-
-      h1 { font-size: 2.4rem; }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 2rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .certs-grid { grid-template-columns: 1fr; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-ghost { text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mhd Taha Daboul — AI Engineer</title>
+<meta name="description" content="AI Engineer in Damascus. Builds retrieval systems that run in production — including Grownerd, a RAG platform serving the Syrian national curriculum across 35 subjects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A09;
+  --surface:#0D1211;
+  --raised:#141B19;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.15);
+  --text:#E7EEEB;
+  --text-2:#9BAAA4;
+  --text-3:#6B7C76;
+  --mint:#45E9AC;
+  --mint-dim:#2BB584;
+  --mint-wash:rgba(69,233,172,.08);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:16.5px;
+  line-height:1.68;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:2px;}
+
+.shell{max-width:1200px;margin:0 auto;padding:0 40px;}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;}
+h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
+
+/* ═══ nav ═══ */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(7,10,9,.82);
+  backdrop-filter:saturate(1.5) blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{
+  max-width:1200px;margin:0 auto;padding:0 40px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.nav-name{
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:-.01em;text-decoration:none;color:var(--text);
+}
+.nav-name span{color:var(--text-3);font-weight:400;}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links a{
+  font-size:14px;font-weight:400;color:var(--text-2);text-decoration:none;
+  padding:3px 0;border-bottom:1px solid transparent;
+  transition:color .16s,border-color .16s;
+}
+.nav-links a:hover{color:var(--text);border-bottom-color:var(--mint);}
+.nav-cta{
+  font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;
+  background:var(--mint);color:#04120C;text-decoration:none;
+  padding:8px 17px;border-radius:5px;transition:background .16s,transform .16s;
+}
+.nav-cta:hover{background:#63F0BC;transform:translateY(-1px);}
+
+.burger{display:none;background:none;border:1px solid var(--line-2);border-radius:5px;padding:8px 9px;cursor:pointer;}
+.burger i{display:block;width:17px;height:1.5px;background:var(--text);margin:3.5px 0;transition:transform .25s,opacity .25s;}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(5px) rotate(45deg);}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0;}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+.drawer{display:none;background:var(--surface);border-bottom:1px solid var(--line);}
+.drawer.on{display:block;}
+.drawer a{
+  display:block;padding:14px 40px;text-decoration:none;color:var(--text);
+  font-family:"Space Grotesk",sans-serif;font-size:16px;font-weight:500;
+  border-bottom:1px solid var(--line);
+}
+.drawer a:last-child{border-bottom:none;color:var(--mint);}
+
+/* ═══ hero ═══ */
+.hero{padding:100px 0 0;position:relative;}
+.hero::before{
+  content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+  width:900px;height:520px;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(69,233,172,.09) 0%,transparent 65%);
+}
+.hero-status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--mint);
+  border:1px solid rgba(69,233,172,.24);background:var(--mint-wash);
+  padding:6px 14px;border-radius:100px;margin-bottom:36px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--mint);flex:none;}
+@media(prefers-reduced-motion:no-preference){
+  .dot{animation:beat 2.6s ease-in-out infinite;}
+  @keyframes beat{0%,100%{opacity:1}50%{opacity:.25}}
+}
+.hero h1{
+  font-weight:700;font-size:clamp(3rem,10vw,7.6rem);
+  line-height:.94;letter-spacing:-.045em;margin-bottom:36px;
+}
+.hero-body{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding-bottom:56px;align-items:end;}
+.hero-lede{font-size:1.32rem;line-height:1.5;max-width:32ch;font-weight:400;letter-spacing:-.015em;}
+.hero-note{font-size:1rem;color:var(--text-2);max-width:44ch;}
+.hero-note a{color:var(--mint);text-decoration:none;border-bottom:1px solid rgba(69,233,172,.35);}
+.hero-note a:hover{border-bottom-color:var(--mint);}
+
+.metrics{
+  border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.metric{padding:26px 28px 28px;border-left:1px solid var(--line);}
+.metric:first-child{border-left:none;padding-left:0;}
+.metric b{
+  display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
+  font-size:2.5rem;line-height:1;letter-spacing:-.04em;margin-bottom:9px;color:var(--mint);
+}
+.metric small{
+  display:block;font-family:"JetBrains Mono",monospace;
+  font-size:11.5px;color:var(--text-3);line-height:1.5;
+}
+
+/* ═══ sections ═══ */
+.sec{padding:92px 0;}
+.sec-head{
+  display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:baseline;
+  margin-bottom:46px;border-top:1px solid var(--line-2);padding-top:20px;
+}
+.sec-kicker{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
+.sec-head h2{font-weight:600;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.05;letter-spacing:-.035em;}
+.sec-head p{margin-top:12px;color:var(--text-2);font-size:1.03rem;max-width:52ch;}
+
+/* ═══ about ═══ */
+.about{display:grid;grid-template-columns:200px 1fr;gap:44px;}
+.about-side{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:2.1;}
+.about-side i{display:block;font-style:normal;}
+.about-copy{max-width:64ch;}
+.about-copy p{margin-bottom:20px;font-size:1.08rem;color:var(--text-2);}
+.about-copy p:last-child{margin-bottom:0;}
+.about-copy b{color:var(--text);font-weight:500;}
+
+/* ═══ flagship ═══ */
+.flag{padding:20px 0 92px;}
+.flag-panel{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:52px 48px 56px;position:relative;overflow:hidden;
+}
+.flag-panel::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mint),transparent);
+  opacity:.55;
+}
+.flag-top{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start;margin-bottom:44px;}
+.flag-tag{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:2.1;}
+.flag-tag i{display:block;font-style:normal;}
+.flag-tag i:first-child{color:var(--mint);}
+.flag h2{font-weight:700;font-size:clamp(2.3rem,5.6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin-bottom:20px;}
+.flag-lede{font-size:1.15rem;line-height:1.6;color:var(--text-2);max-width:56ch;}
+.flag-lede b{color:var(--text);font-weight:500;}
+
+.diagram{
+  border:1px solid var(--line);border-radius:10px;
+  background:var(--raised);padding:26px 24px 18px;margin-bottom:44px;
+}
+.diagram svg{display:block;width:100%;height:auto;}
+.diagram figcaption{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);line-height:1.65;
+}
+.scroll-hint{display:none;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-3);margin-bottom:10px;position:sticky;left:0;}
+
+.flag-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.flag-cols h3{
+  font-weight:600;font-size:1rem;letter-spacing:-.01em;margin-bottom:16px;
+  padding-bottom:10px;border-bottom:1px solid var(--line);
+}
+.flag-cols ul{list-style:none;}
+.flag-cols li{font-size:.99rem;line-height:1.62;color:var(--text-2);padding:0 0 14px 20px;position:relative;}
+.flag-cols li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--mint-dim);}
+.flag-cols li b{color:var(--text);font-weight:500;}
+.flag-cols code{
+  font-family:"JetBrains Mono",monospace;font-size:.84em;
+  color:var(--mint);background:var(--mint-wash);padding:2px 6px;border-radius:4px;
+}
+.flag-visit{
+  display:inline-block;margin-top:38px;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.95rem;
+  color:#04120C;background:var(--mint);text-decoration:none;
+  padding:12px 22px;border-radius:6px;transition:background .16s,transform .16s;
+}
+.flag-visit:hover{background:#63F0BC;transform:translateY(-1px);}
+
+/* ═══ work rows ═══ */
+.row{
+  display:grid;grid-template-columns:200px minmax(0,290px) minmax(0,1fr);gap:44px;
+  padding:34px 0;border-top:1px solid var(--line);align-items:start;
+}
+.row:last-of-type{border-bottom:1px solid var(--line);}
+.row-meta{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:1.95;}
+.row-meta i{display:block;font-style:normal;}
+.row-meta a{color:var(--mint);text-decoration:none;border-bottom:1px solid rgba(69,233,172,.3);}
+.row h3{font-weight:600;font-size:1.4rem;letter-spacing:-.03em;margin-bottom:10px;line-height:1.15;}
+.row p{color:var(--text-2);font-size:1.02rem;}
+.row ul{list-style:none;}
+.row ul li{font-size:.96rem;color:var(--text-2);line-height:1.58;padding:0 0 11px 17px;position:relative;}
+.row ul li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--text-3);}
+
+/* ═══ capabilities ═══ */
+.caps{display:grid;grid-template-columns:repeat(2,1fr);gap:0 52px;}
+.cap{padding:24px 0;border-top:1px solid var(--line);}
+.cap h3{font-weight:600;font-size:.96rem;margin-bottom:9px;letter-spacing:-.01em;}
+.cap p{color:var(--text-2);font-size:1rem;line-height:1.6;}
+.cap.wide{grid-column:1 / -1;}
+.cap.wide p{max-width:72ch;}
+
+/* ═══ background ═══ */
+.bg-grid{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start;}
+.edu{border-top:1px solid var(--line-2);padding-top:22px;margin-bottom:42px;}
+.edu h3{font-weight:600;font-size:1.3rem;letter-spacing:-.03em;}
+.edu .where{color:var(--text-2);font-size:1.02rem;margin:5px 0 7px;}
+.edu .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--mint);}
+.edu .focus{color:var(--text-2);font-size:.99rem;margin-top:13px;max-width:56ch;}
+.certs-title{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);margin-bottom:10px;}
+.certs{list-style:none;columns:2;column-gap:44px;}
+.certs li{break-inside:avoid;padding:11px 0;border-top:1px solid var(--line);font-size:.98rem;line-height:1.4;}
+.certs li em{display:block;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);margin-top:4px;}
+
+/* ═══ contact ═══ */
+.contact{padding:92px 0 100px;position:relative;}
+.contact::before{
+  content:"";position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);
+  width:900px;height:500px;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(69,233,172,.07) 0%,transparent 65%);
+}
+.contact h2{font-weight:700;font-size:clamp(2.6rem,7.5vw,5.4rem);line-height:.98;letter-spacing:-.045em;margin-bottom:18px;}
+.contact-lede{color:var(--text-2);font-size:1.12rem;max-width:46ch;margin-bottom:48px;}
+.contact-list{list-style:none;border-top:1px solid var(--line);}
+.contact-list li{border-bottom:1px solid var(--line);}
+.contact-list a,.contact-list span{
+  display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;
+  padding:18px 0;text-decoration:none;color:var(--text);
+}
+.contact-list a{transition:color .16s;}
+.contact-list a:hover{color:var(--mint);}
+.contact-list em{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
+.contact-list b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:1.1rem;letter-spacing:-.02em;}
+
+footer{padding:0 0 46px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);}
+footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+
+/* ═══ responsive ═══ */
+@media(max-width:1000px){
+  .shell,.nav-in{padding:0 28px;}
+  .drawer a{padding-left:28px;padding-right:28px;}
+  .sec-head,.about,.flag-top,.bg-grid{grid-template-columns:1fr;gap:16px;}
+  .row{grid-template-columns:1fr;gap:18px;}
+  .row-meta{order:-1;}
+  .hero-body{grid-template-columns:1fr;gap:26px;align-items:start;}
+  .flag-cols{grid-template-columns:1fr;gap:30px;}
+  .flag-panel{padding:36px 26px 40px;}
+  .metrics{grid-template-columns:1fr 1fr;}
+  .metric{border-left:none;padding-left:0;border-top:1px solid var(--line);}
+  .metric:first-child,.metric:nth-child(2){border-top:none;}
+  .metric:nth-child(2),.metric:nth-child(4){padding-left:28px;border-left:1px solid var(--line);}
+}
+@media(max-width:720px){
+  .nav-links,.nav-cta{display:none;}
+  .burger{display:block;}
+  body{font-size:16px;}
+  .hero{padding-top:56px;}
+  .sec,.contact{padding:60px 0;}
+  .flag{padding-bottom:60px;}
+  .caps{grid-template-columns:1fr;gap:0;}
+  .certs{columns:1;}
+  .contact-list a,.contact-list span{grid-template-columns:1fr;gap:3px;padding:15px 0;}
+  .metrics{grid-template-columns:1fr;}
+  .metric{padding-left:0!important;border-left:none!important;border-top:1px solid var(--line);}
+  .metric:first-child{border-top:none;}
+  .diagram{padding:18px 14px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .diagram svg{min-width:820px;}
+  .diagram figcaption{position:sticky;left:0;}
+  .scroll-hint{display:block;}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none!important;animation:none!important;}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">MTD</a>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="nav-name" href="#top">Mhd Taha Daboul <span>/ AI Engineer</span></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#grownerd">Grownerd</a></li>
+      <li><a href="#work">Other work</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#background">Background</a></li>
     </ul>
-    <a class="nav-cv" href="cv.html">View CV</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+      <i></i><i></i><i></i>
     </button>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="closeMenu()">About</a>
-    <a href="#projects" onclick="closeMenu()">Projects</a>
-    <a href="#skills" onclick="closeMenu()">Skills</a>
-    <a href="#education" onclick="closeMenu()">Education</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
-    <a href="cv.html">View CV →</a>
   </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="#grownerd">Grownerd</a>
+  <a href="#work">Other work</a>
+  <a href="#capabilities">Capabilities</a>
+  <a href="#background">Background</a>
+  <a href="#contact">Get in touch</a>
+</div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="glow-blob"></div>
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge">Available for opportunities</div>
-        <h1>Mhd Taha<br><span class="hero-highlight">Daboul</span></h1>
-        <p class="hero-sub">
-          AI Engineer building intelligent systems — from RAG pipelines and computer vision to production-grade educational platforms.
-          Based in Damascus, Syria.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="#contact" class="btn-ghost">Get in Touch</a>
-        </div>
-      </div>
-      <div class="hero-avatar">
-        <div class="avatar-ring">
-          <div class="avatar-inner">MTD</div>
-        </div>
-      </div>
+<header class="hero shell" id="top">
+  <p class="hero-status"><span class="dot"></span> Open to AI engineering roles — remote or Damascus</p>
+  <h1>Mhd&nbsp;Taha<br>Daboul</h1>
+  <div class="hero-body">
+    <p class="hero-lede">I build retrieval systems that answer from a specific source — and then I keep them running.</p>
+    <p class="hero-note">Most of my work sits behind <a href="https://grownerd.net" target="_blank" rel="noopener">grownerd.net</a>, a study platform where every answer is traced back to a page in the student's own textbook. Live and serving real students.</p>
+  </div>
+  <div class="metrics">
+    <div class="metric"><b>35</b><small>subjects, each with its<br>own retrieval index</small></div>
+    <div class="metric"><b>86,437</b><small>lines of code across<br>four codebases</small></div>
+    <div class="metric"><b>240</b><small>concurrent requests<br>on one 4 GB server</small></div>
+    <div class="metric"><b>$0.0006</b><small>cost per answered<br>question</small></div>
+  </div>
+</header>
+
+<section class="sec shell" id="about">
+  <div class="about">
+    <div class="about-side">
+      <i>Damascus, Syria</i>
+      <i>B.Sc. Computer Science</i>
+      <i>Cairo University, 2025</i>
+      <i>Arabic · English · French</i>
+    </div>
+    <div class="about-copy">
+      <p>I finished a computer science degree at Cairo University in 2025, focused on machine learning and computer vision. What I actually learned came after: building something people depend on, and discovering how different that is from a notebook that gets 94% on a held-out set.</p>
+      <p>The work I care about is <b>retrieval</b> — getting a model to answer from a source you can point at, rather than from whatever it absorbed in training. That constraint changes everything downstream: how you chunk the data, what you store as metadata, how you catch it when the source itself is wrong.</p>
+      <p>And sources are often wrong. One of the more instructive bugs I've fixed lived in nine curriculum files, not in the model and not in the renderer — equations were double-escaped at the source, so students saw raw LaTeX. Finding it meant refusing to accept that the layer in front of me was the guilty one.</p>
     </div>
   </div>
+</section>
 
-  <div class="divider"></div>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-label">About</div>
-    <h2>Who I am</h2>
-    <div class="about-grid">
-      <div>
-        <p class="about-text">
-          I'm <strong>Mhd Taha Daboul</strong>, an AI Engineer with a B.Sc. in Computer Science from Cairo University (2025).
-          I specialize in <strong>machine learning, deep learning, and computer vision</strong> — building systems that actually work
-          in production, not just in notebooks.
-        </p>
-        <br />
-        <p class="about-text">
-          My most ambitious project is <strong>Grownerd</strong> — an AI-powered educational platform for Syrian students,
-          built end-to-end with a RAG system, Flutter web app, Flask backend, and Supabase. I love the full stack:
-          from embedding models and vector search to UI and deployment.
-        </p>
-        <br />
-        <p class="about-text">
-          When I'm not building, I'm learning — Andrew Ng courses, Michigan's Applied Data Science track, and anything that
-          pushes the boundary of what AI can do in the real world.
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-box">
-          <span class="stat-number">8</span>
-          <span class="stat-label">Subjects in Grownerd</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">4+</span>
-          <span class="stat-label">Production Projects</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">7</span>
-          <span class="stat-label">Certifications</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">3</span>
-          <span class="stat-label">Languages</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label">Projects</div>
-    <h2>What I've built</h2>
-    <div class="projects-grid">
-
-      <!-- FEATURED: Grownerd -->
-      <div class="project-card featured" style="--card-accent: #4af0b0;">
-        <div>
-          <div class="project-icon" style="background: rgba(74,240,176,0.1); border-color: rgba(74,240,176,0.2); font-size:1.3rem;">🎓</div>
-          <div class="project-title" style="font-size: 1.25rem;">Grownerd — AI Educational Platform</div>
-          <p class="project-desc" style="font-size: 0.9rem;">
-            A full-stack AI platform for Syrian high school students (grades 9–12 / Baccalaureate).
-            Built solo from scratch — RAG pipeline, Flutter web app, Flask backend, Supabase database, and a custom subscription system.
-          </p>
-          <div class="tag-row">
-            <span class="tag accent">Live at grownerd.net</span>
-            <span class="tag purple">Flutter Web</span>
-            <span class="tag">Flask</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">RAG</span>
-            <span class="tag">Arcjet</span>
-          </div>
-          <a href="https://grownerd.net" target="_blank" class="project-link">Visit live site →</a>
+<section class="flag" id="grownerd">
+  <div class="shell">
+    <div class="flag-panel">
+      <div class="flag-top">
+        <div class="flag-tag">
+          <i>Live in production</i>
+          <i>grownerd.net</i>
+          <i>Grades 9 – 12</i>
         </div>
         <div>
-          <ul class="project-bullets" style="margin-top: 0;">
-            <li>RAG system answers questions from official Syrian curriculum textbooks with high accuracy</li>
-            <li>AI quiz mode generates curriculum-aligned questions and tests students interactively</li>
-            <li>Page-flip mode: students navigate any textbook page and get instant AI explanations</li>
-            <li>Supports 8 subjects: Math (1&2), Physics, Chemistry, Biology, Arabic, English, French</li>
-            <li>Subscription system via local Syrian payment methods (Sham Cash, Syriatel Cash, transfer companies)</li>
-            <li>Multi-layer security: Arcjet (bot detection, prompt injection, rate limiting) + Flask-Limiter</li>
-            <li>Guest mode with daily free question limit before requiring signup</li>
-            <li>Auth via Supabase (email/password + Google OAuth) with admin panel for subscription management</li>
+          <h2>Grownerd</h2>
+          <p class="flag-lede">A study assistant for the Syrian national curriculum. Ask it a question and the answer comes from <b>the actual page of the actual textbook</b> — not from a general model's recollection of what physics is.</p>
+        </div>
+      </div>
+
+      <figure class="diagram">
+        <p class="scroll-hint">Swipe to follow the path</p>
+        <svg viewBox="0 0 1080 168" role="img" aria-label="Request path: browser to Cloudflare to nginx to Gunicorn to Flask to FAISS retrieval and OpenAI, with Supabase and Redis alongside">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M1 1L9 5L1 9" fill="none" stroke="#3F5B52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <g font-family="JetBrains Mono, monospace">
+            <rect x="2" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
+            <text x="72" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Browser</text>
+            <text x="72" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">Next.js static</text>
+
+            <line x1="148" y1="66" x2="176" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
+
+            <rect x="184" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
+            <text x="254" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Cloudflare</text>
+            <text x="254" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">CDN · TLS · WAF</text>
+
+            <line x1="330" y1="66" x2="358" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
+
+            <rect x="366" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
+            <text x="436" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">nginx</text>
+            <text x="436" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">origin, locked down</text>
+
+            <line x1="512" y1="66" x2="540" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
+
+            <rect x="548" y="40" width="150" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
+            <text x="623" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Gunicorn</text>
+            <text x="623" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">4 × 60 gthread</text>
+
+            <line x1="704" y1="66" x2="732" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
+
+            <rect x="740" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
+            <text x="810" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Flask</text>
+            <text x="810" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">auth · billing</text>
+
+            <line x1="886" y1="66" x2="914" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
+
+            <rect x="922" y="34" width="156" height="64" rx="6" fill="rgba(69,233,172,.09)" stroke="#45E9AC" stroke-width="1.3"/>
+            <text x="1000" y="58" fill="#45E9AC" font-size="13" text-anchor="middle">FAISS + OpenAI</text>
+            <text x="1000" y="74" fill="#2BB584" font-size="10.5" text-anchor="middle">retrieve the page,</text>
+            <text x="1000" y="88" fill="#2BB584" font-size="10.5" text-anchor="middle">then generate</text>
+
+            <line x1="810" y1="98" x2="810" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="810" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Supabase — auth &amp; data</text>
+            <line x1="623" y1="98" x2="623" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="623" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Redis — cache &amp; limits</text>
+
+            <text x="2" y="20" fill="#3F5B52" font-size="10.5">One question, end to end</text>
+          </g>
+        </svg>
+        <figcaption>The retrieval step is the whole point. A general model would answer physics from memory; this one is handed the paragraph first, so it can only answer from what the student's book actually says.</figcaption>
+      </figure>
+
+      <div class="flag-cols">
+        <div>
+          <h3>Retrieval &amp; models</h3>
+          <ul>
+            <li><b>35 independent FAISS indexes</b>, one per subject, built from textbook pages with lesson- and page-level metadata — so an answer can be traced to page 42 of tenth-grade algebra.</li>
+            <li>Generation on <code>gpt-4o-mini</code>, retrieval on <code>text-embedding-3-large</code>. Migrating generation down from <code>gpt-4o</code> cut cost per question to roughly $0.0006 without a quality drop worth the difference.</li>
+            <li>All 35 indexes preload into memory per worker, so retrieval doesn't pay disk cost on the request path.</li>
+            <li>Question numbering made deterministic <b>in code</b> rather than trusted to the prompt — a model at temperature 0.7 will not follow a formatting instruction every time, and eventually a student notices.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">Python</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">Vector DB</span>
-            <span class="tag">KaTeX</span>
-            <span class="tag">Docker</span>
-          </div>
+        </div>
+        <div>
+          <h3>Serving it to real people</h3>
+          <ul>
+            <li>Flask API handling Supabase auth, atomic token billing, routing across all 35 subject modules, and per-endpoint rate limits.</li>
+            <li>A <b>shared answer cache</b> in Redis: the first student to open a page pays for the explanation, everyone after reads it.</li>
+            <li>Gunicorn tuned to <b>240 concurrent requests</b> on a 4 GB box — the switch from sync to threaded workers alone was an eighty-fold difference.</li>
+            <li>Backend security pass closing proxy-IP trust, client-supplied privilege flags, and error leakage — plus a startup check that refuses to boot on unsafe configuration, because a security control that fails silently is worse than none.</li>
+            <li>Next.js web client and a Flutter mobile app against the same API, with LaTeX rendering and full right-to-left Arabic.</li>
+          </ul>
         </div>
       </div>
 
-      <!-- PharmaScan -->
-      <div class="project-card" style="--card-accent: #f05a7e;">
-        <div class="project-icon" style="background: rgba(240,90,126,0.1); border-color: rgba(240,90,126,0.2);">🧠</div>
-        <div class="project-title">PharmaScan</div>
-        <p class="project-desc">Handwritten prescription recognition pipeline combining OCR and deep learning for medicine name extraction.</p>
-        <ul class="project-bullets">
-          <li>OpenCV preprocessing: grayscale, noise removal, adaptive thresholding, segmentation</li>
-          <li>VGG16 CNN classifier via transfer learning + Tesseract OCR for higher accuracy</li>
-          <li>Fuzzy matching for drug alternatives and interaction alerts</li>
-          <li>n8n automation for ingestion & retraining; Docker containerization</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">Python</span>
-          <span class="tag">TensorFlow</span>
-          <span class="tag">OCR</span>
-          <span class="tag">n8n</span>
-          <span class="tag">Docker</span>
-        </div>
-        <a href="https://github.com/motaha123/pharama_scan_app" target="_blank" class="project-link">GitHub →</a>
-      </div>
-
-      <!-- House Price -->
-      <div class="project-card" style="--card-accent: #f0a54a;">
-        <div class="project-icon" style="background: rgba(240,165,74,0.1); border-color: rgba(240,165,74,0.2);">🏠</div>
-        <div class="project-title">House Price Prediction</div>
-        <p class="project-desc">End-to-end regression pipeline with ensemble methods, feature engineering, and a lightweight REST API.</p>
-        <ul class="project-bullets">
-          <li>Linear Regression, Random Forest, XGBoost — cross-validated and tuned</li>
-          <li>Ensemble methods + hyperparameter optimization</li>
-          <li>Flask API + business-friendly Jupyter notebooks</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">Python</span>
-          <span class="tag">Scikit-learn</span>
-          <span class="tag">XGBoost</span>
-          <span class="tag">Flask</span>
-        </div>
-        <a href="https://github.com/motaha123/House_price_Advance" target="_blank" class="project-link">GitHub →</a>
-      </div>
-
-      <!-- n8n Agent -->
-      <div class="project-card" style="--card-accent: #7b61ff;">
-        <div class="project-icon" style="background: rgba(123,97,255,0.1); border-color: rgba(123,97,255,0.2);">🤖</div>
-        <div class="project-title">AI Agent Automation (n8n)</div>
-        <p class="project-desc">Intelligent workflow automation integrating AI models with live APIs and structured data pipelines.</p>
-        <ul class="project-bullets">
-          <li>Structured JSON responses, model retraining triggers, automated pipelines</li>
-          <li>Docker deployment and versioning</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">n8n</span>
-          <span class="tag">Docker</span>
-          <span class="tag">REST APIs</span>
-          <span class="tag">Python</span>
-        </div>
-      </div>
-
+      <a class="flag-visit" href="https://grownerd.net" target="_blank" rel="noopener">Open grownerd.net</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="divider"></div>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label">Skills</div>
-    <h2>Tech stack</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-title">AI / ML</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Machine Learning</span>
-          <span class="skill-pill">Deep Learning</span>
-          <span class="skill-pill">RAG Systems</span>
-          <span class="skill-pill">Computer Vision</span>
-          <span class="skill-pill">NLP</span>
-          <span class="skill-pill">Transfer Learning</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Frameworks</div>
-        <div class="skill-pills">
-          <span class="skill-pill">TensorFlow</span>
-          <span class="skill-pill">Keras</span>
-          <span class="skill-pill">PyTorch</span>
-          <span class="skill-pill">Scikit-learn</span>
-          <span class="skill-pill">LangChain</span>
-          <span class="skill-pill">Flask</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Languages</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">Dart / Flutter</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">JavaScript</span>
-          <span class="skill-pill">C++</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Data</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Pandas</span>
-          <span class="skill-pill">NumPy</span>
-          <span class="skill-pill">Matplotlib</span>
-          <span class="skill-pill">Seaborn</span>
-          <span class="skill-pill">Jupyter</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Vision & OCR</div>
-        <div class="skill-pills">
-          <span class="skill-pill">OpenCV</span>
-          <span class="skill-pill">Tesseract OCR</span>
-          <span class="skill-pill">VGG16</span>
-          <span class="skill-pill">MobileNet</span>
-          <span class="skill-pill">Image Segmentation</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Infrastructure</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Docker</span>
-          <span class="skill-pill">Supabase</span>
-          <span class="skill-pill">n8n</span>
-          <span class="skill-pill">Arcjet</span>
-          <span class="skill-pill">Git / GitHub</span>
-          <span class="skill-pill">REST APIs</span>
-        </div>
-      </div>
+<section class="sec shell" id="work">
+  <div class="sec-head">
+    <p class="sec-kicker">Other work</p>
+    <div>
+      <h2>Earlier projects</h2>
+      <p>Where I learned the parts I later needed — vision preprocessing, model selection, and getting a pipeline to run unattended.</p>
     </div>
-  </section>
+  </div>
 
-  <div class="divider"></div>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="section-label">Education</div>
-    <h2>Background</h2>
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
-      <div>
-        <div class="edu-title">B.Sc. Computer Science — AI Track</div>
-        <div class="edu-sub">Cairo University — Faculty of Computer Science & Artificial Intelligence</div>
-        <div class="edu-year">Graduation: 2025</div>
-        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.7;">
-          Relevant coursework: Machine Learning · Deep Learning · Computer Vision · Data Science · Software Engineering
-        </p>
-      </div>
+  <article class="row">
+    <div class="row-meta">
+      <i>Computer vision</i>
+      <i>OpenCV · Tesseract · VGG16</i>
+      <i><a href="https://github.com/motaha123/pharama_scan_app" target="_blank" rel="noopener">View on GitHub</a></i>
     </div>
-
-    <div class="section-label" style="margin-top: 3rem;">Certifications</div>
-    <div class="certs-grid">
-      <div class="cert-item"><strong>Machine Learning Specialization</strong>Andrew Ng — Coursera</div>
-      <div class="cert-item"><strong>Convolutional Neural Networks</strong>Andrew Ng — Coursera</div>
-      <div class="cert-item"><strong>Introduction to Data Science</strong>University of Michigan</div>
-      <div class="cert-item"><strong>Applied Data Visualization</strong>University of Michigan</div>
-      <div class="cert-item"><strong>Applied Machine Learning in Python</strong>University of Michigan</div>
-      <div class="cert-item"><strong>Applied Text Mining</strong>University of Michigan</div>
-      <div class="cert-item"><strong>Applied Social Network Analysis</strong>University of Michigan</div>
+    <div>
+      <h3>PharmaScan</h3>
+      <p>Reading medicine names off handwritten prescriptions — the kind of handwriting that defeats most OCR on its own.</p>
     </div>
-  </section>
+    <ul>
+      <li>OpenCV preprocessing: grayscale, noise removal, adaptive thresholding, character segmentation.</li>
+      <li>Tesseract OCR paired with a VGG16 transfer-learning classifier, because neither was reliable alone.</li>
+      <li>Fuzzy matching to suggest alternative medicines and flag possible interactions.</li>
+      <li>Ingestion and retraining automated with n8n; shipped as a Docker service.</li>
+    </ul>
+  </article>
 
-  <div class="divider"></div>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <h2>Let's talk</h2>
-    <div class="contact-grid">
-      <a href="mailto:motahada2002@gmail.com" class="contact-card">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">motahada2002@gmail.com</div>
-        </div>
-      </a>
-      <a href="https://github.com/motaha123" target="_blank" class="contact-card">
-        <div class="contact-icon">⌥</div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">motaha123</div>
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank" class="contact-card">
-        <div class="contact-icon">🔗</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">Mhd Taha Daboul</div>
-        </div>
-      </a>
-      <a href="https://grownerd.net" target="_blank" class="contact-card">
-        <div class="contact-icon">🌍</div>
-        <div>
-          <div class="contact-label">Live Project</div>
-          <div class="contact-value">grownerd.net</div>
-        </div>
-      </a>
-      <div class="contact-card" style="cursor: default;">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+963 954 448 575</div>
-        </div>
-      </div>
-      <div class="contact-card" style="cursor: default;">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Damascus, Syria</div>
-        </div>
-      </div>
+  <article class="row">
+    <div class="row-meta">
+      <i>Regression</i>
+      <i>Scikit-learn · XGBoost · Flask</i>
+      <i><a href="https://github.com/motaha123/House_price_Advance" target="_blank" rel="noopener">View on GitHub</a></i>
     </div>
-  </section>
+    <div>
+      <h3>House price prediction</h3>
+      <p>A tabular problem worked properly end to end, from messy features to something a non-technical colleague could query.</p>
+    </div>
+    <ul>
+      <li>Feature engineering: categorical encoding, missing-data strategy, interaction terms.</li>
+      <li>Linear regression, random forest and XGBoost compared under cross-validation, then ensembled.</li>
+      <li>Delivered as a small Flask API alongside annotated notebooks.</li>
+    </ul>
+  </article>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>Mhd Taha Daboul · AI Engineer · 2025</p>
-  </footer>
+  <article class="row">
+    <div class="row-meta">
+      <i>Internship</i>
+      <i>Codenza · Oct 2025 – Jan 2026</i>
+    </div>
+    <div>
+      <h3>AI engineering internship</h3>
+      <p>Four months moving models out of experiments and into systems that other people ran.</p>
+    </div>
+    <ul>
+      <li>Built and fine-tuned models for computer vision tasks.</li>
+      <li>Integrated ML and deep learning models into production workflows.</li>
+      <li>Automated data pipelines and retraining with n8n and Docker.</li>
+      <li>Presented results to stakeholders who did not want the model architecture, they wanted the number.</li>
+    </ul>
+  </article>
+</section>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
+<section class="sec shell" id="capabilities">
+  <div class="sec-head">
+    <p class="sec-kicker">Capabilities</p>
+    <div>
+      <h2>What I work with</h2>
+      <p>Listed by how much of it I've actually shipped, not by how much of it I've read about.</p>
+    </div>
+  </div>
+  <div class="caps">
+    <div class="cap">
+      <h3>Retrieval &amp; language models</h3>
+      <p>RAG architecture, FAISS vector search, embedding models, chunking and metadata design, prompt engineering, OpenAI API.</p>
+    </div>
+    <div class="cap">
+      <h3>Machine learning</h3>
+      <p>TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost. Transfer learning with VGG16 and MobileNet, hyperparameter tuning, early stopping.</p>
+    </div>
+    <div class="cap">
+      <h3>Computer vision</h3>
+      <p>OpenCV preprocessing, segmentation, OCR with Tesseract, CNN classifiers for noisy real-world input.</p>
+    </div>
+    <div class="cap">
+      <h3>Backend</h3>
+      <p>Python, Flask, REST API design, Supabase and PostgreSQL, Redis, authentication, rate limiting, atomic billing operations.</p>
+    </div>
+    <div class="cap">
+      <h3>Data</h3>
+      <p>SQL, Pandas, NumPy, Matplotlib, Seaborn, Jupyter — plus a habit of measuring the production system rather than trusting its dashboard.</p>
+    </div>
+    <div class="cap">
+      <h3>Running things</h3>
+      <p>Docker, nginx, Gunicorn, Linux, Cloudflare, verified backups, Git. Enough operations to keep my own work alive without a platform team.</p>
+    </div>
+    <div class="cap wide">
+      <h3>AI-assisted development</h3>
+      <p>I ship production web and mobile clients — Next.js and Flutter — using AI coding tools, and I'm direct about that: I direct and debug those codebases rather than writing them from a blank file. It's how one person covers four codebases, and it's a skill I'd rather name than disguise.</p>
+    </div>
+  </div>
+</section>
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
+<section class="sec shell" id="background">
+  <div class="bg-grid">
+    <p class="sec-kicker">Background</p>
+    <div>
+      <div class="edu">
+        <h3>B.Sc. Computer Science</h3>
+        <p class="where">Cairo University</p>
+        <p class="when">2021 – 2025</p>
+        <p class="focus">Coursework in machine learning, deep learning, computer vision, data science and software engineering.</p>
+      </div>
+      <p class="certs-title">Certifications</p>
+      <ul class="certs">
+        <li>Machine Learning Specialization<em>Andrew Ng — Coursera</em></li>
+        <li>Convolutional Neural Networks<em>Andrew Ng — Coursera</em></li>
+        <li>Applied Machine Learning in Python<em>University of Michigan</em></li>
+        <li>Applied Text Mining in Python<em>University of Michigan</em></li>
+        <li>Applied Data Visualization with Python<em>University of Michigan</em></li>
+        <li>Applied Social Network Analysis<em>University of Michigan</em></li>
+        <li>Introduction to Data Science<em>University of Michigan</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact shell" id="contact">
+  <h2>Let's talk</h2>
+  <p class="contact-lede">If you're building something that has to answer from real sources and stay up, I'd like to hear about it.</p>
+  <ul class="contact-list">
+    <li><a href="mailto:motahada2002@gmail.com"><em>Email</em><b>motahada2002@gmail.com</b></a></li>
+    <li><a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank" rel="noopener"><em>LinkedIn</em><b>Mhd Taha Daboul</b></a></li>
+    <li><a href="https://github.com/motaha123" target="_blank" rel="noopener"><em>GitHub</em><b>motaha123</b></a></li>
+    <li><a href="https://grownerd.net" target="_blank" rel="noopener"><em>Live project</em><b>grownerd.net</b></a></li>
+    <li><span><em>Phone</em><b>+963 954 448 575</b></span></li>
+    <li><span><em>Based in</em><b>Damascus, Syria</b></span></li>
+  </ul>
+</section>
+
+<footer>
+  <div class="shell">
+    <span>Mhd Taha Daboul — AI Engineer</span>
+    <span>Damascus, 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),d=document.getElementById('drawer');
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    d.classList.toggle('on',!open);
+  });
+  d.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      b.setAttribute('aria-expanded','false');
+      d.classList.remove('on');
     });
+  });
+})();
+</script>
 
-    function closeMenu() {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
