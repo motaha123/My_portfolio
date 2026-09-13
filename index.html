@@ -22,10 +22,10 @@
   --mint-dim:#2BB584;
   --mint-wash:rgba(69,233,172,.08);
 }
-
+ 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-
+ 
 body{
   background:var(--bg);
   color:var(--text);
@@ -35,14 +35,14 @@ body{
   font-weight:300;
   -webkit-font-smoothing:antialiased;
 }
-
+ 
 a{color:inherit;}
 :focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:2px;}
-
+ 
 .shell{max-width:1200px;margin:0 auto;padding:0 40px;}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;}
 h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
-
+ 
 /* ═══ nav ═══ */
 .nav{
   position:sticky;top:0;z-index:60;
@@ -72,7 +72,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   padding:8px 17px;border-radius:5px;transition:background .16s,transform .16s;
 }
 .nav-cta:hover{background:#63F0BC;transform:translateY(-1px);}
-
+ 
 .burger{display:none;background:none;border:1px solid var(--line-2);border-radius:5px;padding:8px 9px;cursor:pointer;}
 .burger i{display:block;width:17px;height:1.5px;background:var(--text);margin:3.5px 0;transition:transform .25s,opacity .25s;}
 .burger[aria-expanded="true"] i:nth-child(1){transform:translateY(5px) rotate(45deg);}
@@ -86,7 +86,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   border-bottom:1px solid var(--line);
 }
 .drawer a:last-child{border-bottom:none;color:var(--mint);}
-
+ 
 /* ═══ hero ═══ */
 .hero{padding:100px 0 0;position:relative;}
 .hero::before{
@@ -114,7 +114,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .hero-note{font-size:1rem;color:var(--text-2);max-width:44ch;}
 .hero-note a{color:var(--mint);text-decoration:none;border-bottom:1px solid rgba(69,233,172,.35);}
 .hero-note a:hover{border-bottom-color:var(--mint);}
-
+ 
 .metrics{
   border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -129,7 +129,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   display:block;font-family:"JetBrains Mono",monospace;
   font-size:11.5px;color:var(--text-3);line-height:1.5;
 }
-
+ 
 /* ═══ sections ═══ */
 .sec{padding:92px 0;}
 .sec-head{
@@ -139,7 +139,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .sec-kicker{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
 .sec-head h2{font-weight:600;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.05;letter-spacing:-.035em;}
 .sec-head p{margin-top:12px;color:var(--text-2);font-size:1.03rem;max-width:52ch;}
-
+ 
 /* ═══ about ═══ */
 .about{display:grid;grid-template-columns:200px 1fr;gap:44px;}
 .about-side{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:2.1;}
@@ -148,7 +148,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .about-copy p{margin-bottom:20px;font-size:1.08rem;color:var(--text-2);}
 .about-copy p:last-child{margin-bottom:0;}
 .about-copy b{color:var(--text);font-weight:500;}
-
+ 
 /* ═══ flagship ═══ */
 .flag{padding:20px 0 92px;}
 .flag-panel{
@@ -167,7 +167,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .flag h2{font-weight:700;font-size:clamp(2.3rem,5.6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin-bottom:20px;}
 .flag-lede{font-size:1.15rem;line-height:1.6;color:var(--text-2);max-width:56ch;}
 .flag-lede b{color:var(--text);font-weight:500;}
-
+ 
 .diagram{
   border:1px solid var(--line);border-radius:10px;
   background:var(--raised);padding:26px 24px 18px;margin-bottom:44px;
@@ -178,7 +178,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   margin-top:16px;padding-top:14px;border-top:1px solid var(--line);line-height:1.65;
 }
 .scroll-hint{display:none;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-3);margin-bottom:10px;position:sticky;left:0;}
-
+ 
 .flag-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
 .flag-cols h3{
   font-weight:600;font-size:1rem;letter-spacing:-.01em;margin-bottom:16px;
@@ -199,7 +199,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   padding:12px 22px;border-radius:6px;transition:background .16s,transform .16s;
 }
 .flag-visit:hover{background:#63F0BC;transform:translateY(-1px);}
-
+ 
 /* ═══ work rows ═══ */
 .row{
   display:grid;grid-template-columns:200px minmax(0,290px) minmax(0,1fr);gap:44px;
@@ -214,7 +214,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .row ul{list-style:none;}
 .row ul li{font-size:.96rem;color:var(--text-2);line-height:1.58;padding:0 0 11px 17px;position:relative;}
 .row ul li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--text-3);}
-
+ 
 /* ═══ capabilities ═══ */
 .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:0 52px;}
 .cap{padding:24px 0;border-top:1px solid var(--line);}
@@ -222,7 +222,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .cap p{color:var(--text-2);font-size:1rem;line-height:1.6;}
 .cap.wide{grid-column:1 / -1;}
 .cap.wide p{max-width:72ch;}
-
+ 
 /* ═══ background ═══ */
 .bg-grid{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start;}
 .edu{border-top:1px solid var(--line-2);padding-top:22px;margin-bottom:42px;}
@@ -234,7 +234,7 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .certs{list-style:none;columns:2;column-gap:44px;}
 .certs li{break-inside:avoid;padding:11px 0;border-top:1px solid var(--line);font-size:.98rem;line-height:1.4;}
 .certs li em{display:block;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);margin-top:4px;}
-
+ 
 /* ═══ contact ═══ */
 .contact{padding:92px 0 100px;position:relative;}
 .contact::before{
@@ -254,10 +254,10 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .contact-list a:hover{color:var(--mint);}
 .contact-list em{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
 .contact-list b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:1.1rem;letter-spacing:-.02em;}
-
+ 
 footer{padding:0 0 46px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);}
 footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-
+ 
 /* ═══ responsive ═══ */
 @media(max-width:1000px){
   .shell,.nav-in{padding:0 28px;}
@@ -298,7 +298,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
 </style>
 </head>
 <body>
-
+ 
 <nav class="nav">
   <div class="nav-in">
     <a class="nav-name" href="#top">Mhd Taha Daboul <span>/ AI Engineer</span></a>
@@ -321,7 +321,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
   <a href="#background">Background</a>
   <a href="#contact">Get in touch</a>
 </div>
-
+ 
 <header class="hero shell" id="top">
   <p class="hero-status"><span class="dot"></span> Open to AI engineering roles — remote or Damascus</p>
   <h1>Mhd&nbsp;Taha<br>Daboul</h1>
@@ -336,7 +336,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     <div class="metric"><b>$0.0006</b><small>cost per answered<br>question</small></div>
   </div>
 </header>
-
+ 
 <section class="sec shell" id="about">
   <div class="about">
     <div class="about-side">
@@ -352,7 +352,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     </div>
   </div>
 </section>
-
+ 
 <section class="flag" id="grownerd">
   <div class="shell">
     <div class="flag-panel">
@@ -367,7 +367,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
           <p class="flag-lede">A study assistant for the Syrian national curriculum. Ask it a question and the answer comes from <b>the actual page of the actual textbook</b> — not from a general model's recollection of what physics is.</p>
         </div>
       </div>
-
+ 
       <figure class="diagram">
         <p class="scroll-hint">Swipe to follow the path</p>
         <svg viewBox="0 0 1080 168" role="img" aria-label="Request path: browser to Cloudflare to nginx to Gunicorn to Flask to FAISS retrieval and OpenAI, with Supabase and Redis alongside">
@@ -380,49 +380,49 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
             <rect x="2" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="72" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Browser</text>
             <text x="72" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">Next.js static</text>
-
+ 
             <line x1="148" y1="66" x2="176" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+ 
             <rect x="184" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="254" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Cloudflare</text>
             <text x="254" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">CDN · TLS · WAF</text>
-
+ 
             <line x1="330" y1="66" x2="358" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+ 
             <rect x="366" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="436" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">nginx</text>
             <text x="436" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">origin, locked down</text>
-
+ 
             <line x1="512" y1="66" x2="540" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+ 
             <rect x="548" y="40" width="150" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="623" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Gunicorn</text>
             <text x="623" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">4 × 60 gthread</text>
-
+ 
             <line x1="704" y1="66" x2="732" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+ 
             <rect x="740" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="810" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Flask</text>
             <text x="810" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">auth · billing</text>
-
+ 
             <line x1="886" y1="66" x2="914" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+ 
             <rect x="922" y="34" width="156" height="64" rx="6" fill="rgba(69,233,172,.09)" stroke="#45E9AC" stroke-width="1.3"/>
             <text x="1000" y="58" fill="#45E9AC" font-size="13" text-anchor="middle">FAISS + OpenAI</text>
             <text x="1000" y="74" fill="#2BB584" font-size="10.5" text-anchor="middle">retrieve the page,</text>
             <text x="1000" y="88" fill="#2BB584" font-size="10.5" text-anchor="middle">then generate</text>
-
+ 
             <line x1="810" y1="98" x2="810" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
             <text x="810" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Supabase — auth &amp; data</text>
             <line x1="623" y1="98" x2="623" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
             <text x="623" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Redis — cache &amp; limits</text>
-
+ 
             <text x="2" y="20" fill="#3F5B52" font-size="10.5">One question, end to end</text>
           </g>
         </svg>
         <figcaption>The retrieval step is the whole point. A general model would answer physics from memory; this one is handed the paragraph first, so it can only answer from what the student's book actually says.</figcaption>
       </figure>
-
+ 
       <div class="flag-cols">
         <div>
           <h3>Retrieval &amp; models</h3>
@@ -444,12 +444,12 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
           </ul>
         </div>
       </div>
-
+ 
       <a class="flag-visit" href="https://grownerd.net" target="_blank" rel="noopener">Open grownerd.net</a>
     </div>
   </div>
 </section>
-
+ 
 <section class="sec shell" id="work">
   <div class="sec-head">
     <p class="sec-kicker">Other work</p>
@@ -458,7 +458,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
       <p>Where I learned the parts I later needed — vision preprocessing, model selection, and getting a pipeline to run unattended.</p>
     </div>
   </div>
-
+ 
   <article class="row">
     <div class="row-meta">
       <i>Computer vision</i>
@@ -473,27 +473,9 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
       <li>OpenCV preprocessing: grayscale, noise removal, adaptive thresholding, character segmentation.</li>
       <li>Tesseract OCR paired with a VGG16 transfer-learning classifier, because neither was reliable alone.</li>
       <li>Fuzzy matching to suggest alternative medicines and flag possible interactions.</li>
-      <li>Ingestion and retraining automated with n8n; shipped as a Docker service.</li>
     </ul>
   </article>
-
-  <article class="row">
-    <div class="row-meta">
-      <i>Regression</i>
-      <i>Scikit-learn · XGBoost · Flask</i>
-      <i><a href="https://github.com/motaha123/House_price_Advance" target="_blank" rel="noopener">View on GitHub</a></i>
-    </div>
-    <div>
-      <h3>House price prediction</h3>
-      <p>A tabular problem worked properly end to end, from messy features to something a non-technical colleague could query.</p>
-    </div>
-    <ul>
-      <li>Feature engineering: categorical encoding, missing-data strategy, interaction terms.</li>
-      <li>Linear regression, random forest and XGBoost compared under cross-validation, then ensembled.</li>
-      <li>Delivered as a small Flask API alongside annotated notebooks.</li>
-    </ul>
-  </article>
-
+ 
   <article class="row">
     <div class="row-meta">
       <i>Internship</i>
@@ -507,11 +489,12 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
       <li>Built and fine-tuned models for computer vision tasks.</li>
       <li>Integrated ML and deep learning models into production workflows.</li>
       <li>Automated data pipelines and retraining with n8n and Docker.</li>
+      <li>Built automation workflows around third-party AI video generation tools, handling the pipeline around them rather than the models themselves.</li>
       <li>Presented results to stakeholders who did not want the model architecture, they wanted the number.</li>
     </ul>
   </article>
 </section>
-
+ 
 <section class="sec shell" id="capabilities">
   <div class="sec-head">
     <p class="sec-kicker">Capabilities</p>
@@ -551,7 +534,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     </div>
   </div>
 </section>
-
+ 
 <section class="sec shell" id="background">
   <div class="bg-grid">
     <p class="sec-kicker">Background</p>
@@ -575,7 +558,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     </div>
   </div>
 </section>
-
+ 
 <section class="contact shell" id="contact">
   <h2>Let's talk</h2>
   <p class="contact-lede">If you're building something that has to answer from real sources and stay up, I'd like to hear about it.</p>
@@ -588,14 +571,14 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     <li><span><em>Based in</em><b>Damascus, Syria</b></span></li>
   </ul>
 </section>
-
+ 
 <footer>
   <div class="shell">
     <span>Mhd Taha Daboul — AI Engineer</span>
     <span>Damascus, 2026</span>
   </div>
 </footer>
-
+ 
 <script>
 (function(){
   var b=document.getElementById('burger'),d=document.getElementById('drawer');
@@ -612,6 +595,7 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
   });
 })();
 </script>
-
+ 
 </body>
 </html>
+ 
