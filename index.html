@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mhd Taha Daboul — AI Engineer</title>
 <meta name="description" content="AI Engineer in Damascus. Builds retrieval systems that run in production — including Grownerd, a RAG platform serving the Syrian national curriculum across 35 subjects.">
+<title>Mhd Taha Daboul — AI Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* One visual world on purpose: the portfolio is dark in every theme. */
 :root{
   --bg:#070A09;
   --surface:#0D1211;
@@ -21,54 +22,81 @@
   --mint:#45E9AC;
   --mint-dim:#2BB584;
   --mint-wash:rgba(69,233,172,.08);
+  --amber:#E8A33D;
+  --amber-wash:rgba(232,163,61,.1);
+  --red:#EC6A60;
+  --red-wash:rgba(236,106,96,.1);
+
+  --f-display:"Space Grotesk","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"Inter","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono","IBM Plex Sans Arabic",ui-monospace,monospace;
+}
+html[lang="ar"]{
+  --f-display:"IBM Plex Sans Arabic","Space Grotesk",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Inter",system-ui,sans-serif;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--bg);}
+
+/* ── language switching ── */
+html:not([lang="ar"]) .ar{display:none!important;}
+html[lang="ar"] .en{display:none!important;}
 
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:"Inter",system-ui,sans-serif;
+  font-family:var(--f-body);
   font-size:16.5px;
   line-height:1.68;
   font-weight:300;
   -webkit-font-smoothing:antialiased;
 }
+html[lang="ar"] body{font-size:17px;line-height:1.85;font-weight:400;}
 
 a{color:inherit;}
 :focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:2px;}
+bdi,.ltr{direction:ltr;unicode-bidi:isolate;}
 
-.shell{max-width:1200px;margin:0 auto;padding:0 40px;}
-.mono{font-family:"JetBrains Mono",ui-monospace,monospace;}
-h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
+.shell{max-width:1200px;margin:0 auto;padding-inline:40px;}
+.mono{font-family:var(--f-mono);}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{letter-spacing:0!important;line-height:1.3;}
 
 /* ═══ nav ═══ */
 .nav{
   position:sticky;top:0;z-index:60;
-  background:rgba(7,10,9,.82);
+  background:rgba(7,10,9,.86);
   backdrop-filter:saturate(1.5) blur(16px);
   border-bottom:1px solid var(--line);
 }
 .nav-in{
-  max-width:1200px;margin:0 auto;padding:0 40px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  max-width:1200px;margin:0 auto;padding-inline:40px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
 .nav-name{
   font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:15px;
-  letter-spacing:-.01em;text-decoration:none;color:var(--text);
+  letter-spacing:-.01em;text-decoration:none;color:var(--text);white-space:nowrap;
 }
 .nav-name span{color:var(--text-3);font-weight:400;}
-.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center;}
 .nav-links a{
   font-size:14px;font-weight:400;color:var(--text-2);text-decoration:none;
   padding:3px 0;border-bottom:1px solid transparent;
-  transition:color .16s,border-color .16s;
+  transition:color .16s,border-color .16s;white-space:nowrap;
 }
 .nav-links a:hover{color:var(--text);border-bottom-color:var(--mint);}
+.nav-end{display:flex;align-items:center;gap:10px;}
+.lang-btn{
+  font-family:var(--f-mono);font-size:12.5px;font-weight:500;cursor:pointer;
+  background:transparent;color:var(--text);border:1px solid var(--line-2);
+  padding:6px 12px;border-radius:5px;transition:border-color .16s,color .16s;
+}
+.lang-btn:hover{border-color:var(--mint);color:var(--mint);}
+.lang-btn .ar{font-family:"IBM Plex Sans Arabic",sans-serif;}
 .nav-cta{
-  font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;
-  background:var(--mint);color:#04120C;text-decoration:none;
+  font-family:var(--f-display);font-size:14px;font-weight:600;
+  background:var(--mint);color:#04120C;text-decoration:none;white-space:nowrap;
   padding:8px 17px;border-radius:5px;transition:background .16s,transform .16s;
 }
 .nav-cta:hover{background:#63F0BC;transform:translateY(-1px);}
@@ -81,22 +109,22 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .drawer{display:none;background:var(--surface);border-bottom:1px solid var(--line);}
 .drawer.on{display:block;}
 .drawer a{
-  display:block;padding:14px 40px;text-decoration:none;color:var(--text);
-  font-family:"Space Grotesk",sans-serif;font-size:16px;font-weight:500;
+  display:block;padding:14px 28px;text-decoration:none;color:var(--text);
+  font-family:var(--f-display);font-size:16px;font-weight:500;
   border-bottom:1px solid var(--line);
 }
 .drawer a:last-child{border-bottom:none;color:var(--mint);}
 
 /* ═══ hero ═══ */
-.hero{padding:100px 0 0;position:relative;}
+.hero{padding-block:100px 0;position:relative;}
 .hero::before{
   content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
-  width:900px;height:520px;pointer-events:none;z-index:-1;
+  width:min(900px,100%);height:520px;pointer-events:none;z-index:-1;
   background:radial-gradient(ellipse at center,rgba(69,233,172,.09) 0%,transparent 65%);
 }
 .hero-status{
   display:inline-flex;align-items:center;gap:9px;
-  font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--mint);
+  font-family:var(--f-mono);font-size:12px;color:var(--mint);
   border:1px solid rgba(69,233,172,.24);background:var(--mint-wash);
   padding:6px 14px;border-radius:100px;margin-bottom:36px;
 }
@@ -106,11 +134,14 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   @keyframes beat{0%,100%{opacity:1}50%{opacity:.25}}
 }
 .hero h1{
+  font-family:"Space Grotesk",sans-serif;
   font-weight:700;font-size:clamp(3rem,10vw,7.6rem);
   line-height:.94;letter-spacing:-.045em;margin-bottom:36px;
 }
+html[lang="ar"] .hero h1{line-height:.98;letter-spacing:-.045em!important;}
 .hero-body{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding-bottom:56px;align-items:end;}
 .hero-lede{font-size:1.32rem;line-height:1.5;max-width:32ch;font-weight:400;letter-spacing:-.015em;}
+html[lang="ar"] .hero-lede{font-size:1.4rem;line-height:1.65;letter-spacing:0;font-weight:500;}
 .hero-note{font-size:1rem;color:var(--text-2);max-width:44ch;}
 .hero-note a{color:var(--mint);text-decoration:none;border-bottom:1px solid rgba(69,233,172,.35);}
 .hero-note a:hover{border-bottom-color:var(--mint);}
@@ -119,30 +150,29 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
   border-top:1px solid var(--line-2);border-bottom:1px solid var(--line);
   display:grid;grid-template-columns:repeat(4,1fr);
 }
-.metric{padding:26px 28px 28px;border-left:1px solid var(--line);}
-.metric:first-child{border-left:none;padding-left:0;}
+.metric{padding:26px 28px 28px;border-inline-start:1px solid var(--line);}
+.metric:first-child{border-inline-start:none;padding-inline-start:0;}
 .metric b{
-  display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
+  display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;direction:ltr;text-align:start;
   font-size:2.5rem;line-height:1;letter-spacing:-.04em;margin-bottom:9px;color:var(--mint);
+  font-variant-numeric:tabular-nums;
 }
-.metric small{
-  display:block;font-family:"JetBrains Mono",monospace;
-  font-size:11.5px;color:var(--text-3);line-height:1.5;
-}
+.metric small{display:block;font-family:var(--f-mono);font-size:11.5px;color:var(--text-3);line-height:1.5;}
+html[lang="ar"] .metric small{font-size:12.5px;}
 
 /* ═══ sections ═══ */
-.sec{padding:92px 0;}
+.sec{padding-block:92px;}
 .sec-head{
   display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:baseline;
   margin-bottom:46px;border-top:1px solid var(--line-2);padding-top:20px;
 }
-.sec-kicker{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
+.sec-kicker{font-family:var(--f-mono);font-size:12px;color:var(--text-3);letter-spacing:.02em;}
 .sec-head h2{font-weight:600;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.05;letter-spacing:-.035em;}
-.sec-head p{margin-top:12px;color:var(--text-2);font-size:1.03rem;max-width:52ch;}
+.sec-head p{margin-top:12px;color:var(--text-2);font-size:1.03rem;max-width:56ch;}
 
 /* ═══ about ═══ */
 .about{display:grid;grid-template-columns:200px 1fr;gap:44px;}
-.about-side{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:2.1;}
+.about-side{font-family:var(--f-mono);font-size:12px;color:var(--text-3);line-height:2.1;}
 .about-side i{display:block;font-style:normal;}
 .about-copy{max-width:64ch;}
 .about-copy p{margin-bottom:20px;font-size:1.08rem;color:var(--text-2);}
@@ -150,76 +180,177 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .about-copy b{color:var(--text);font-weight:500;}
 
 /* ═══ flagship ═══ */
-.flag{padding:20px 0 92px;}
+.flag{padding-block:20px 92px;}
 .flag-panel{
   background:var(--surface);border:1px solid var(--line);
   border-radius:14px;padding:52px 48px 56px;position:relative;overflow:hidden;
 }
 .flag-panel::before{
   content:"";position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--mint),transparent);
-  opacity:.55;
+  background:linear-gradient(90deg,transparent,var(--mint),transparent);opacity:.55;
 }
 .flag-top{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start;margin-bottom:44px;}
-.flag-tag{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:2.1;}
+.flag-tag{font-family:var(--f-mono);font-size:12px;color:var(--text-3);line-height:2.1;}
 .flag-tag i{display:block;font-style:normal;}
 .flag-tag i:first-child{color:var(--mint);}
-.flag h2{font-weight:700;font-size:clamp(2.3rem,5.6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin-bottom:20px;}
+.flag h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(2.3rem,5.6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin-bottom:20px;}
 .flag-lede{font-size:1.15rem;line-height:1.6;color:var(--text-2);max-width:56ch;}
+html[lang="ar"] .flag-lede{line-height:1.85;}
 .flag-lede b{color:var(--text);font-weight:500;}
 
-.diagram{
-  border:1px solid var(--line);border-radius:10px;
-  background:var(--raised);padding:26px 24px 18px;margin-bottom:44px;
-}
-.diagram svg{display:block;width:100%;height:auto;}
+.diagram{border:1px solid var(--line);border-radius:10px;background:var(--raised);padding:26px 24px 18px;margin-bottom:44px;}
+.diagram-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.diagram svg{display:block;width:100%;height:auto;min-width:820px;}
 .diagram figcaption{
-  font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);
-  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);line-height:1.65;
+  font-family:var(--f-mono);font-size:11.5px;color:var(--text-3);
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);line-height:1.7;
 }
-.scroll-hint{display:none;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-3);margin-bottom:10px;position:sticky;left:0;}
+html[lang="ar"] .diagram figcaption{font-size:13px;}
 
 .flag-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
-.flag-cols h3{
-  font-weight:600;font-size:1rem;letter-spacing:-.01em;margin-bottom:16px;
-  padding-bottom:10px;border-bottom:1px solid var(--line);
-}
-.flag-cols ul{list-style:none;}
-.flag-cols li{font-size:.99rem;line-height:1.62;color:var(--text-2);padding:0 0 14px 20px;position:relative;}
-.flag-cols li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--mint-dim);}
-.flag-cols li b{color:var(--text);font-weight:500;}
-.flag-cols code{
-  font-family:"JetBrains Mono",monospace;font-size:.84em;
-  color:var(--mint);background:var(--mint-wash);padding:2px 6px;border-radius:4px;
-}
-.flag-visit{
-  display:inline-block;margin-top:38px;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.95rem;
+.flag-cols h3{font-weight:600;font-size:1rem;letter-spacing:-.01em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+ul.ticks{list-style:none;}
+ul.ticks li{font-size:.99rem;line-height:1.62;color:var(--text-2);padding-block-end:14px;padding-inline-start:20px;position:relative;}
+html[lang="ar"] ul.ticks li{line-height:1.85;}
+ul.ticks li::before{content:"";position:absolute;inset-inline-start:0;top:.8em;width:8px;height:1px;background:var(--mint-dim);}
+ul.ticks li b{color:var(--text);font-weight:500;}
+code{font-family:"JetBrains Mono",monospace;font-size:.84em;color:var(--mint);background:var(--mint-wash);padding:2px 6px;border-radius:4px;direction:ltr;unicode-bidi:isolate;}
+.flag-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px;align-items:center;}
+.btn-solid{
+  display:inline-block;font-family:var(--f-display);font-weight:600;font-size:.95rem;
   color:#04120C;background:var(--mint);text-decoration:none;
   padding:12px 22px;border-radius:6px;transition:background .16s,transform .16s;
 }
-.flag-visit:hover{background:#63F0BC;transform:translateY(-1px);}
+.btn-solid:hover{background:#63F0BC;transform:translateY(-1px);}
+.btn-line{
+  display:inline-block;font-family:var(--f-display);font-weight:500;font-size:.95rem;
+  color:var(--text);text-decoration:none;border:1px solid var(--line-2);
+  padding:11px 20px;border-radius:6px;transition:border-color .16s;
+}
+.btn-line:hover{border-color:var(--mint);}
+
+/* ═══ inside grownerd ═══ */
+.sub-h{
+  display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:baseline;
+  margin:72px 0 26px;
+}
+.sub-h:first-of-type{margin-top:0;}
+.sub-h .lbl{font-family:var(--f-mono);font-size:12px;color:var(--mint);}
+.sub-h h3{font-weight:600;font-size:1.55rem;letter-spacing:-.03em;line-height:1.15;}
+.sub-h p{color:var(--text-2);margin-top:8px;max-width:60ch;}
+.indent{margin-inline-start:244px;}
+
+/* explorer */
+.explorer{display:grid;grid-template-columns:270px 1fr;gap:32px;align-items:start;}
+.layers{display:flex;flex-direction:column;gap:6px;}
+.layers .group{font-family:var(--f-mono);font-size:11px;color:var(--text-3);margin:4px 0 2px;}
+.layers .group:not(:first-child){margin-top:14px;}
+.layer-btn{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;width:100%;
+  text-align:start;cursor:pointer;font:inherit;
+  background:transparent;color:var(--text-2);
+  border:1px solid var(--line);border-radius:6px;padding:11px 14px;
+  transition:border-color .16s,color .16s,background .16s;
+}
+.layer-btn:hover{color:var(--text);border-color:var(--line-2);}
+.layer-btn[aria-pressed="true"]{color:var(--text);border-color:var(--mint);background:var(--mint-wash);}
+.layer-btn .nm{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14.5px;direction:ltr;}
+.layer-btn .rl{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--text-3);direction:ltr;white-space:nowrap;}
+.layer-btn.dep{border-style:dashed;}
+.layer-btn.dep[aria-pressed="true"]{border-style:solid;}
+
+.detail{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:30px 32px 32px;min-height:100%;}
+.detail .d-role{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);direction:ltr;display:inline-block;}
+.detail h4{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.7rem;letter-spacing:-.03em;margin:4px 0 16px;direction:ltr;text-align:start;}
+.detail p{color:var(--text-2);margin-bottom:14px;max-width:64ch;}
+.detail p b{color:var(--text);font-weight:500;}
+.why{border-inline-start:2px solid var(--mint);padding-inline-start:16px;margin-top:20px;}
+.why .h{font-family:var(--f-mono);font-size:11px;color:var(--mint);margin-bottom:4px;}
+.why p{color:var(--text);margin:0;}
+
+/* scenarios */
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+.seg button{
+  font:inherit;font-size:14px;font-weight:500;cursor:pointer;
+  background:transparent;color:var(--text-2);border:1px solid var(--line-2);
+  padding:8px 15px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;
+  transition:color .16s,border-color .16s,background .16s;
+}
+.seg button i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.6;}
+.seg button:hover{color:var(--text);}
+.seg button[aria-pressed="true"][data-tone="ok"]{color:var(--mint);border-color:var(--mint);background:var(--mint-wash);}
+.seg button[aria-pressed="true"][data-tone="warn"]{color:var(--amber);border-color:var(--amber);background:var(--amber-wash);}
+.seg button[aria-pressed="true"][data-tone="crit"]{color:var(--red);border-color:var(--red);background:var(--red-wash);}
+
+.scen{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:26px 28px 28px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;direction:ltr;margin-bottom:22px;}
+.chip{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:5px 10px;border-radius:5px;
+  border:1px solid var(--line);color:var(--text-3);display:inline-flex;align-items:center;gap:7px;
+}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--mint-dim);}
+.chip.warn{border-color:rgba(232,163,61,.5);color:var(--amber);background:var(--amber-wash);}
+.chip.warn i{background:var(--amber);}
+.chip.crit{border-color:rgba(236,106,96,.55);color:var(--red);background:var(--red-wash);}
+.chip.crit i{background:var(--red);}
+.scen-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.scen-cols .h{font-family:var(--f-mono);font-size:11px;color:var(--text-3);margin-bottom:6px;}
+.scen-cols p{color:var(--text-2);}
+.scen-cols p b{color:var(--text);font-weight:500;}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--line-2);}
+table.t{width:100%;border-collapse:collapse;min-width:560px;font-size:.97rem;}
+table.t th{
+  text-align:start;font-family:var(--f-mono);font-size:11.5px;font-weight:400;color:var(--text-3);
+  padding:14px 16px 12px 0;border-bottom:1px solid var(--line);
+}
+html[lang="ar"] table.t th{padding:14px 0 12px 16px;}
+table.t td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-2);}
+html[lang="ar"] table.t td{padding:14px 0 14px 16px;}
+table.t td:first-child{color:var(--text);font-weight:500;width:26%;}
+table.t .num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;color:var(--mint);white-space:nowrap;direction:ltr;unicode-bidi:isolate;}
+table.t .good{color:var(--mint);}
+
+.verdict{margin-top:20px;max-width:70ch;color:var(--text-2);}
+.verdict b{color:var(--text);font-weight:500;}
+
+ol.lessons{list-style:none;border-top:1px solid var(--line-2);}
+ol.lessons li{display:grid;grid-template-columns:200px 1fr;gap:44px;padding:20px 0;border-bottom:1px solid var(--line);}
+ol.lessons .lt{font-family:var(--f-display);font-weight:600;font-size:1.05rem;letter-spacing:-.01em;color:var(--text);line-height:1.35;}
+ol.lessons .ld{color:var(--text-2);max-width:62ch;}
 
 /* ═══ work rows ═══ */
 .row{
   display:grid;grid-template-columns:200px minmax(0,290px) minmax(0,1fr);gap:44px;
-  padding:34px 0;border-top:1px solid var(--line);align-items:start;
+  padding-block:34px;border-top:1px solid var(--line);align-items:start;
 }
 .row:last-of-type{border-bottom:1px solid var(--line);}
-.row-meta{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);line-height:1.95;}
+.row-meta{font-family:var(--f-mono);font-size:12px;color:var(--text-3);line-height:1.95;}
 .row-meta i{display:block;font-style:normal;}
 .row-meta a{color:var(--mint);text-decoration:none;border-bottom:1px solid rgba(69,233,172,.3);}
 .row h3{font-weight:600;font-size:1.4rem;letter-spacing:-.03em;margin-bottom:10px;line-height:1.15;}
 .row p{color:var(--text-2);font-size:1.02rem;}
-.row ul{list-style:none;}
-.row ul li{font-size:.96rem;color:var(--text-2);line-height:1.58;padding:0 0 11px 17px;position:relative;}
-.row ul li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--text-3);}
+.row ul.ticks li{font-size:.96rem;padding-block-end:11px;}
+.row ul.ticks li::before{background:var(--text-3);}
+.row .how{grid-column:2 / -1;border-top:1px dashed var(--line-2);padding-top:22px;}
+.how .h{font-family:var(--f-mono);font-size:11.5px;color:var(--mint);margin-bottom:14px;}
+ol.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s;}
+ol.steps li{counter-increment:s;border-inline-end:1px solid var(--line);padding-inline:0 18px;}
+ol.steps li + li{padding-inline-start:18px;}
+ol.steps li:last-child{border-inline-end:none;}
+ol.steps li::before{content:counter(s);display:block;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);margin-bottom:6px;}
+ol.steps b{display:block;font-family:var(--f-display);font-weight:600;font-size:.98rem;color:var(--text);margin-bottom:4px;line-height:1.35;}
+ol.steps span{display:block;font-size:.9rem;color:var(--text-2);line-height:1.55;}
+.how .after{margin-top:18px;color:var(--text-2);font-size:.97rem;max-width:72ch;}
+.how .after b{color:var(--text);font-weight:500;}
 
 /* ═══ capabilities ═══ */
 .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:0 52px;}
-.cap{padding:24px 0;border-top:1px solid var(--line);}
-.cap h3{font-weight:600;font-size:.96rem;margin-bottom:9px;letter-spacing:-.01em;}
+.cap{padding-block:24px;border-top:1px solid var(--line);}
+.cap h3{font-weight:600;font-size:.98rem;margin-bottom:9px;letter-spacing:-.01em;}
 .cap p{color:var(--text-2);font-size:1rem;line-height:1.6;}
+html[lang="ar"] .cap p{line-height:1.85;}
 .cap.wide{grid-column:1 / -1;}
 .cap.wide p{max-width:72ch;}
 
@@ -230,66 +361,78 @@ h1,h2,h3,.grotesk{font-family:"Space Grotesk",system-ui,sans-serif;}
 .edu .where{color:var(--text-2);font-size:1.02rem;margin:5px 0 7px;}
 .edu .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--mint);}
 .edu .focus{color:var(--text-2);font-size:.99rem;margin-top:13px;max-width:56ch;}
-.certs-title{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);margin-bottom:10px;}
+.certs-title{font-family:var(--f-mono);font-size:12px;color:var(--text-3);margin-bottom:10px;}
 .certs{list-style:none;columns:2;column-gap:44px;}
-.certs li{break-inside:avoid;padding:11px 0;border-top:1px solid var(--line);font-size:.98rem;line-height:1.4;}
-.certs li em{display:block;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);margin-top:4px;}
+.certs li{break-inside:avoid;padding-block:11px;border-top:1px solid var(--line);font-size:.98rem;line-height:1.4;}
+.certs li bdi{font-family:"Inter",sans-serif;}
+.certs li em{display:block;font-style:normal;font-family:var(--f-mono);font-size:11.5px;color:var(--text-3);margin-top:4px;}
 
 /* ═══ contact ═══ */
-.contact{padding:92px 0 100px;position:relative;}
-.contact::before{
-  content:"";position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);
-  width:900px;height:500px;pointer-events:none;z-index:-1;
-  background:radial-gradient(ellipse at center,rgba(69,233,172,.07) 0%,transparent 65%);
-}
+.contact{padding-block:92px 100px;position:relative;}
 .contact h2{font-weight:700;font-size:clamp(2.6rem,7.5vw,5.4rem);line-height:.98;letter-spacing:-.045em;margin-bottom:18px;}
 .contact-lede{color:var(--text-2);font-size:1.12rem;max-width:46ch;margin-bottom:48px;}
 .contact-list{list-style:none;border-top:1px solid var(--line);}
 .contact-list li{border-bottom:1px solid var(--line);}
-.contact-list a,.contact-list span{
+.contact-list a,.contact-list .static{
   display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;
-  padding:18px 0;text-decoration:none;color:var(--text);
+  padding-block:18px;text-decoration:none;color:var(--text);
 }
 .contact-list a{transition:color .16s;}
 .contact-list a:hover{color:var(--mint);}
-.contact-list em{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-3);}
+.contact-list em{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--text-3);}
 .contact-list b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:1.1rem;letter-spacing:-.02em;}
 
-footer{padding:0 0 46px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-3);}
-footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+footer{padding-block:0 46px;font-family:var(--f-mono);font-size:11.5px;color:var(--text-3);}
+footer .shell > div{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
 
 /* ═══ responsive ═══ */
+@media(max-width:1060px){
+  .nav-links{gap:18px;}
+  .nav-links li.opt{display:none;}
+}
 @media(max-width:1000px){
-  .shell,.nav-in{padding:0 28px;}
-  .drawer a{padding-left:28px;padding-right:28px;}
-  .sec-head,.about,.flag-top,.bg-grid{grid-template-columns:1fr;gap:16px;}
+  .shell,.nav-in{padding-inline:28px;}
+  .sec-head,.about,.flag-top,.bg-grid,.sub-h,ol.lessons li{grid-template-columns:1fr;gap:14px;}
+  .indent{margin-inline-start:0;}
   .row{grid-template-columns:1fr;gap:18px;}
+  .row .how{grid-column:auto;}
   .row-meta{order:-1;}
   .hero-body{grid-template-columns:1fr;gap:26px;align-items:start;}
-  .flag-cols{grid-template-columns:1fr;gap:30px;}
+  .flag-cols,.scen-cols{grid-template-columns:1fr;gap:30px;}
   .flag-panel{padding:36px 26px 40px;}
+  .explorer{grid-template-columns:1fr;}
+  .layers{flex-direction:row;flex-wrap:wrap;}
+  .layers .group{width:100%;}
+  .layer-btn{width:auto;}
+  .layer-btn .rl{display:none;}
   .metrics{grid-template-columns:1fr 1fr;}
-  .metric{border-left:none;padding-left:0;border-top:1px solid var(--line);}
+  .metric{border-inline-start:none;padding-inline-start:0;border-top:1px solid var(--line);}
   .metric:first-child,.metric:nth-child(2){border-top:none;}
-  .metric:nth-child(2),.metric:nth-child(4){padding-left:28px;border-left:1px solid var(--line);}
+  .metric:nth-child(2),.metric:nth-child(4){padding-inline-start:28px;border-inline-start:1px solid var(--line);}
+  ol.steps{grid-template-columns:1fr 1fr;gap:22px 0;}
+  ol.steps li:nth-child(2){border-inline-end:none;}
+  ol.steps li:nth-child(3){padding-inline-start:0;}
 }
-@media(max-width:720px){
+@media(max-width:760px){
   .nav-links,.nav-cta{display:none;}
   .burger{display:block;}
+  .nav-name span{display:none;}
   body{font-size:16px;}
+  .shell,.nav-in{padding-inline:18px;}
   .hero{padding-top:56px;}
-  .sec,.contact{padding:60px 0;}
+  .sec,.contact{padding-block:60px;}
   .flag{padding-bottom:60px;}
+  .flag-panel{padding:28px 18px 32px;}
+  .detail,.scen{padding:22px 18px;}
   .caps{grid-template-columns:1fr;gap:0;}
   .certs{columns:1;}
-  .contact-list a,.contact-list span{grid-template-columns:1fr;gap:3px;padding:15px 0;}
+  .contact-list a,.contact-list .static{grid-template-columns:1fr;gap:3px;padding-block:15px;}
   .metrics{grid-template-columns:1fr;}
-  .metric{padding-left:0!important;border-left:none!important;border-top:1px solid var(--line);}
+  .metric,.metric:nth-child(2),.metric:nth-child(4){padding-inline-start:0;border-inline-start:none;border-top:1px solid var(--line);}
   .metric:first-child{border-top:none;}
-  .diagram{padding:18px 14px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .diagram svg{min-width:820px;}
-  .diagram figcaption{position:sticky;left:0;}
-  .scroll-hint{display:block;}
+  .diagram{padding:18px 14px 12px;}
+  ol.steps{grid-template-columns:1fr;gap:18px;}
+  ol.steps li,ol.steps li + li{border-inline-end:none;padding-inline:0;}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
@@ -299,56 +442,77 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" aria-label="Main">
   <div class="nav-in">
     <a class="nav-name" href="#top">Mhd Taha Daboul <span>/ AI Engineer</span></a>
     <ul class="nav-links">
       <li><a href="#grownerd">Grownerd</a></li>
-      <li><a href="#work">Other work</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#background">Background</a></li>
+      <li><a href="#inside"><span class="en">How it works</span><span class="ar">من الداخل</span></a></li>
+      <li><a href="#work"><span class="en">Other work</span><span class="ar">أعمال أخرى</span></a></li>
+      <li class="opt"><a href="#capabilities"><span class="en">Capabilities</span><span class="ar">المهارات</span></a></li>
+      <li class="opt"><a href="#background"><span class="en">Background</span><span class="ar">الخلفية</span></a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Get in touch</a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
-      <i></i><i></i><i></i>
-    </button>
+    <div class="nav-end">
+      <button class="lang-btn" id="lang-btn" type="button" aria-label="Switch language">
+        <span class="en">العربية</span><span class="ar">English</span>
+      </button>
+      <a class="nav-cta" href="#contact"><span class="en">Get in touch</span><span class="ar">تواصل معي</span></a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
   </div>
 </nav>
 <div class="drawer" id="drawer">
   <a href="#grownerd">Grownerd</a>
-  <a href="#work">Other work</a>
-  <a href="#capabilities">Capabilities</a>
-  <a href="#background">Background</a>
-  <a href="#contact">Get in touch</a>
+  <a href="#inside"><span class="en">How it works</span><span class="ar">من الداخل</span></a>
+  <a href="#work"><span class="en">Other work</span><span class="ar">أعمال أخرى</span></a>
+  <a href="#capabilities"><span class="en">Capabilities</span><span class="ar">المهارات</span></a>
+  <a href="#background"><span class="en">Background</span><span class="ar">الخلفية</span></a>
+  <a href="#contact"><span class="en">Get in touch</span><span class="ar">تواصل معي</span></a>
 </div>
 
 <header class="hero shell" id="top">
-  <p class="hero-status"><span class="dot"></span> Open to AI engineering roles — remote or Damascus</p>
-  <h1>Mhd&nbsp;Taha<br>Daboul</h1>
+  <p class="hero-status"><span class="dot"></span>
+    <span class="en">Open to AI engineering roles — remote or Damascus</span>
+    <span class="ar">متاح لأدوار هندسة الذكاء الاصطناعي — عن بُعد أو في دمشق</span>
+  </p>
+  <h1 dir="ltr">Mhd&nbsp;Taha<br>Daboul</h1>
   <div class="hero-body">
-    <p class="hero-lede">I build retrieval systems that answer from a specific source — and then I keep them running.</p>
-    <p class="hero-note">Most of my work sits behind <a href="https://grownerd.net" target="_blank" rel="noopener">grownerd.net</a>, a study platform where every answer is traced back to a page in the student's own textbook. Live and serving real students.</p>
+    <p class="hero-lede">
+      <span class="en">I build retrieval systems that answer from a specific source — and then I keep them running.</span>
+      <span class="ar">أبني أنظمة استرجاع تجيب من مصدر محدّد — ثم أُبقيها تعمل.</span>
+    </p>
+    <p class="hero-note">
+      <span class="en">Most of my work sits behind <a href="https://grownerd.net" target="_blank" rel="noopener">grownerd.net</a>, a study platform where every answer is traced back to a page in the student's own textbook. Live and serving real students.</span>
+      <span class="ar">معظم عملي خلف <a href="https://grownerd.net" target="_blank" rel="noopener">grownerd.net</a>، منصّة دراسية تُنسب فيها كل إجابة إلى صفحة من كتاب الطالب نفسه. منصّة حيّة يستخدمها طلاب حقيقيون.</span>
+    </p>
   </div>
   <div class="metrics">
-    <div class="metric"><b>35</b><small>subjects, each with its<br>own retrieval index</small></div>
-    <div class="metric"><b>174</b><small>backend tests, including<br>failure-mode coverage</small></div>
-    <div class="metric"><b>240</b><small>concurrent requests<br>on one 4 GB server</small></div>
-    <div class="metric"><b>$0.0006</b><small>cost per answered<br>question</small></div>
+    <div class="metric"><b>35</b><small><span class="en">subjects, each with its<br>own retrieval index</span><span class="ar">مادة، لكلٍّ منها<br>فهرس استرجاع مستقل</span></small></div>
+    <div class="metric"><b>215</b><small><span class="en">backend tests, including<br>failure-mode coverage</span><span class="ar">اختبار backend، منها<br>اختبارات لأنماط الأعطال</span></small></div>
+    <div class="metric"><b>240</b><small><span class="en">concurrent requests<br>on one 4 GB server</span><span class="ar">طلباً متزامناً على<br>خادم واحد بذاكرة 4 GB</span></small></div>
+    <div class="metric"><b>$0.0006</b><small><span class="en">cost per answered<br>question</span><span class="ar">كلفة الإجابة<br>عن سؤال واحد</span></small></div>
   </div>
 </header>
 
 <section class="sec shell" id="about">
   <div class="about">
     <div class="about-side">
-      <i>Damascus, Syria</i>
-      <i>B.Sc. Computer Science</i>
-      <i>Cairo University, 2025</i>
-      <i>Arabic · English · French</i>
+      <div class="en"><i>Damascus, Syria</i><i>B.Sc. Computer Science</i><i>Cairo University, 2025</i><i>Arabic · English · French</i></div>
+      <div class="ar"><i>دمشق، سوريا</i><i>بكالوريوس علوم الحاسوب</i><i>جامعة القاهرة، 2025</i><i>العربية · الإنجليزية · الفرنسية</i></div>
     </div>
     <div class="about-copy">
-      <p>I finished a computer science degree at Cairo University in 2025, focused on machine learning and computer vision. What I actually learned came after: building something people depend on, and discovering how different that is from a notebook that gets 94% on a held-out set.</p>
-      <p>The work I care about is <b>retrieval</b> — getting a model to answer from a source you can point at, rather than from whatever it absorbed in training. That constraint changes everything downstream: how you chunk the data, what you store as metadata, how you catch it when the source itself is wrong.</p>
-      <p>And sources are often wrong. One of the more instructive bugs I've fixed lived in nine curriculum files, not in the model and not in the renderer — equations were double-escaped at the source, so students saw raw LaTeX. Finding it meant refusing to accept that the layer in front of me was the guilty one.</p>
+      <div class="en">
+        <p>I finished a computer science degree at Cairo University in 2025, focused on machine learning and computer vision. What I actually learned came after: building something people depend on, and discovering how different that is from a notebook that gets 94% on a held-out set.</p>
+        <p>The work I care about is <b>retrieval</b> — getting a model to answer from a source you can point at, rather than from whatever it absorbed in training. That constraint changes everything downstream: how you chunk the data, what you store as metadata, how you catch it when the source itself is wrong.</p>
+        <p>And sources are often wrong. One of the more instructive bugs I've fixed lived in nine curriculum files, not in the model and not in the renderer — equations were double-escaped at the source, so students saw raw LaTeX. Finding it meant refusing to accept that the layer in front of me was the guilty one.</p>
+      </div>
+      <div class="ar">
+        <p>أنهيت بكالوريوس علوم الحاسوب في جامعة القاهرة عام 2025، بتركيز على تعلّم الآلة والرؤية الحاسوبية. أمّا ما تعلّمته فعلاً فجاء بعد ذلك: أن تبني شيئاً يعتمد عليه الناس، وأن تكتشف كم يختلف ذلك عن <bdi>notebook</bdi> يحقّق 94% على مجموعة اختبار.</p>
+        <p>العمل الذي يهمّني هو <b>الاسترجاع (<bdi>retrieval</bdi>)</b> — أن يجيب النموذج من مصدر يمكنك الإشارة إليه، لا ممّا امتصّه أثناء التدريب. هذا القيد يغيّر كل ما بعده: كيف تقسّم البيانات إلى <bdi>chunks</bdi>، وما الذي تخزّنه كـ <bdi>metadata</bdi>، وكيف تكتشف الخطأ حين يكون المصدر نفسه خاطئاً.</p>
+        <p>والمصادر كثيراً ما تكون خاطئة. من أكثر الأعطال التي أصلحتها إفادةً عطلٌ كان يسكن تسعة ملفات منهج، لا في النموذج ولا في طبقة العرض — المعادلات كانت مهرَّبة مرّتين في المصدر، فرأى الطلاب <bdi>LaTeX</bdi> خاماً. إيجاده تطلّب رفض التسليم بأنّ الطبقة التي أمامي هي المذنبة.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -358,21 +522,23 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
     <div class="flag-panel">
       <div class="flag-top">
         <div class="flag-tag">
-          <i>Live in production</i>
-          <i>grownerd.net</i>
-          <i>Grades 9 – 12</i>
+          <div class="en"><i>Live in production</i><i>grownerd.net</i><i>Grades 9 – 12</i></div>
+          <div class="ar"><i>حيّ في الإنتاج</i><i>grownerd.net</i><i>الصفوف 9 – 12</i></div>
         </div>
         <div>
           <h2>Grownerd</h2>
-          <p class="flag-lede">A study assistant for the Syrian national curriculum. Ask it a question and the answer comes from <b>the actual page of the actual textbook</b> — not from a general model's recollection of what physics is.</p>
+          <p class="flag-lede">
+            <span class="en">A study assistant for the Syrian national curriculum. Ask it a question and the answer comes from <b>the actual page of the actual textbook</b> — not from a general model's recollection of what physics is.</span>
+            <span class="ar">مساعد دراسي للمنهاج السوري. اسأله سؤالاً فتأتي الإجابة من <b>الصفحة الفعلية في الكتاب الفعلي</b> — لا من ذاكرة نموذج عامّ عن الفيزياء.</span>
+          </p>
         </div>
       </div>
 
       <figure class="diagram">
-        <p class="scroll-hint">Swipe to follow the path</p>
+        <div class="diagram-scroll" dir="ltr">
         <svg viewBox="0 0 1080 168" role="img" aria-label="Request path: browser to Cloudflare to nginx to Gunicorn to Flask to FAISS retrieval and OpenAI, with Supabase and Redis alongside">
           <defs>
-            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <marker id="ar-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
               <path d="M1 1L9 5L1 9" fill="none" stroke="#3F5B52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </marker>
           </defs>
@@ -380,224 +546,613 @@ footer .shell{border-top:1px solid var(--line);padding-top:24px;display:flex;jus
             <rect x="2" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="72" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Browser</text>
             <text x="72" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">Next.js static</text>
-
-            <line x1="148" y1="66" x2="176" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+            <line x1="148" y1="66" x2="176" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar-head)"/>
             <rect x="184" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="254" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Cloudflare</text>
             <text x="254" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">CDN · TLS · WAF</text>
-
-            <line x1="330" y1="66" x2="358" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+            <line x1="330" y1="66" x2="358" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar-head)"/>
             <rect x="366" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="436" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">nginx</text>
             <text x="436" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">origin, locked down</text>
-
-            <line x1="512" y1="66" x2="540" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+            <line x1="512" y1="66" x2="540" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar-head)"/>
             <rect x="548" y="40" width="150" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="623" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Gunicorn</text>
             <text x="623" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">4 × 60 gthread</text>
-
-            <line x1="704" y1="66" x2="732" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+            <line x1="704" y1="66" x2="732" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar-head)"/>
             <rect x="740" y="40" width="140" height="52" rx="6" fill="none" stroke="rgba(255,255,255,.13)"/>
             <text x="810" y="64" fill="#E7EEEB" font-size="13" text-anchor="middle">Flask</text>
             <text x="810" y="80" fill="#6B7C76" font-size="10.5" text-anchor="middle">auth · billing</text>
-
-            <line x1="886" y1="66" x2="914" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar)"/>
-
+            <line x1="886" y1="66" x2="914" y2="66" stroke="#3F5B52" stroke-width="1.4" marker-end="url(#ar-head)"/>
             <rect x="922" y="34" width="156" height="64" rx="6" fill="rgba(69,233,172,.09)" stroke="#45E9AC" stroke-width="1.3"/>
             <text x="1000" y="58" fill="#45E9AC" font-size="13" text-anchor="middle">FAISS + OpenAI</text>
             <text x="1000" y="74" fill="#2BB584" font-size="10.5" text-anchor="middle">retrieve the page,</text>
             <text x="1000" y="88" fill="#2BB584" font-size="10.5" text-anchor="middle">then generate</text>
-
             <line x1="810" y1="98" x2="810" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
             <text x="810" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Supabase — auth &amp; data</text>
             <line x1="623" y1="98" x2="623" y2="120" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="3 3"/>
             <text x="623" y="136" fill="#6B7C76" font-size="10.5" text-anchor="middle">Redis — cache &amp; limits</text>
-
-            <text x="2" y="20" fill="#3F5B52" font-size="10.5">One question, end to end</text>
+            <text class="en" x="2" y="20" fill="#3F5B52" font-size="10.5">One question, end to end</text>
+            <text class="ar" x="2" y="20" fill="#3F5B52" font-size="11" font-family="IBM Plex Sans Arabic, sans-serif">سؤال واحد، من البداية للنهاية</text>
           </g>
         </svg>
-        <figcaption>The retrieval step is the whole point. A general model would answer physics from memory; this one is handed the paragraph first, so it can only answer from what the student's book actually says.</figcaption>
+        </div>
+        <figcaption>
+          <span class="en">The retrieval step is the whole point. A general model would answer physics from memory; this one is handed the paragraph first, so it answers from what the student's book actually says.</span>
+          <span class="ar">خطوة الاسترجاع هي جوهر الفكرة. النموذج العامّ يجيب الفيزياء من ذاكرته؛ أمّا هنا فتُسلَّم له الفقرة أولاً، فيجيب ممّا يقوله كتاب الطالب فعلاً.</span>
+        </figcaption>
       </figure>
 
       <div class="flag-cols">
         <div>
-          <h3>Retrieval &amp; models</h3>
-          <ul>
+          <h3><span class="en">Retrieval &amp; models</span><span class="ar">الاسترجاع والنماذج</span></h3>
+          <ul class="ticks en">
             <li><b>35 independent FAISS indexes</b>, one per subject, built from textbook pages with lesson- and page-level metadata — so an answer can be traced to page 42 of tenth-grade algebra.</li>
             <li>Generation on <code>gpt-4o-mini</code>, retrieval on <code>text-embedding-3-large</code>. Migrating generation down from <code>gpt-4o</code> cut cost per question to roughly $0.0006 without a quality drop worth the difference.</li>
             <li>All 35 indexes preload into memory per worker, so retrieval doesn't pay disk cost on the request path.</li>
             <li>Question numbering made deterministic <b>in code</b> rather than trusted to the prompt — a model at temperature 0.7 will not follow a formatting instruction every time, and eventually a student notices.</li>
           </ul>
+          <ul class="ticks ar">
+            <li><b>35 فهرس <bdi>FAISS</bdi> مستقلاً</b>، واحد لكل مادة، مبنية من صفحات الكتب مع <bdi>metadata</bdi> على مستوى الدرس والصفحة — فيمكن نسب الإجابة إلى الصفحة 42 من جبر الصف العاشر.</li>
+            <li>التوليد على <code>gpt-4o-mini</code> والاسترجاع على <code>text-embedding-3-large</code>. نقل التوليد من <code>gpt-4o</code> خفّض كلفة السؤال إلى نحو <bdi>$0.0006</bdi> دون تراجع في الجودة يستحق فرق السعر.</li>
+            <li>الفهارس الـ35 تُحمَّل كلها في ذاكرة كل <bdi>worker</bdi>، فلا يدفع الاسترجاع كلفة القرص أثناء الطلب.</li>
+            <li>ترقيم الأسئلة صار حتمياً <b>في الكود</b> بدل الاعتماد على الـ <bdi>prompt</bdi> — نموذج على <bdi>temperature 0.7</bdi> لن يلتزم بتعليمة تنسيق في كل مرة، وسيلاحظ طالبٌ ذلك في النهاية.</li>
+          </ul>
         </div>
         <div>
-          <h3>Serving it to real people</h3>
-          <ul>
+          <h3><span class="en">Serving it to real people</span><span class="ar">تقديمه لأشخاص حقيقيين</span></h3>
+          <ul class="ticks en">
             <li>Flask API handling Supabase auth, atomic token billing, routing across all 35 subject modules, and per-endpoint rate limits.</li>
             <li>A <b>shared answer cache</b> in Redis: the first student to open a page pays for the explanation, everyone after reads it.</li>
             <li>Gunicorn tuned to <b>240 concurrent requests</b> on a 4 GB box — the switch from sync to threaded workers alone was an eighty-fold difference.</li>
             <li>Backend security pass closing proxy-IP trust, client-supplied privilege flags, and error leakage — plus a startup check that refuses to boot on unsafe configuration, because a security control that fails silently is worse than none.</li>
             <li>Next.js web client and a Flutter mobile app against the same API, with LaTeX rendering and full right-to-left Arabic.</li>
-            <li>Three systemd monitors watching the server, Supabase, and OpenAI itself, alerting to Telegram — the OpenAI monitor specifically distinguishes a depleted balance from a rate limit, because the fix for each is different.</li>
-            <li><b>174 backend tests</b>, including a dedicated suite that verifies the rate-limiting fallback actually degrades the way it's supposed to when Redis goes down.</li>
+            <li><b>Four systemd monitors</b> watching the server, Supabase, OpenAI itself and the backups, alerting to Telegram — the OpenAI monitor distinguishes a depleted balance from a rate limit, because the fix for each is different.</li>
+            <li>An outage screen that appears only when the site is <b>actually down</b> — confirmed by two failed health checks — never because of one slow request.</li>
+            <li><b>Hourly database backups</b> copied off-server, with a real restore drill that matched every table against production.</li>
+            <li><b>215 backend tests</b>, including a suite that verifies the rate-limiting fallback degrades the way it's supposed to when Redis goes down.</li>
+          </ul>
+          <ul class="ticks ar">
+            <li><bdi>Flask API</bdi> يتولّى مصادقة <bdi>Supabase</bdi>، والخصم الذرّي للرصيد، والتوجيه عبر وحدات المواد الـ35، وحدود معدّل لكل <bdi>endpoint</bdi>.</li>
+            <li><b>كاش مشترك للإجابات</b> في <bdi>Redis</bdi>: أول طالب يفتح الصفحة يدفع كلفة شرحها، ومن يأتي بعده يقرؤه جاهزاً.</li>
+            <li><bdi>Gunicorn</bdi> مضبوط على <b>240 طلباً متزامناً</b> على خادم بذاكرة 4 GB — الانتقال من <bdi>sync</bdi> إلى <bdi>threaded workers</bdi> وحده أحدث فرقاً بثمانين ضعفاً.</li>
+            <li>مراجعة أمنية للـ <bdi>backend</bdi> أغلقت الثقة بعنوان <bdi>IP</bdi> القادم عبر الـ <bdi>proxy</bdi>، وصلاحيات يرسلها العميل بنفسه، وتسريب تفاصيل الأخطاء — مع فحص عند الإقلاع يرفض التشغيل بإعداد غير آمن، لأنّ ضابطاً أمنياً يفشل بصمت أسوأ من غيابه.</li>
+            <li>واجهة ويب بـ <bdi>Next.js</bdi> وتطبيق <bdi>Flutter</bdi> على نفس الـ <bdi>API</bdi>، مع عرض <bdi>LaTeX</bdi> ودعم كامل للعربية من اليمين إلى اليسار.</li>
+            <li><b>أربعة مراقبات <bdi>systemd</bdi></b> على الخادم و<bdi>Supabase</bdi> و<bdi>OpenAI</bdi> نفسه والنسخ الاحتياطي، تُنذر على <bdi>Telegram</bdi> — ومراقب <bdi>OpenAI</bdi> يميّز نفاد الرصيد عن حدّ المعدّل، لأنّ حلّ كلٍّ منهما مختلف.</li>
+            <li>شاشة عطل لا تظهر إلا حين يتوقّف الموقع <b>فعلاً</b> — بعد فحصَي صحّة فاشلَين متتاليين — لا بسبب طلب بطيء واحد.</li>
+            <li><b>نسخ احتياطي لقاعدة البيانات كل ساعة</b> إلى خارج الخادم، مع تمرين استرجاع حقيقي طابق كل جدول مع الإنتاج.</li>
+            <li><b>215 اختبار <bdi>backend</bdi></b>، منها مجموعة تتحقّق أنّ احتياط حدود المعدّل يتدهور كما يجب حين تسقط <bdi>Redis</bdi>.</li>
           </ul>
         </div>
       </div>
 
-      <a class="flag-visit" href="https://grownerd.net" target="_blank" rel="noopener">Open grownerd.net</a>
+      <div class="flag-actions">
+        <a class="btn-solid" href="https://grownerd.net" target="_blank" rel="noopener"><span class="en">Open grownerd.net</span><span class="ar">افتح grownerd.net</span></a>
+        <a class="btn-line" href="#inside"><span class="en">See how it works ↓</span><span class="ar">كيف يعمل من الداخل ↓</span></a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════ INSIDE GROWNERD ══════════════ -->
+<section class="sec shell" id="inside">
+  <div class="sec-head">
+    <p class="sec-kicker"><span class="en">How it works</span><span class="ar">كيف يعمل</span></p>
+    <div>
+      <h2><span class="en">Inside Grownerd</span><span class="ar">Grownerd من الداخل</span></h2>
+      <p>
+        <span class="en">What one question passes through, what breaks, and what the system does about it. Every number here is measured on production, not estimated from a spec sheet.</span>
+        <span class="ar">ما الذي يمرّ به سؤال واحد، وما الذي قد ينكسر، وكيف يتصرّف النظام حينها. كل رقم هنا مقيس على الإنتاج، لا مأخوذ من ورقة مواصفات.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- explorer -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">The path</span><span class="ar">المسار</span></span>
+    <div>
+      <h3><span class="en">Each layer, and why it's there</span><span class="ar">كل طبقة، ولماذا وُجدت</span></h3>
+      <p><span class="en">Pick a layer. The first five sit on the request path; the last two are services Flask calls and then moves on.</span><span class="ar">اختر طبقة. الخمس الأولى على مسار الطلب؛ والأخيرتان خدمتان يسألهما <bdi>Flask</bdi> ثم يكمل.</span></p>
+    </div>
+  </div>
+
+  <div class="explorer">
+    <div class="layers" id="layers">
+      <span class="group"><span class="en">Request path</span><span class="ar">مسار الطلب</span></span>
+      <button type="button" class="layer-btn" data-layer="cloudflare" aria-pressed="false"><span class="nm">Cloudflare</span><span class="rl">CDN · WAF</span></button>
+      <button type="button" class="layer-btn" data-layer="nginx" aria-pressed="false"><span class="nm">nginx</span><span class="rl">reverse proxy</span></button>
+      <button type="button" class="layer-btn" data-layer="gunicorn" aria-pressed="false"><span class="nm">Gunicorn</span><span class="rl">4 × 60</span></button>
+      <button type="button" class="layer-btn" data-layer="flask" aria-pressed="false"><span class="nm">Flask</span><span class="rl">auth · billing</span></button>
+      <button type="button" class="layer-btn" data-layer="rag" aria-pressed="true"><span class="nm">FAISS + OpenAI</span><span class="rl">retrieve</span></button>
+      <span class="group"><span class="en">Called alongside</span><span class="ar">خدمات جانبية</span></span>
+      <button type="button" class="layer-btn dep" data-layer="supabase" aria-pressed="false"><span class="nm">Supabase</span><span class="rl">auth · data</span></button>
+      <button type="button" class="layer-btn dep" data-layer="redis" aria-pressed="false"><span class="nm">Redis</span><span class="rl">limits · cache</span></button>
+    </div>
+    <article class="detail" id="detail" aria-live="polite"></article>
+  </div>
+
+  <!-- scenarios -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">Failure modes</span><span class="ar">الأعطال</span></span>
+    <div>
+      <h3><span class="en">Break something</span><span class="ar">اكسر شيئاً</span></h3>
+      <p><span class="en">The same system under four conditions — what a student sees, and what happens underneath.</span><span class="ar">النظام نفسه تحت أربع حالات — ما يراه الطالب، وما يحدث تحت السطح.</span></p>
+    </div>
+  </div>
+
+  <div class="seg" id="seg" role="group" aria-label="Scenario">
+    <button type="button" data-scen="healthy" data-tone="ok" aria-pressed="true"><i></i><span class="en">Healthy</span><span class="ar">سليم</span></button>
+    <button type="button" data-scen="redis" data-tone="warn" aria-pressed="false"><i></i><span class="en">Redis down</span><span class="ar">سقوط Redis</span></button>
+    <button type="button" data-scen="supabase" data-tone="crit" aria-pressed="false"><i></i><span class="en">Supabase down</span><span class="ar">سقوط Supabase</span></button>
+    <button type="button" data-scen="flood" data-tone="warn" aria-pressed="false"><i></i><span class="en">Traffic flood</span><span class="ar">موجة طلبات (DDoS)</span></button>
+  </div>
+  <div class="scen" id="scen" aria-live="polite"></div>
+
+  <!-- rate limiting vs ddos -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">Two kinds of abuse</span><span class="ar">نوعان من الإساءة</span></span>
+    <div>
+      <h3><span class="en">Rate limiting and DDoS protection are not the same job</span><span class="ar"><bdi>Rate Limiting</bdi> وحماية <bdi>DDoS</bdi> ليسا المهمة نفسها</span></h3>
+      <p><span class="en">Every question costs real money at OpenAI, and the server has 240 request slots. One source that overdoes it and ten thousand that each stay polite need different defences.</span><span class="ar">كل سؤال يكلّف مالاً حقيقياً عند <bdi>OpenAI</bdi>، وللخادم 240 مقعداً للطلبات فقط. مصدر واحد يبالغ، وعشرة آلاف مصدر يلتزم كلٌّ منها بالحدّ، يحتاجان دفاعين مختلفين.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="tbl-wrap">
+      <table class="t en">
+        <thead><tr><th></th><th>Rate limiting</th><th>DDoS protection</th></tr></thead>
+        <tbody>
+          <tr><td>Stops</td><td>One source sending too much</td><td>Thousands of sources, each under the limit</td></tr>
+          <tr><td>Where</td><td>Inside the app — Flask-Limiter, counters in Redis</td><td>Before the server — Cloudflare's edge</td></tr>
+          <tr><td>In Grownerd</td><td><span class="num">20/min</span> on AI routes, <span class="num">100/hour</span> by default, <span class="num">3/hour</span> per inbox on email routes</td><td>Origin answers 403 to anything not routed through Cloudflare</td></tr>
+          <tr><td>Enough alone?</td><td>No — a distributed flood never trips it</td><td>No — a single abuser who gets through still needs a limit</td></tr>
+        </tbody>
+      </table>
+      <table class="t ar">
+        <thead><tr><th></th><th><bdi>Rate Limiting</bdi></th><th>حماية <bdi>DDoS</bdi></th></tr></thead>
+        <tbody>
+          <tr><td>يوقف</td><td>مصدراً واحداً يرسل أكثر من اللازم</td><td>آلاف المصادر، كلٌّ منها تحت الحدّ</td></tr>
+          <tr><td>أين</td><td>داخل التطبيق — <bdi>Flask-Limiter</bdi> وعدّادات في <bdi>Redis</bdi></td><td>قبل الوصول للخادم — على حافّة <bdi>Cloudflare</bdi></td></tr>
+          <tr><td>في Grownerd</td><td><span class="num">20/min</span> على مسارات الذكاء الاصطناعي، و<span class="num">100/hour</span> افتراضياً، و<span class="num">3/hour</span> لكل بريد على مسارات الإيميل</td><td>الخادم يردّ 403 على كل ما لم يمرّ عبر <bdi>Cloudflare</bdi></td></tr>
+          <tr><td>يكفي وحده؟</td><td>لا — الموجة الموزّعة لا تلمسه أصلاً</td><td>لا — المسيء الفردي الذي يعبر يحتاج حدّاً أيضاً</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- keeping it alive -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">Operations</span><span class="ar">التشغيل</span></span>
+    <div>
+      <h3><span class="en">Knowing before the students do</span><span class="ar">أن تعرف قبل أن يعرف الطلاب</span></h3>
+      <p><span class="en">An outage in September was first reported by users, five hours in. Since then, four timers watch different failure shapes and alert on Telegram — each alert carries its threshold, so a warning reads as a number, not a panic.</span><span class="ar">انقطاعٌ في أيلول عرفناه أولاً من المستخدمين، بعد خمس ساعات. منذ ذلك الحين، أربعة مؤقّتات تراقب أشكالاً مختلفة من الأعطال وتُنذر على <bdi>Telegram</bdi> — وكل إنذار يحمل عتبته، فيُقرأ كرقم لا كذعر.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="tbl-wrap">
+      <table class="t en">
+        <thead><tr><th>Monitor</th><th>Every</th><th>Watches for</th></tr></thead>
+        <tbody>
+          <tr><td><bdi>health-watch</bdi></td><td class="num">5 min</td><td>Services down, disk ≥ 85%, memory ≥ 90%, load, the site through Cloudflare, and a backup older than 3 hours</td></tr>
+          <tr><td><bdi>supabase-watch</bdi></td><td class="num">10 min</td><td>Database CPU ≥ 70%, out-of-memory kills, restarts, no response</td></tr>
+          <tr><td><bdi>ai-watch</bdi></td><td class="num">30 min</td><td>A real completion from OpenAI — telling an empty balance apart from a rate limit</td></tr>
+          <tr><td><bdi>supabase-backup</bdi></td><td class="num">1 hour</td><td>Its own failure: dump, integrity, upload, or a hung connection</td></tr>
+        </tbody>
+      </table>
+      <table class="t ar">
+        <thead><tr><th>المراقب</th><th>كل</th><th>يراقب</th></tr></thead>
+        <tbody>
+          <tr><td><bdi>health-watch</bdi></td><td class="num">5 min</td><td>خدمة متوقّفة، القرص ≥ 85%، الذاكرة ≥ 90%، الحمل، الموقع عبر <bdi>Cloudflare</bdi>، ونسخة احتياطية أقدم من 3 ساعات</td></tr>
+          <tr><td><bdi>supabase-watch</bdi></td><td class="num">10 min</td><td>معالج القاعدة ≥ 70%، نفاد الذاكرة (<bdi>OOM</bdi>)، إعادة الإقلاع، عدم الاستجابة</td></tr>
+          <tr><td><bdi>ai-watch</bdi></td><td class="num">30 min</td><td>إكمال حقيقي من <bdi>OpenAI</bdi> — يميّز الرصيد الفارغ عن حدّ المعدّل</td></tr>
+          <tr><td><bdi>supabase-backup</bdi></td><td class="num">1 hour</td><td>فشله هو: التفريغ، أو السلامة، أو الرفع، أو اتصال معلّق</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict">
+      <span class="en"><b>Backups that were actually restored.</b> The database is dumped every hour, checked for a complete ending, and copied to Cloudflare R2 — 168 copies on the server, 30 days off it. A restore into a throwaway Postgres matched production row for row on 45 of 48 tables; the remaining three belong to Supabase-only extensions. The drill also caught a trap: without <code>pg_cron</code>, the restore silently emptied every app table while reporting only 14 errors.</span>
+      <span class="ar"><b>نسخ احتياطية جُرِّب استرجاعها فعلاً.</b> القاعدة تُفرَّغ كل ساعة، ويُتحقَّق من اكتمال نهايتها، وتُنسخ إلى <bdi>Cloudflare R2</bdi> — 168 نسخة على الخادم، و30 يوماً خارجه. استرجاعها في <bdi>Postgres</bdi> مؤقّت طابق الإنتاج صفّاً بصفّ في 45 من 48 جدولاً؛ والثلاثة الباقية تتبع إضافات خاصة بـ <bdi>Supabase</bdi>. وكشف التمرين فخّاً: بدون <code>pg_cron</code> أفرغ الاسترجاع كل جداول التطبيق بصمت، مع 14 خطأً فقط.</span>
+    </p>
+  </div>
+
+  <!-- faiss vs pgvector -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">A design decision</span><span class="ar">قرار تصميمي</span></span>
+    <div>
+      <h3><span class="en">Why FAISS, and when pgvector would win</span><span class="ar">لماذا <bdi>FAISS</bdi>، ومتى يتفوّق <bdi>pgvector</bdi></span></h3>
+      <p><span class="en">Supabase can store embeddings next to the data with pgvector. Grownerd keeps them in FAISS files in memory instead. It's a trade, not a winner.</span><span class="ar">يمكن لـ <bdi>Supabase</bdi> تخزين الـ <bdi>embeddings</bdi> بجانب البيانات عبر <bdi>pgvector</bdi>. أمّا Grownerd فيبقيها في ملفات <bdi>FAISS</bdi> داخل الذاكرة. إنها مقايضة، لا فائز مطلق.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="tbl-wrap">
+      <table class="t en">
+        <thead><tr><th></th><th>FAISS (today)</th><th>pgvector</th></tr></thead>
+        <tbody>
+          <tr><td>Where vectors live</td><td>Index files loaded into each worker</td><td>A column in the database</td></tr>
+          <tr><td>Memory on the server</td><td>About <span class="num">350 MB</span> per worker</td><td class="good">None — the database carries it</td></tr>
+          <tr><td>Search speed</td><td class="good">In memory, no network hop</td><td>One network round-trip per search</td></tr>
+          <tr><td>Database load</td><td class="good">Zero — questions never touch it</td><td>Every search is a query</td></tr>
+          <tr><td>Updating content</td><td>Rebuild the index, restart the app</td><td class="good">A plain SQL insert</td></tr>
+        </tbody>
+      </table>
+      <table class="t ar">
+        <thead><tr><th></th><th><bdi>FAISS</bdi> (الحالي)</th><th><bdi>pgvector</bdi></th></tr></thead>
+        <tbody>
+          <tr><td>مكان المتّجهات</td><td>ملفات فهرس تُحمَّل في كل <bdi>worker</bdi></td><td>عمود في قاعدة البيانات</td></tr>
+          <tr><td>الذاكرة على الخادم</td><td>نحو <span class="num">350 MB</span> لكل <bdi>worker</bdi></td><td class="good">لا شيء — القاعدة تتحمّلها</td></tr>
+          <tr><td>سرعة البحث</td><td class="good">في الذاكرة، بلا شبكة</td><td>رحلة شبكة مع كل بحث</td></tr>
+          <tr><td>الحمل على القاعدة</td><td class="good">صفر — الأسئلة لا تلمسها</td><td>كل بحث استعلام</td></tr>
+          <tr><td>تحديث المحتوى</td><td>إعادة بناء الفهرس وإعادة تشغيل التطبيق</td><td class="good"><bdi>INSERT</bdi> عادي بـ <bdi>SQL</bdi></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict">
+      <span class="en"><b>The call:</b> a national curriculum changes once a year, speed matters to a student mid-homework, and keeping every question off the database protected it during a real outage. pgvector becomes the better choice if server memory gets tight or content turns dynamic — teacher-added material, for example.</span>
+      <span class="ar"><b>القرار:</b> المنهاج الوطني يتغيّر مرّة في السنة، والسرعة تهمّ طالباً في منتصف واجبه، وإبعاد الأسئلة عن القاعدة حماها خلال انقطاع حقيقي. يصبح <bdi>pgvector</bdi> الخيار الأذكى إن ضاقت ذاكرة الخادم أو صار المحتوى متغيّراً — مادة يضيفها المعلّمون مثلاً.</span>
+    </p>
+  </div>
+
+  <!-- lessons -->
+  <div class="sub-h">
+    <span class="lbl"><span class="en">Lessons</span><span class="ar">دروس</span></span>
+    <div>
+      <h3><span class="en">What production taught, the hard way</span><span class="ar">ما علّمه الإنتاج بالطريقة الصعبة</span></h3>
+    </div>
+  </div>
+  <ol class="lessons en">
+    <li><span class="lt">Measure before you theorise</span><span class="ld">The September outage went through four wrong explanations before the provider's own graphs showed the real one: the database instance was running out of memory. A daily average never rules out a peak.</span></li>
+    <li><span class="lt">A control that hangs on an env var fails silently</span><span class="ld">The server boots, requests succeed, logs are clean — and the hole is open. Unsafe configuration now stops the boot instead of passing quietly.</span></li>
+    <li><span class="lt">A field the client sends is not a fact</span><span class="ld">A "guest" flag read from the request body could be claimed by anyone out of quota. Roles now come from the verified token.</span></li>
+    <li><span class="lt">Judge a restore by row counts, not error counts</span><span class="ld">Fourteen errors looked like a successful restore. Every app table was empty.</span></li>
+    <li><span class="lt">The measuring tool can lie too</span><span class="ld">A security test without a token tripped fail2ban and banned the tester. Make the check fail without the fix before trusting it with the fix.</span></li>
+  </ol>
+  <ol class="lessons ar">
+    <li><span class="lt">قِس قبل أن تنظّر</span><span class="ld">مرّ انقطاع أيلول بأربعة تفسيرات خاطئة قبل أن تُظهر رسوم المزوّد نفسه السبب الحقيقي: خادم القاعدة كانت تنفد ذاكرته. المتوسط اليومي لا ينفي وجود ذروة.</span></li>
+    <li><span class="lt">الضابط المعلّق على متغيّر بيئة يفشل بصمت</span><span class="ld">الخادم يقلع، والطلبات تنجح، والسجلّ نظيف — والثغرة مفتوحة. صار الإعداد غير الآمن يوقف الإقلاع بدل أن يمرّ بهدوء.</span></li>
+    <li><span class="lt">الحقل الذي يرسله العميل ليس حقيقة</span><span class="ld">صفة «ضيف» كانت تُقرأ من جسم الطلب، فادّعاها من نفد رصيده. صارت الصلاحية تُشتقّ من التوكن الموثَّق.</span></li>
+    <li><span class="lt">احكم على الاسترجاع بعدد الصفوف لا بعدد الأخطاء</span><span class="ld">أربعة عشر خطأً بدت كاسترجاع ناجح. وكل جداول التطبيق كانت فارغة.</span></li>
+    <li><span class="lt">أداة القياس نفسها قد تكذب</span><span class="ld">اختبار أمني بلا توكن أطلق <bdi>fail2ban</bdi> فحظر المدقّق نفسه. تأكّد أنّ الفحص يفشل بدون الإصلاح قبل أن تثق به معه.</span></li>
+  </ol>
+</section>
+
 <section class="sec shell" id="work">
   <div class="sec-head">
-    <p class="sec-kicker">Other work</p>
+    <p class="sec-kicker"><span class="en">Other work</span><span class="ar">أعمال أخرى</span></p>
     <div>
-      <h2>Earlier projects</h2>
-      <p>Where I learned the parts I later needed — vision preprocessing, model selection, and getting a pipeline to run unattended.</p>
+      <h2><span class="en">Earlier projects</span><span class="ar">مشاريع سابقة</span></h2>
+      <p><span class="en">Where I learned the parts I later needed — vision preprocessing, model selection, and getting a pipeline to run unattended.</span><span class="ar">حيث تعلّمت ما احتجته لاحقاً — المعالجة المسبقة للصور، واختيار النموذج، وجعل الـ <bdi>pipeline</bdi> يعمل دون إشراف.</span></p>
     </div>
   </div>
 
   <article class="row">
     <div class="row-meta">
-      <i>Computer vision</i>
-      <i>OpenCV · Tesseract · VGG16</i>
-      <i><a href="https://github.com/motaha123/pharama_scan_app" target="_blank" rel="noopener">View on GitHub</a></i>
+      <i><span class="en">Computer vision</span><span class="ar">رؤية حاسوبية</span></i>
+      <i dir="ltr">OpenCV · Tesseract · VGG16</i>
+      <i><a href="https://github.com/motaha123/pharama_scan_app" target="_blank" rel="noopener"><span class="en">View on GitHub</span><span class="ar">على GitHub</span></a></i>
     </div>
     <div>
       <h3>PharmaScan</h3>
-      <p>Reading medicine names off handwritten prescriptions — the kind of handwriting that defeats most OCR on its own.</p>
+      <p><span class="en">Reading medicine names off handwritten prescriptions — the kind of handwriting that defeats most OCR on its own.</span><span class="ar">قراءة أسماء الأدوية من وصفات طبية مكتوبة بخط اليد — خطّ من النوع الذي يهزم معظم أدوات <bdi>OCR</bdi> وحدها.</span></p>
     </div>
-    <ul>
+    <ul class="ticks en">
       <li>OpenCV preprocessing: grayscale, noise removal, adaptive thresholding, character segmentation.</li>
       <li>Tesseract OCR paired with a VGG16 transfer-learning classifier, because neither was reliable alone.</li>
       <li>Fuzzy matching to suggest alternative medicines and flag possible interactions.</li>
     </ul>
+    <ul class="ticks ar">
+      <li>معالجة مسبقة بـ <bdi>OpenCV</bdi>: تدرّج رمادي، إزالة الضجيج، <bdi>adaptive thresholding</bdi>، وتقطيع الحروف.</li>
+      <li><bdi>Tesseract OCR</bdi> مقترناً بمصنّف <bdi>VGG16</bdi> مبني بـ <bdi>transfer learning</bdi>، لأنّ أيّاً منهما لم يكن موثوقاً وحده.</li>
+      <li><bdi>Fuzzy matching</bdi> لاقتراح أدوية بديلة والتنبيه إلى تداخلات محتملة.</li>
+    </ul>
+    <div class="how">
+      <p class="h"><span class="en">How a prescription becomes a medicine list</span><span class="ar">كيف تتحوّل الوصفة إلى قائمة أدوية</span></p>
+      <ol class="steps en">
+        <li><b>Clean the image</b><span>Grayscale, denoise and threshold so ink separates from paper, then cut the word into characters.</span></li>
+        <li><b>Read it twice</b><span>Tesseract reads the text; a VGG16 classifier reads the same characters from pixels.</span></li>
+        <li><b>Match to real names</b><span>Fuzzy matching maps a noisy reading to the closest medicine that actually exists.</span></li>
+        <li><b>Suggest and warn</b><span>Offer alternatives and flag combinations that may interact.</span></li>
+      </ol>
+      <ol class="steps ar">
+        <li><b>تنظيف الصورة</b><span>تدرّج رمادي وإزالة ضجيج و<bdi>threshold</bdi> ليفصل الحبر عن الورق، ثم تقطيع الكلمة إلى حروف.</span></li>
+        <li><b>القراءة مرّتين</b><span><bdi>Tesseract</bdi> يقرأ النص، ومصنّف <bdi>VGG16</bdi> يقرأ الحروف نفسها من البكسلات.</span></li>
+        <li><b>المطابقة مع أسماء حقيقية</b><span><bdi>Fuzzy matching</bdi> يحوّل القراءة المشوَّشة إلى أقرب دواء موجود فعلاً.</span></li>
+        <li><b>الاقتراح والتنبيه</b><span>بدائل مقترحة، وتنبيه إلى الأدوية التي قد تتداخل.</span></li>
+      </ol>
+      <p class="after">
+        <span class="en"><b>Why two readers:</b> handwriting breaks each one in different places. OCR handles connected words better; the classifier holds up on isolated, badly formed characters. Combining them was more reliable than tuning either alone.</span>
+        <span class="ar"><b>لماذا قارئان:</b> خطّ اليد يكسر كلاً منهما في مواضع مختلفة. الـ <bdi>OCR</bdi> أفضل مع الكلمات المتصلة، والمصنّف يصمد مع الحروف المعزولة سيئة الكتابة. الجمع بينهما كان أوثق من ضبط أيٍّ منهما وحده.</span>
+      </p>
+    </div>
   </article>
 
   <article class="row">
     <div class="row-meta">
-      <i>Internship</i>
-      <i>Codenza · Oct 2025 – Jan 2026</i>
+      <i><span class="en">Internship</span><span class="ar">تدريب</span></i>
+      <i><span class="en">Codenza · Oct 2025 – Jan 2026</span><span class="ar">Codenza · تشرين الأول 2025 – كانون الثاني 2026</span></i>
     </div>
     <div>
-      <h3>AI engineering internship</h3>
-      <p>Four months moving models out of experiments and into systems that other people ran.</p>
+      <h3><span class="en">AI engineering internship</span><span class="ar">تدريب في هندسة الذكاء الاصطناعي</span></h3>
+      <p><span class="en">Four months moving models out of experiments and into systems that other people ran.</span><span class="ar">أربعة أشهر في نقل النماذج من التجارب إلى أنظمة يشغّلها أشخاص آخرون.</span></p>
     </div>
-    <ul>
+    <ul class="ticks en">
       <li>Built and fine-tuned models for computer vision tasks.</li>
       <li>Integrated ML and deep learning models into production workflows.</li>
       <li>Automated data pipelines and retraining with n8n and Docker.</li>
       <li>Built automation workflows around third-party AI video generation tools, handling the pipeline around them rather than the models themselves.</li>
       <li>Presented results to stakeholders who did not want the model architecture, they wanted the number.</li>
     </ul>
+    <ul class="ticks ar">
+      <li>بناء نماذج لمهام الرؤية الحاسوبية وضبطها (<bdi>fine-tuning</bdi>).</li>
+      <li>دمج نماذج <bdi>ML</bdi> و<bdi>deep learning</bdi> في مسارات عمل إنتاجية.</li>
+      <li>أتمتة <bdi>data pipelines</bdi> وإعادة التدريب بـ <bdi>n8n</bdi> و<bdi>Docker</bdi>.</li>
+      <li>بناء مسارات أتمتة حول أدوات خارجية لتوليد الفيديو بالذكاء الاصطناعي — التعامل مع الـ <bdi>pipeline</bdi> المحيط بها لا مع النماذج نفسها.</li>
+      <li>عرض النتائج على أصحاب قرار لا يريدون معمارية النموذج، بل الرقم.</li>
+    </ul>
+    <div class="how">
+      <p class="h"><span class="en">What the work looked like</span><span class="ar">كيف كان شكل العمل</span></p>
+      <ol class="steps en">
+        <li><b>Train</b><span>Build and fine-tune a vision model for the task at hand.</span></li>
+        <li><b>Integrate</b><span>Put it inside a workflow that runs without its author watching.</span></li>
+        <li><b>Automate</b><span>n8n and Docker handle data refresh and retraining on schedule.</span></li>
+        <li><b>Report</b><span>Turn the result into the one number a decision needs.</span></li>
+      </ol>
+      <ol class="steps ar">
+        <li><b>التدريب</b><span>بناء نموذج رؤية للمهمة المطلوبة وضبطه.</span></li>
+        <li><b>الدمج</b><span>وضعه داخل مسار عمل يشتغل دون أن يراقبه كاتبه.</span></li>
+        <li><b>الأتمتة</b><span><bdi>n8n</bdi> و<bdi>Docker</bdi> يتولّيان تحديث البيانات وإعادة التدريب بجدول.</span></li>
+        <li><b>التقرير</b><span>تحويل النتيجة إلى الرقم الوحيد الذي يحتاجه القرار.</span></li>
+      </ol>
+    </div>
   </article>
 </section>
 
 <section class="sec shell" id="capabilities">
   <div class="sec-head">
-    <p class="sec-kicker">Capabilities</p>
+    <p class="sec-kicker"><span class="en">Capabilities</span><span class="ar">المهارات</span></p>
     <div>
-      <h2>What I work with</h2>
-      <p>Listed by how much of it I've actually shipped, not by how much of it I've read about.</p>
+      <h2><span class="en">What I work with</span><span class="ar">ما أعمل به</span></h2>
+      <p><span class="en">Listed by how much of it I've actually shipped, not by how much of it I've read about.</span><span class="ar">مرتّبة بحسب ما أطلقته منها فعلاً، لا بحسب ما قرأت عنه.</span></p>
     </div>
   </div>
   <div class="caps">
     <div class="cap">
-      <h3>Retrieval &amp; language models</h3>
-      <p>RAG architecture, FAISS vector search, embedding models, chunking and metadata design, prompt engineering, OpenAI API.</p>
+      <h3><span class="en">Retrieval &amp; language models</span><span class="ar">الاسترجاع ونماذج اللغة</span></h3>
+      <p><span class="en">RAG architecture, FAISS vector search, embedding models, chunking and metadata design, prompt engineering, OpenAI API.</span><span class="ar">معمارية <bdi>RAG</bdi>، بحث المتّجهات بـ <bdi>FAISS</bdi>، نماذج <bdi>embedding</bdi>، تصميم <bdi>chunking</bdi> و<bdi>metadata</bdi>، <bdi>prompt engineering</bdi>، <bdi>OpenAI API</bdi>.</span></p>
     </div>
     <div class="cap">
-      <h3>Machine learning</h3>
-      <p>TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost. Transfer learning with VGG16 and MobileNet, hyperparameter tuning, early stopping.</p>
+      <h3><span class="en">Machine learning</span><span class="ar">تعلّم الآلة</span></h3>
+      <p><span class="en">TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost. Transfer learning with VGG16 and MobileNet, hyperparameter tuning, early stopping.</span><span class="ar"><bdi>TensorFlow</bdi>، <bdi>Keras</bdi>، <bdi>PyTorch</bdi>، <bdi>Scikit-learn</bdi>، <bdi>XGBoost</bdi>. <bdi>Transfer learning</bdi> بـ <bdi>VGG16</bdi> و<bdi>MobileNet</bdi>، ضبط <bdi>hyperparameters</bdi>، و<bdi>early stopping</bdi>.</span></p>
     </div>
     <div class="cap">
-      <h3>Computer vision</h3>
-      <p>OpenCV preprocessing, segmentation, OCR with Tesseract, CNN classifiers for noisy real-world input.</p>
+      <h3><span class="en">Computer vision</span><span class="ar">الرؤية الحاسوبية</span></h3>
+      <p><span class="en">OpenCV preprocessing, segmentation, OCR with Tesseract, CNN classifiers for noisy real-world input.</span><span class="ar">معالجة مسبقة بـ <bdi>OpenCV</bdi>، تقطيع، <bdi>OCR</bdi> بـ <bdi>Tesseract</bdi>، ومصنّفات <bdi>CNN</bdi> لمدخلات واقعية مشوَّشة.</span></p>
     </div>
     <div class="cap">
-      <h3>Backend</h3>
-      <p>Python, Flask, REST API design, Supabase and PostgreSQL, Redis, authentication, rate limiting, atomic billing operations, automated monitoring and alerting.</p>
+      <h3><span class="en">Backend</span><span class="ar"><bdi>Backend</bdi></span></h3>
+      <p><span class="en">Python, Flask, REST API design, Supabase and PostgreSQL, Redis, authentication, rate limiting, atomic billing operations, automated monitoring and alerting.</span><span class="ar"><bdi>Python</bdi>، <bdi>Flask</bdi>، تصميم <bdi>REST API</bdi>، <bdi>Supabase</bdi> و<bdi>PostgreSQL</bdi>، <bdi>Redis</bdi>، المصادقة، <bdi>rate limiting</bdi>، عمليات فوترة ذرّية، ومراقبة وإنذار آليّان.</span></p>
     </div>
     <div class="cap">
-      <h3>Data</h3>
-      <p>SQL, Pandas, NumPy, Matplotlib, Seaborn, Jupyter — plus a habit of measuring the production system rather than trusting its dashboard.</p>
+      <h3><span class="en">Data</span><span class="ar">البيانات</span></h3>
+      <p><span class="en">SQL, Pandas, NumPy, Matplotlib, Seaborn, Jupyter — plus a habit of measuring the production system rather than trusting its dashboard.</span><span class="ar"><bdi>SQL</bdi>، <bdi>Pandas</bdi>، <bdi>NumPy</bdi>، <bdi>Matplotlib</bdi>، <bdi>Seaborn</bdi>، <bdi>Jupyter</bdi> — مع عادة قياس نظام الإنتاج بدل الثقة بلوحة تحكّمه.</span></p>
     </div>
     <div class="cap">
-      <h3>Running things</h3>
-      <p>Docker, nginx, Gunicorn, Linux, Cloudflare, verified backups, Git. Enough operations to keep my own work alive without a platform team.</p>
+      <h3><span class="en">Running things</span><span class="ar">تشغيل الأنظمة</span></h3>
+      <p><span class="en">Docker, nginx, Gunicorn, Linux, Cloudflare, verified backups, Git. Enough operations to keep my own work alive without a platform team.</span><span class="ar"><bdi>Docker</bdi>، <bdi>nginx</bdi>، <bdi>Gunicorn</bdi>، <bdi>Linux</bdi>، <bdi>Cloudflare</bdi>، نسخ احتياطية مُتحقَّق منها، <bdi>Git</bdi>. ما يكفي من التشغيل لإبقاء عملي حيّاً دون فريق بنية تحتية.</span></p>
     </div>
     <div class="cap wide">
-      <h3>AI-assisted development</h3>
-      <p>I ship production web and mobile clients — Next.js and Flutter — using AI coding tools, and I'm direct about that: I direct and debug those codebases rather than writing them from a blank file. It's how one person covers four codebases, and it's a skill I'd rather name than disguise.</p>
+      <h3><span class="en">AI-assisted development</span><span class="ar">التطوير بمساعدة الذكاء الاصطناعي</span></h3>
+      <p><span class="en">I ship production web and mobile clients — Next.js and Flutter — using AI coding tools, and I'm direct about that: I direct and debug those codebases rather than writing them from a blank file. It's how one person covers four codebases, and it's a skill I'd rather name than disguise.</span><span class="ar">أُطلق واجهات ويب وموبايل إنتاجية — <bdi>Next.js</bdi> و<bdi>Flutter</bdi> — باستخدام أدوات برمجة بالذكاء الاصطناعي، وأقول ذلك صراحة: أنا أوجّه هذه الأكواد وأصحّح أخطاءها بدل كتابتها من ملف فارغ. هكذا يغطّي شخص واحد أربع قواعد كود، وهي مهارة أفضّل تسميتها على إخفائها.</span></p>
     </div>
   </div>
 </section>
 
 <section class="sec shell" id="background">
   <div class="bg-grid">
-    <p class="sec-kicker">Background</p>
+    <p class="sec-kicker"><span class="en">Background</span><span class="ar">الخلفية</span></p>
     <div>
       <div class="edu">
-        <h3>B.Sc. Computer Science</h3>
-        <p class="where">Cairo University</p>
-        <p class="when">2021 – 2025</p>
-        <p class="focus">Coursework in machine learning, deep learning, computer vision, data science and software engineering.</p>
+        <h3><span class="en">B.Sc. Computer Science</span><span class="ar">بكالوريوس علوم الحاسوب</span></h3>
+        <p class="where"><span class="en">Cairo University</span><span class="ar">جامعة القاهرة</span></p>
+        <p class="when" dir="ltr">2021 – 2025</p>
+        <p class="focus"><span class="en">Coursework in machine learning, deep learning, computer vision, data science and software engineering.</span><span class="ar">مقرّرات في تعلّم الآلة، والتعلّم العميق، والرؤية الحاسوبية، وعلم البيانات، وهندسة البرمجيات.</span></p>
       </div>
-      <p class="certs-title">Certifications</p>
+      <p class="certs-title"><span class="en">Certifications</span><span class="ar">الشهادات</span></p>
       <ul class="certs">
-        <li>Machine Learning Specialization<em>Andrew Ng — Coursera</em></li>
-        <li>Convolutional Neural Networks<em>Andrew Ng — Coursera</em></li>
-        <li>Applied Machine Learning in Python<em>University of Michigan</em></li>
-        <li>Applied Text Mining in Python<em>University of Michigan</em></li>
-        <li>Applied Data Visualization with Python<em>University of Michigan</em></li>
-        <li>Applied Social Network Analysis<em>University of Michigan</em></li>
-        <li>Introduction to Data Science<em>University of Michigan</em></li>
+        <li><bdi>Machine Learning Specialization</bdi><em><span class="en">Andrew Ng — Coursera</span><span class="ar">أندرو نغ — Coursera</span></em></li>
+        <li><bdi>Convolutional Neural Networks</bdi><em><span class="en">Andrew Ng — Coursera</span><span class="ar">أندرو نغ — Coursera</span></em></li>
+        <li><bdi>Applied Machine Learning in Python</bdi><em><span class="en">University of Michigan</span><span class="ar">جامعة ميشيغان</span></em></li>
+        <li><bdi>Applied Text Mining in Python</bdi><em><span class="en">University of Michigan</span><span class="ar">جامعة ميشيغان</span></em></li>
+        <li><bdi>Applied Data Visualization with Python</bdi><em><span class="en">University of Michigan</span><span class="ar">جامعة ميشيغان</span></em></li>
+        <li><bdi>Applied Social Network Analysis</bdi><em><span class="en">University of Michigan</span><span class="ar">جامعة ميشيغان</span></em></li>
+        <li><bdi>Introduction to Data Science</bdi><em><span class="en">University of Michigan</span><span class="ar">جامعة ميشيغان</span></em></li>
       </ul>
     </div>
   </div>
 </section>
 
 <section class="contact shell" id="contact">
-  <h2>Let's talk</h2>
-  <p class="contact-lede">If you're building something that has to answer from real sources and stay up, I'd like to hear about it.</p>
+  <h2><span class="en">Let's talk</span><span class="ar">لنتحدّث</span></h2>
+  <p class="contact-lede"><span class="en">If you're building something that has to answer from real sources and stay up, I'd like to hear about it.</span><span class="ar">إن كنت تبني شيئاً يجب أن يجيب من مصادر حقيقية ويبقى يعمل، يسعدني أن أسمع عنه.</span></p>
   <ul class="contact-list">
-    <li><a href="mailto:motahada2002@gmail.com"><em>Email</em><b>motahada2002@gmail.com</b></a></li>
-    <li><a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank" rel="noopener"><em>LinkedIn</em><b>Mhd Taha Daboul</b></a></li>
-    <li><a href="https://github.com/motaha123" target="_blank" rel="noopener"><em>GitHub</em><b>motaha123</b></a></li>
-    <li><a href="https://grownerd.net" target="_blank" rel="noopener"><em>Live project</em><b>grownerd.net</b></a></li>
-    <li><span><em>Phone</em><b>+963 954 448 575</b></span></li>
-    <li><span><em>Based in</em><b>Damascus, Syria</b></span></li>
+    <li><a href="mailto:motahada2002@gmail.com"><em><span class="en">Email</span><span class="ar">البريد</span></em><b dir="ltr">motahada2002@gmail.com</b></a></li>
+    <li><a href="https://www.linkedin.com/in/mhd-taha-daboul-a39725316/" target="_blank" rel="noopener"><em>LinkedIn</em><b dir="ltr">Mhd Taha Daboul</b></a></li>
+    <li><a href="https://github.com/motaha123" target="_blank" rel="noopener"><em>GitHub</em><b dir="ltr">motaha123</b></a></li>
+    <li><a href="https://grownerd.net" target="_blank" rel="noopener"><em><span class="en">Live project</span><span class="ar">المشروع الحيّ</span></em><b dir="ltr">grownerd.net</b></a></li>
+    <li><span class="static"><em><span class="en">Phone</span><span class="ar">الهاتف</span></em><b dir="ltr">+963 954 448 575</b></span></li>
+    <li><span class="static"><em><span class="en">Based in</span><span class="ar">الإقامة</span></em><b><span class="en">Damascus, Syria</span><span class="ar">دمشق، سوريا</span></b></span></li>
   </ul>
 </section>
 
 <footer>
-  <div class="shell">
+  <div class="shell"><div>
     <span>Mhd Taha Daboul — AI Engineer</span>
-    <span>Damascus, 2026</span>
-  </div>
+    <span><span class="en">Damascus, 2026</span><span class="ar">دمشق، 2026</span></span>
+  </div></div>
 </footer>
 
 <script>
 (function(){
-  var b=document.getElementById('burger'),d=document.getElementById('drawer');
-  b.addEventListener('click',function(){
-    var open=b.getAttribute('aria-expanded')==='true';
-    b.setAttribute('aria-expanded',String(!open));
-    d.classList.toggle('on',!open);
+  var root = document.documentElement;
+
+  /* ── layer explorer ── */
+  var LAYERS = {
+    cloudflare:{name:"Cloudflare", role:"CDN · TLS · WAF",
+      en:{p:["The first thing a request touches. It terminates TLS, serves cached static files from close to the student, and hides the server's real address.",
+             "It is also the <b>WAF</b>: known attack patterns and distributed floods stop here, before they reach a 2-core origin."],
+          why:"The origin answers 403 to anything that didn't arrive through Cloudflare. Without that lock, anyone who learned the IP could walk around every protection at once."},
+      ar:{p:["أول ما يلمسه الطلب. تُنهي <bdi>TLS</bdi>، وتخدم الملفات الثابتة من خوادم قريبة من الطالب، وتخفي العنوان الحقيقي للخادم.",
+             "وهي أيضاً <b><bdi>WAF</bdi></b>: أنماط الهجوم المعروفة والموجات الموزّعة تتوقّف هنا، قبل أن تصل خادماً بنواتين فقط."],
+          why:"الخادم يردّ 403 على كل ما لم يمرّ عبر <bdi>Cloudflare</bdi>. بدون هذا القفل، من يعرف عنوان <bdi>IP</bdi> يتجاوز كل الحماية دفعة واحدة."}},
+    nginx:{name:"nginx", role:"reverse proxy",
+      en:{p:["A fast reverse proxy in front of Python. It serves the static Next.js site straight from disk and forwards only API routes to Gunicorn.",
+             "When Flask is down, it answers with a clear JSON error instead of a raw gateway page — so the app knows what happened."],
+          why:"Every image or script routed through Python would burn one of the 240 request slots on work that needs no Python at all."},
+      ar:{p:["<bdi>reverse proxy</bdi> سريع أمام بايثون. يخدم موقع <bdi>Next.js</bdi> الثابت من القرص مباشرة، ولا يمرّر إلى <bdi>Gunicorn</bdi> إلا مسارات الـ <bdi>API</bdi>.",
+             "وحين يتوقّف <bdi>Flask</bdi> يردّ بخطأ <bdi>JSON</bdi> واضح بدل صفحة بوابة خام — فيعرف التطبيق ما حدث."],
+          why:"كل صورة أو ملف <bdi>JS</bdi> يمرّ عبر بايثون كان سيحرق مقعداً من الـ240 على عمل لا يحتاج بايثون أصلاً."}},
+    gunicorn:{name:"Gunicorn", role:"4 workers × 60 threads",
+      en:{p:["Four worker processes, sixty threads each: <b>240 requests in flight at once</b>.",
+             "Python's GIL lets one thread run at a time — but each worker is a separate process with its own GIL, and the lock is released while a thread waits on the network. A thread waiting for OpenAI doesn't block the next one."],
+          why:"Most of a Grownerd request is spent waiting on OpenAI. Threads turn that waiting into capacity; CPU-heavy work would call for more processes instead."},
+      ar:{p:["أربع عمليات <bdi>worker</bdi>، في كلٍّ منها ستّون خيطاً: <b>240 طلباً في آنٍ واحد</b>.",
+             "قفل بايثون (<bdi>GIL</bdi>) يسمح بتنفيذ خيط واحد في اللحظة — لكن كل <bdi>worker</bdi> عملية مستقلّة بقفلها الخاص، والقفل يُحرَّر حين ينتظر الخيط الشبكة. خيطٌ ينتظر <bdi>OpenAI</bdi> لا يوقف الذي بعده."],
+          why:"معظم زمن الطلب في Grownerd انتظارٌ لردّ <bdi>OpenAI</bdi>. الخيوط تحوّل هذا الانتظار إلى سعة؛ أمّا العمل الحسابي الثقيل فيحتاج عمليات أكثر لا خيوطاً."}},
+    flask:{name:"Flask", role:"auth · billing · routing",
+      en:{p:["The application logic. It verifies the Supabase token, deducts the question from the student's quota in one atomic database call, and routes the (subject, grade) pair to one of 35 retrieval modules.",
+             "Unsafe configuration stops the server from booting — an untrusted proxy setting, or per-process rate limits across several workers, fails loudly rather than quietly."],
+          why:"The student's role comes from the verified token, never from a field in the request body. An earlier version trusted a client-sent flag, and it was exploitable."},
+      ar:{p:["منطق التطبيق. يتحقّق من توكن <bdi>Supabase</bdi>، ويخصم السؤال من رصيد الطالب بنداء قاعدة بيانات ذرّي واحد، ويوجّه الزوج (المادة، الصف) إلى واحدة من 35 وحدة استرجاع.",
+             "الإعداد غير الآمن يمنع الخادم من الإقلاع — إعداد <bdi>proxy</bdi> غير موثوق، أو حدود معدّل منفصلة لكل عملية، يفشل بصوت عالٍ لا بهدوء."],
+          why:"صلاحية الطالب تُشتقّ من التوكن الموثَّق، لا من حقل في جسم الطلب. نسخة سابقة وثقت بعلَم يرسله العميل، وكان قابلاً للاستغلال."}},
+    rag:{name:"FAISS + OpenAI", role:"retrieve · generate",
+      en:{p:["Each subject has its own <b>FAISS index</b> built from its textbook pages, with lesson and page metadata. The closest passages are found with <code>text-embedding-3-large</code>, then handed to <code>gpt-4o-mini</code> as context.",
+             "All 35 indexes load into each worker's memory at startup — about 350 MB per worker — so retrieval never waits on the disk. Page explanations are cached, so the second student to open a page costs nothing."],
+          why:"A general model answers physics from memory. Here it is handed the paragraph first — that steers it to the student's own book, though it doesn't make a wrong answer impossible."},
+      ar:{p:["لكل مادة <b>فهرس <bdi>FAISS</bdi></b> خاص مبني من صفحات كتابها، مع <bdi>metadata</bdi> للدرس والصفحة. تُستخرج أقرب المقاطع بـ <code>text-embedding-3-large</code>، ثم تُسلَّم إلى <code>gpt-4o-mini</code> كسياق.",
+             "الفهارس الـ35 تُحمَّل في ذاكرة كل <bdi>worker</bdi> عند الإقلاع — نحو 350 MB لكلٍّ منها — فلا ينتظر الاسترجاع القرص أبداً. وشروحات الصفحات تُخزَّن، فالطالب الثاني الذي يفتح الصفحة لا يكلّف شيئاً."],
+          why:"النموذج العامّ يجيب الفيزياء من ذاكرته. هنا تُسلَّم له الفقرة أولاً — وهذا يوجّهه إلى كتاب الطالب نفسه، وإن كان لا يجعل الخطأ مستحيلاً."}},
+    supabase:{name:"Supabase", role:"auth · all data · eu-west-1",
+      en:{p:["Runs outside the server, on Supabase's Pro plan. It owns the two things everything else depends on: <b>who the user is</b>, and <b>all of their data</b> — chats, quota, subscriptions, payments.",
+             "Browsers have no direct access to the tables. Every read and write goes through Flask with a service key; row-level security is a second line behind it."],
+          why:"Unlike Redis, it has no fallback — without identity and data there is nothing to answer with. So the job is to notice fast and say so honestly: a verified outage screen, a monitor on Telegram, and hourly backups off the server."},
+      ar:{p:["تعمل خارج الخادم، على خطة <bdi>Pro</bdi>. تملك الأمرين اللذين يعتمد عليهما كل شيء آخر: <b>من هو المستخدم</b>، و<b>كل بياناته</b> — المحادثات، والرصيد، والاشتراكات، والمدفوعات.",
+             "المتصفّح لا يملك أي وصول مباشر للجداول. كل قراءة وكتابة تمرّ عبر <bdi>Flask</bdi> بمفتاح خدمة؛ و<bdi>row-level security</bdi> خطّ دفاع ثانٍ خلفه."],
+          why:"على عكس <bdi>Redis</bdi>، لا احتياط لها — بدون هوية وبيانات لا يوجد ما يُجاب به. فالمهمة أن تلاحظ بسرعة وتقول ذلك بصدق: شاشة عطل مؤكَّدة، ومراقب على <bdi>Telegram</bdi>، ونسخ احتياطية كل ساعة خارج الخادم."}},
+    redis:{name:"Redis", role:"rate limits · answer cache",
+      en:{p:["Memory shared by the four workers: <b>rate-limit counters</b>, and a <b>cache of full answers</b> kept for 30 days.",
+             "It listens on localhost only. Its failure no longer takes the API down — that was fixed after measuring what actually happened when it died and when it hung."],
+          why:"When Redis dies, the limiter falls back to each worker's own memory and the cache is skipped. Limits loosen for a while; the site stays up. Billing lives in the database, so a student still can't spend beyond their quota."},
+      ar:{p:["ذاكرة مشتركة بين الـ <bdi>workers</bdi> الأربعة: <b>عدّادات حدود المعدّل</b>، و<b>كاش للإجابات الكاملة</b> يُحفظ 30 يوماً.",
+             "تستمع على <bdi>localhost</bdi> فقط. سقوطها لم يعد يوقف الـ <bdi>API</bdi> — أُصلح ذلك بعد قياس ما يحدث فعلاً حين تموت وحين تعلّق."],
+          why:"حين تسقط <bdi>Redis</bdi>، يرجع المحدِّد إلى ذاكرة كل <bdi>worker</bdi> ويُتخطّى الكاش. تتّسع الحدود مؤقتاً ويبقى الموقع شغّالاً. والفوترة في قاعدة البيانات، فلا يستطيع الطالب تجاوز رصيده."}}
+  };
+
+  /* ── scenarios ── */
+  var ORDER = ["Cloudflare","nginx","Gunicorn","Flask","FAISS + OpenAI","Supabase","Redis"];
+  var SCEN = {
+    healthy:{state:{},
+      en:{sees:"Answers in a few seconds. A page someone already asked about opens instantly from the cache.",
+          does:"Every limit is enforced from shared counters in Redis, and answers are cached for 30 days."},
+      ar:{sees:"إجابات خلال ثوانٍ. والصفحة التي سأل عنها أحدٌ قبله تُفتح فوراً من الكاش.",
+          does:"كل الحدود تُطبَّق من عدّادات مشتركة في <bdi>Redis</bdi>، والإجابات تُخزَّن 30 يوماً."}},
+    redis:{state:{"Redis":"crit","Flask":"warn"},
+      en:{sees:"<b>Nothing visible.</b> Requests keep succeeding; repeated pages just aren't served from cache.",
+          does:"The limiter falls back to each worker's memory. Explicit per-route limits — like <b>20/min</b> on AI routes — stop applying, and default limits are counted per worker, so up to <b>×4</b>. If Redis hangs rather than dies, the limiter pays about 2 seconds once, then switches over."},
+      ar:{sees:"<b>لا شيء ظاهر.</b> الطلبات تستمر بالنجاح؛ فقط الصفحات المكرّرة لا تُخدَم من الكاش.",
+          does:"يرجع المحدِّد إلى ذاكرة كل <bdi>worker</bdi>. الحدود الصريحة لكل مسار — مثل <b>20/min</b> على مسارات الذكاء الاصطناعي — تتوقّف، والحدود الافتراضية تُعدّ لكل <bdi>worker</bdi> على حدة، أي حتى <b>×4</b>. وإن علّقت <bdi>Redis</bdi> بدل أن تموت، يدفع المحدِّد نحو ثانيتين مرّة واحدة ثم ينتقل."}},
+    supabase:{state:{"Supabase":"crit","Flask":"warn"},
+      en:{sees:"A clear outage screen — not a frozen page. It appears only after <b>two failed health checks</b> a few seconds apart, and clears on the first check that passes.",
+          does:"Sign-in and all data live in Supabase, so there is no fallback. <code>/api/health</code> reports the cause, <b>supabase-watch</b> alerts on Telegram, and the hourly backup flags its own failure."},
+      ar:{sees:"شاشة عطل واضحة — لا صفحة عالقة. لا تظهر إلا بعد <b>فحصَي صحّة فاشلَين</b> بينهما ثوانٍ، وتختفي مع أول فحص ينجح.",
+          does:"تسجيل الدخول وكل البيانات في <bdi>Supabase</bdi>، فلا احتياط. <code>/api/health</code> يحدّد السبب، و<b><bdi>supabase-watch</bdi></b> يُنذر على <bdi>Telegram</bdi>، والنسخ الاحتياطي يبلّغ عن فشله بنفسه."}},
+    flood:{state:{"Cloudflare":"warn"},
+      en:{sees:"Normal service for real students, as long as the edge holds.",
+          does:"Thousands of sources each stay under the limit, but the total dwarfs a 2-core server. <b>Cloudflare absorbs it at the edge</b>; the origin refuses anything that didn't come through Cloudflare; and Flask's own limits still stop any single source that gets through."},
+      ar:{sees:"خدمة طبيعية للطلاب الحقيقيين، ما دامت الحافّة صامدة.",
+          does:"آلاف المصادر يبقى كلٌّ منها تحت الحدّ، لكنّ المجموع يفوق خادماً بنواتين بكثير. <b><bdi>Cloudflare</bdi> تمتصّها على الحافّة</b>؛ والخادم يرفض كل ما لم يمرّ عبرها؛ وحدود <bdi>Flask</bdi> نفسها توقف أيّ مصدر فردي يعبر."}}
+  };
+
+  var currentLayer = "rag", currentScen = "healthy";
+  var detail = document.getElementById("detail");
+  var scen = document.getElementById("scen");
+
+  function lang(){ return root.lang === "ar" ? "ar" : "en"; }
+
+  function renderLayer(){
+    var d = LAYERS[currentLayer], t = d[lang()];
+    var whyH = lang() === "ar" ? "لماذا يهمّ" : "Why it matters";
+    detail.innerHTML =
+      '<span class="d-role">' + d.role + '</span>' +
+      '<h4>' + d.name + '</h4>' +
+      t.p.map(function(x){ return "<p>" + x + "</p>"; }).join("") +
+      '<div class="why"><p class="h">' + whyH + '</p><p>' + t.why + '</p></div>';
+    document.querySelectorAll(".layer-btn").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.layer === currentLayer));
+    });
+  }
+
+  function renderScen(){
+    var s = SCEN[currentScen], t = s[lang()], ar = lang() === "ar";
+    var chips = ORDER.map(function(n){
+      var st = s.state[n] || "";
+      return '<span class="chip ' + st + '"><i></i>' + n + '</span>';
+    }).join("");
+    scen.innerHTML =
+      '<div class="chips">' + chips + '</div>' +
+      '<div class="scen-cols">' +
+        '<div><p class="h">' + (ar ? "ما يراه الطالب" : "What a student sees") + '</p><p>' + t.sees + '</p></div>' +
+        '<div><p class="h">' + (ar ? "ما يحدث تحت السطح" : "What happens underneath") + '</p><p>' + t.does + '</p></div>' +
+      '</div>';
+    document.querySelectorAll("#seg button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.scen === currentScen));
+    });
+  }
+
+  document.getElementById("layers").addEventListener("click", function(e){
+    var b = e.target.closest(".layer-btn"); if(!b) return;
+    currentLayer = b.dataset.layer; renderLayer();
   });
-  d.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click',function(){
-      b.setAttribute('aria-expanded','false');
-      d.classList.remove('on');
+  document.getElementById("seg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    currentScen = b.dataset.scen; renderScen();
+  });
+
+  /* ── language ── */
+  var TITLES = {en:"Mhd Taha Daboul — AI Engineer", ar:"Mhd Taha Daboul — مهندس ذكاء اصطناعي"};
+  function setLang(l, persist){
+    root.lang = l;
+    root.dir = l === "ar" ? "rtl" : "ltr";
+    document.title = TITLES[l];
+    document.getElementById("lang-btn").setAttribute("aria-label", l === "ar" ? "Switch to English" : "التبديل إلى العربية");
+    renderLayer(); renderScen();
+    if(persist){ try{ localStorage.setItem("portfolio-lang", l); }catch(_){} }
+  }
+  document.getElementById("lang-btn").addEventListener("click", function(){
+    setLang(lang() === "ar" ? "en" : "ar", true);
+  });
+
+  var initial = "en";
+  try{
+    var q = new URLSearchParams(location.search).get("lang");
+    var saved = localStorage.getItem("portfolio-lang");
+    initial = (q === "ar" || q === "en") ? q : (saved === "ar" ? "ar" : "en");
+  }catch(_){}
+  setLang(initial, false);
+
+  /* ── mobile menu ── */
+  var burger = document.getElementById("burger"), drawer = document.getElementById("drawer");
+  burger.addEventListener("click", function(){
+    var open = burger.getAttribute("aria-expanded") === "true";
+    burger.setAttribute("aria-expanded", String(!open));
+    drawer.classList.toggle("on", !open);
+  });
+  drawer.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      burger.setAttribute("aria-expanded", "false");
+      drawer.classList.remove("on");
     });
   });
 })();
 </script>
-
 </body>
 </html>
+
  
